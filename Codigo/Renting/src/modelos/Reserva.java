@@ -3,12 +3,16 @@ package modelos;
 import java.time.Clock;
 import java.time.LocalDate;
 
+/*
+ * Clase Reserva que genera objetos de tipo Reserva de vehículo por un cliente
+ */
 public class Reserva {
+	
 	private String dniCliente;
 	private String matricula;
 	private LocalDate fechaInicio;
 	private int diasContratados;
-	private Clock horaReserva;
+	private Clock horaReserva; //De tipo Clock para controlar la hora de la reserva y medir las dos horas de plazo para la recogida
 	private boolean recogida;
 	
 	public Reserva(String dniCliente, String matricula, LocalDate fechaInicio, int diasContratados, Clock horaReserva,
@@ -29,6 +33,7 @@ public class Reserva {
 				+ "]";
 	}
 
+	//Constructor por defecto
 	public Reserva() {}
 	
 	public String getDniCliente() {
