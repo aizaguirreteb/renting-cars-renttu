@@ -3,7 +3,7 @@ package modelos;
 import java.time.LocalDate;
 
 /**
- * @author PC
+ * @author José Luis Gómez López
  * @version 1.0
  */
 public class Alquiler {
