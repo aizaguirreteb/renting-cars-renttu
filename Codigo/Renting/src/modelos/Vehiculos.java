@@ -12,7 +12,7 @@ public class Vehiculos {
 	private LocalDate anio;
 	private int TaraMax;
 	private String estado;
-	private Revision revision ;
+	private boolean revision ;
 	private int KmParciales;
 	private String plazas;
 	private int KmTotales;
