@@ -17,8 +17,9 @@ public class Vehiculos {
 	private String plazas;
 	private int KmTotales;
 	private double PrecioDia;
+	
 	public Vehiculos(String matricula, Categoria categoria, String marca, Combustible combustible, String numPuertas,
-			int potencia, LocalDate anio, int taraMax, String estado, Revision revision, int kmParciales, String plazas,
+			int potencia, LocalDate anio, int taraMax, String estado, boolean revision, int kmParciales, String plazas,
 			int kmTotales, double precioDia) {
 		super();
 		this.matricula = matricula;
@@ -90,10 +91,10 @@ public class Vehiculos {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Revision getRevision() {
+	public boolean getRevision() {
 		return revision;
 	}
-	public void setRevision(Revision revision) {
+	public void setRevision(boolean revision) {
 		this.revision = revision;
 	}
 	public int getKmParciales() {

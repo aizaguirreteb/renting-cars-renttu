@@ -10,13 +10,13 @@ public class Cliente {
 	private Estado estado;
 	private int tlf;
 	private String carnetConducir;
-	private int numTarjCredito;
+	private String numTarjCredito;
 	
 	
 	
 	
 	public Cliente(String dni, String poblacion, String nombre, String direccion, String codPostal, Estado estado,
-			int tlf, String carnetConducir, int numTarjCredito) {
+			int tlf, String carnetConducir, String numTarjCredito) {
 		super();
 		this.dni = dni;
 		this.poblacion = poblacion;
@@ -144,14 +144,14 @@ public class Cliente {
 
 
 
-	public int getNumTarjCredito() {
+	public String getNumTarjCredito() {
 		return numTarjCredito;
 	}
 
 
 
 
-	public void setNumTarjCredito(int numTarjCredito) {
+	public void setNumTarjCredito(String numTarjCredito) {
 		this.numTarjCredito = numTarjCredito;
 	}
 

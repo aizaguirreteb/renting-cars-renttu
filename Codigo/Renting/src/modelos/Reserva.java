@@ -1,7 +1,8 @@
 package modelos;
 
-import java.time.Clock;
+
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /*
  * Clase Reserva que genera objetos de tipo Reserva de vehículo por un cliente
@@ -12,25 +13,28 @@ public class Reserva {
 	private String matricula;
 	private LocalDate fechaInicio;
 	private int diasContratados;
-	private Clock horaReserva; //De tipo Clock para controlar la hora de la reserva y medir las dos horas de plazo para la recogida
+	private LocalTime horaReserva; 
 	private boolean recogida;
+	private Estado estado;
 	
-	public Reserva(String dniCliente, String matricula, LocalDate fechaInicio, int diasContratados, Clock horaReserva,
-			boolean recogida) {
-		super();
+	
+	public Reserva(String dniCliente, String matricula, LocalDate fechaInicio, int diasContratados, LocalTime horaReserva,
+			boolean recogida, Estado estado) {
+		
 		this.dniCliente = dniCliente;
 		this.matricula = matricula;
 		this.fechaInicio = fechaInicio;
 		this.diasContratados = diasContratados;
 		this.horaReserva = horaReserva;
 		this.recogida = recogida;
+		this.estado = estado;
 	}
 	
 	@Override
 	public String toString() {
 		return "Reserva [dniCliente=" + dniCliente + ", matricula=" + matricula + ", fechaInicio=" + fechaInicio
 				+ ", diasContratados=" + diasContratados + ", horaReserva=" + horaReserva + ", recogida=" + recogida
-				+ "]";
+				+ ", estado=" + estado +"]";
 	}
 
 	//Constructor por defecto
@@ -60,10 +64,10 @@ public class Reserva {
 	public void setDiasContratados(int diasContratados) {
 		this.diasContratados = diasContratados;
 	}
-	public Clock getHoraReserva() {
+	public LocalTime getHoraReserva() {
 		return horaReserva;
 	}
-	public void setHoraReserva(Clock horaReserva) {
+	public void setHoraReserva(LocalTime horaReserva) {
 		this.horaReserva = horaReserva;
 	}
 	public boolean isRecogida() {
@@ -71,6 +75,14 @@ public class Reserva {
 	}
 	public void setRecogida(boolean recogida) {
 		this.recogida = recogida;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 	
 	
