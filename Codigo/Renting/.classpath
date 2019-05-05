@@ -7,5 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="G:/PROYECTO/proyecto-renting/Codigo/Renting/lib/mysql-connector-java-5.1.47-bin.jar"/>
+	<classpathentry kind="lib" path="G:/PROYECTO/proyecto-renting/Codigo/Renting/lib/jgoodies-common-1.8.0.jar"/>
+	<classpathentry kind="lib" path="G:/PROYECTO/proyecto-renting/Codigo/Renting/lib/jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

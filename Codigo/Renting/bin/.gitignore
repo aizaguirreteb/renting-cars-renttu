@@ -1,3 +1,6 @@
-/auxiliar/
-/dao/
+/interfaces/
 /modelos/
+/vistas/
+/principal/
+/dao/
+/control/
