@@ -43,4 +43,24 @@ public class Auxiliar {
 		}
 	}
 	
+	public static Combustible tipoCombustible(String combustible) {
+		if(combustible.toLowerCase().matches("diesel")) {
+			return Combustible.diesel;
+		}if(combustible.toLowerCase().matches("gasolina")) {
+			return Combustible.gasolina;
+		}if(combustible.toLowerCase().matches("electrico")) {
+			return Combustible.electrico;
+		}else {
+			return Combustible.hibrido;
+		
+		}
+		
+		public static Categoria  tipoCategoria(String categoria)) {
+			if(categoria.toLowerCase().matches("transporte")) {
+				return Categoria.Transporte;
+			} else {
+				return Categoria.Turismo;
+			}
+		}
+	
 }
