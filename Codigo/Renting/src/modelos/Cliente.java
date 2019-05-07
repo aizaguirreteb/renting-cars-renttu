@@ -15,8 +15,9 @@ public class Cliente {
 	
 	
 	
-	public Cliente(String dni, String poblacion, String nombre, String direccion, String codPostal, Estado estado,
-			int tlf, String carnetConducir, String numTarjCredito) {
+	public Cliente(String dni, String poblacion, String nombre, String direccion,
+			String codPostal, Estado estado,int tlf, String carnetConducir, 
+			String numTarjCredito) {
 		super();
 		this.dni = dni;
 		this.poblacion = poblacion;
