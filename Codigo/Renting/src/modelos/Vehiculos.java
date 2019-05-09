@@ -37,6 +37,11 @@ public class Vehiculos {
 		KmTotales = kmTotales;
 		PrecioDia = precioDia;
 	}
+	public Vehiculos(String string, String string2, String string3, Combustible tipoCombustible, String string4,
+			int int1, String string5, int int2, Estado comprobarEstado, String string6, int int3, String string7,
+			String string8, String string9) {
+		// TODO Auto-generated constructor stub
+	}
 	public String getMatricula() {
 		return matricula;
 	}

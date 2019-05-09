@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import modelos.Categoria;
+import modelos.Combustible;
 import modelos.Estado;
 
 public class Auxiliar {
@@ -50,17 +52,18 @@ public class Auxiliar {
 			return Combustible.gasolina;
 		}if(combustible.toLowerCase().matches("electrico")) {
 			return Combustible.electrico;
-		}else {
+		}else 
 			return Combustible.hibrido;
 		
-		}
+	}
+	
 		
-		public static Categoria  tipoCategoria(String categoria)) {
+		public static Categoria  tipoCategoria(String categoria) {
 			if(categoria.toLowerCase().matches("transporte")) {
 				return Categoria.Transporte;
-			} else {
+			} else 
 				return Categoria.Turismo;
-			}
+			
 		}
 	
 }
