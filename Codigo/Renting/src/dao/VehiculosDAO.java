@@ -35,16 +35,26 @@ public class VehiculosDAO {
 		}
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public List<Vehiculos> obtenerTodosLosVehiculos(){
 		List<Vehiculos> listaVehiculos = new ArrayList<>();
 		String sql = "SELECT * FROM VEHICULOS;";
 		
 		 try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(sql)){
 			while(rs.next()) {
-				listaVehiculos.add(new Vehiculos(rs.getString("matricula"),rs.getString("categoria"),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getString("numPuertas"),rs.getInt("potencia"),rs.getString("anio")
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getString("revision"),rs.getInt("KmParciales")
-						,rs.getString("plazas"),rs.getString("KmParciales"),rs.getString("PrecioDia")));
+				listaVehiculos.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
+						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
+						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -63,10 +73,10 @@ public class VehiculosDAO {
 		
 		 try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(sql)){
 			while(rs.next()) {
-				listaVehiculosActivos.add(new Vehiculos(rs.getString("matricula"),rs.getString("categoria"),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getString("numPuertas"),rs.getInt("potencia"),rs.getString("anio")
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getString("revision"),rs.getInt("KmParciales")
-						,rs.getString("plazas"),rs.getString("KmParciales"),rs.getString("PrecioDia")));
+				listaVehiculosActivos.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
+						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
+						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -84,10 +94,10 @@ public class VehiculosDAO {
 		
 		 try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(sql)){
 			while(rs.next()) {
-				listaVehiculosBaja.add(new Vehiculos(rs.getString("matricula"),rs.getString("categoria"),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getString("numPuertas"),rs.getInt("potencia"),rs.getString("anio")
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getString("revision"),rs.getInt("KmParciales")
-						,rs.getString("plazas"),rs.getString("KmParciales"),rs.getString("PrecioDia")));
+				listaVehiculosBaja.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
+						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
+						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -107,10 +117,10 @@ public class VehiculosDAO {
 			 psstatement.setString(1, buscarMatricula);
 			 ResultSet rs = psstatement.executeQuery();
 			while(rs.next()) {
-				listaVehiculosAM.add(new Vehiculos(rs.getString("matricula"),rs.getString("categoria"),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getString("numPuertas"),rs.getInt("potencia"),rs.getString("anio")
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getString("revision"),rs.getInt("KmParciales")
-						,rs.getString("plazas"),rs.getString("KmParciales"),rs.getString("PrecioDia")));
+				listaVehiculosAM.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
+						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
+						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -131,10 +141,10 @@ public class VehiculosDAO {
 			 psstatement.setString(1, buscarMatricula);
 			 ResultSet rs = psstatement.executeQuery();
 			while(rs.next()) {
-				listaVehiculosBM.add(new Vehiculos(rs.getString("matricula"),rs.getString("categoria"),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getString("numPuertas"),rs.getInt("potencia"),rs.getString("anio")
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getString("revision"),rs.getInt("KmParciales")
-						,rs.getString("plazas"),rs.getString("KmParciales"),rs.getString("PrecioDia")));
+				listaVehiculosBM.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
+						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
+						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -161,10 +171,10 @@ public class VehiculosDAO {
 			 psstatement.setString(1, buscarCombustible);
 			 ResultSet rs = psstatement.executeQuery();
 			while(rs.next()) {
-				listaVehiculosAC.add(new Vehiculos(rs.getString("matricula"),rs.getString("categoria"),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getString("numPuertas"),rs.getInt("potencia"),rs.getString("anio")
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getString("revision"),rs.getInt("KmParciales")
-						,rs.getString("plazas"),rs.getString("KmParciales"),rs.getString("PrecioDia")));
+				listaVehiculosAC.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
+						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
+						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -185,10 +195,10 @@ public class VehiculosDAO {
 					 psstatement.setString(1, buscarCombustible);
 					 ResultSet rs = psstatement.executeQuery();
 					while(rs.next()) {
-						listaVehiculosBC.add(new Vehiculos(rs.getString("matricula"),rs.getString("categoria"),rs.getString("marca")
-								,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getString("numPuertas"),rs.getInt("potencia"),rs.getString("anio")
-								,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getString("revision"),rs.getInt("KmParciales")
-								,rs.getString("plazas"),rs.getString("KmParciales"),rs.getString("PrecioDia")));
+						listaVehiculosBC.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
+								,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
+								,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
+								,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -229,14 +239,14 @@ public class VehiculosDAO {
 					pStatement.setString(2, nuevoVehiculo.getCategoria().toString());
 					pStatement.setString(3, nuevoVehiculo.getMarca());
 					pStatement.setString(4, nuevoVehiculo.getCombustible().toString());
-					pStatement.setString(5, nuevoVehiculo.getNumPuertas());
+					pStatement.setInt(5, nuevoVehiculo.getNumPuertas());
 					pStatement.setInt(6, nuevoVehiculo.getPotencia());
 					pStatement.setString(7, nuevoVehiculo.getAnio().toString());
 					pStatement.setInt(8, nuevoVehiculo.getTaraMax());
-					pStatement.setString(9, nuevoVehiculo.getEstado());
+					pStatement.setString(9, nuevoVehiculo.getEstado().toString());
 					pStatement.setBoolean(10, nuevoVehiculo.getRevision());
 					pStatement.setInt(11, nuevoVehiculo.getKmParciales());
-					pStatement.setString(12, nuevoVehiculo.getPlazas());
+					pStatement.setInt(12, nuevoVehiculo.getPlazas());
 					pStatement.setInt(13, nuevoVehiculo.getKmTotales());
 					pStatement.setDouble(14, nuevoVehiculo.getPrecioDia());
 					filasAfectadas = pStatement.executeUpdate();

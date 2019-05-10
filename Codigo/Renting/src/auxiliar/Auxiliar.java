@@ -52,18 +52,18 @@ public class Auxiliar {
 			return Combustible.gasolina;
 		}if(combustible.toLowerCase().matches("electrico")) {
 			return Combustible.electrico;
-		}else {
+		}else 
 			return Combustible.hibrido;
-		}
 		
 	}
+	
 		
 		public static Categoria  tipoCategoria(String categoria) {
 			if(categoria.toLowerCase().matches("transporte")) {
 				return Categoria.Transporte;
-			} else {
+			} else 
 				return Categoria.Turismo;
-			}
+			
 		}
 	
 }
