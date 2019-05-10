@@ -7,19 +7,19 @@ public class Vehiculos {
 	private Categoria categoria;
 	private String marca;
 	private Combustible combustible;
-	private String numPuertas;
+	private int numPuertas;
 	private int potencia;
 	private LocalDate anio;
 	private int TaraMax;
-	private String estado;
+	private Estado estado;
 	private boolean revision ;
 	private int KmParciales;
-	private String plazas;
+	private int plazas;
 	private int KmTotales;
 	private double PrecioDia;
 	
-	public Vehiculos(String matricula, Categoria categoria, String marca, Combustible combustible, String numPuertas,
-			int potencia, LocalDate anio, int taraMax, String estado, boolean revision, int kmParciales, String plazas,
+	public Vehiculos(String matricula, Categoria categoria, String marca, Combustible combustible,int numPuertas,
+			int potencia, LocalDate anio, int taraMax, Estado estado, boolean revision, int kmParciales, int plazas,
 			int kmTotales, double precioDia) {
 		super();
 		this.matricula = matricula;
@@ -37,11 +37,7 @@ public class Vehiculos {
 		KmTotales = kmTotales;
 		PrecioDia = precioDia;
 	}
-	public Vehiculos(String string, String string2, String string3, Combustible tipoCombustible, String string4,
-			int int1, String string5, int int2, Estado comprobarEstado, String string6, int int3, String string7,
-			String string8, String string9) {
-		// TODO Auto-generated constructor stub
-	}
+
 	public String getMatricula() {
 		return matricula;
 	}
@@ -66,10 +62,10 @@ public class Vehiculos {
 	public void setCombustible(Combustible combustible) {
 		this.combustible = combustible;
 	}
-	public String getNumPuertas() {
+	public int getNumPuertas() {
 		return numPuertas;
 	}
-	public void setNumPuertas(String numPuertas) {
+	public void setNumPuertas(int numPuertas) {
 		this.numPuertas = numPuertas;
 	}
 	public int getPotencia() {
@@ -90,10 +86,10 @@ public class Vehiculos {
 	public void setTaraMax(int taraMax) {
 		TaraMax = taraMax;
 	}
-	public String getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 	public boolean getRevision() {
@@ -108,10 +104,10 @@ public class Vehiculos {
 	public void setKmParciales(int kmParciales) {
 		KmParciales = kmParciales;
 	}
-	public String getPlazas() {
+	public int getPlazas() {
 		return plazas;
 	}
-	public void setPlazas(String plazas) {
+	public void setPlazas(int plazas) {
 		this.plazas = plazas;
 	}
 	public int getKmTotales() {
