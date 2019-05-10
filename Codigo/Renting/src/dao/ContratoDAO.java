@@ -122,6 +122,21 @@ public class ContratoDAO {
 		return listaContratos;
 	}
 	
+	public List<Contrato> buscarContrato(String string) {
+		
+		List<Contrato> listaContratos = new ArrayList<>();
+		
+		if (string.toUpperCase().matches("[0-9]{8}[A-Z]"))
+			listaContratos = obtenerContratosPorDNI(string);
+		else if (string.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}"))
+			listaContratos = obtenerContratosPorFechaInicio(string);
+		else if (string.toUpperCase().matches("[0-9]{4}-[A-Z]{3}"))
+			listaContratos = obtenerContratosPorMatricula(string);		
+			
+		return listaContratos;
+		
+	}
+	
 	public boolean insertarNuevoContrato(Contrato nuevoContrato) {
 		String insercionSQL = "INSERT INTO CONTRATO VALUES (?,?,?,?,?,?);";
 		int filasAfectadas = 0;
