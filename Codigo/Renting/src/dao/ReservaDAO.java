@@ -187,6 +187,48 @@ public class ReservaDAO {
 		return listaReservasACanceladasPorMatricula;
 	}
 	
+	public List<Reserva> obtenerTodasReservasPorMatricula(String matricula){
+
+		List<Reserva> listaTodasReservasPorMatricula = new ArrayList<>();
+		String consulta = "Select * from reserva where matricula like %?%;";
+		try (PreparedStatement pStatement = conexion.prepareStatement(consulta);){
+			pStatement.setString(1, matricula);
+			ResultSet rs = pStatement.executeQuery();
+			while(rs.next()) {
+				listaTodasReservasPorMatricula.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
+						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
+						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return listaTodasReservasPorMatricula;
+	}
+	
+	public List<Reserva> obtenerTodasReservasPorDni(String dniABuscar){
+
+		List<Reserva> listaTodasReservasPorDni = new ArrayList<>();
+		String consulta = "Select * from reserva where dni=?;";
+		try (PreparedStatement pStatement = conexion.prepareStatement(consulta);){
+			pStatement.setString(1, dniABuscar);
+			ResultSet rs = pStatement.executeQuery();
+			while(rs.next()) {
+				listaTodasReservasPorDni.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
+						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
+						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return listaTodasReservasPorDni;
+	}
+	
 	//Metodo para insertar una nueva reserva
 	public boolean insertarNuevaReserva(Reserva nuevaReserva) {
 		String insercionSQL = "Insert into reserva values (?,?,?,?,?,?,?);";
@@ -212,15 +254,17 @@ public class ReservaDAO {
 	//En el caso de que se recoja el coche, el estado pasa a baja
 	//Mientras dure el tiempo de la reserva si no se ha recogido el coche el estado será de alta
 	//Si nunca se llega a recoger el coche y pasa el tiempo de la reserva, pasa el estado también a baja.
-	public boolean actualizarEstadoReservaPorDni(String recogida, String estado, String dni) {
-		String updateSQL = "Update reserva set recogida=?, estado=? where dni=?;";
+	public boolean actualizarEstadoReservaPorDni(String recogida, String estado, Reserva reservaAeditar) {
+		String updateSQL = "Update reserva set recogida=?, estado=? where dni=? and matricula=? and fechaInicio=?;";
 		
 		int filasAfectadas = 0;
 		try (PreparedStatement pStatement = conexion.prepareStatement(updateSQL);){
 			pStatement.setString(1, recogida);
 			
 			pStatement.setString(2, Auxiliar.comprobarEstado(estado).toString());
-			pStatement.setString(3, dni);
+			pStatement.setString(3, reservaAeditar.getDniCliente());
+			pStatement.setString(4, reservaAeditar.getMatricula());
+			pStatement.setString(5, reservaAeditar.getFechaInicio().toString());
 			
 			filasAfectadas = pStatement.executeUpdate();
 		} catch (SQLException e) {
