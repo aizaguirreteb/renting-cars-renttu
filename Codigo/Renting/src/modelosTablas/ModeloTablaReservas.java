@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import auxiliar.Auxiliar;
 import modelos.Reserva;
 
 @SuppressWarnings("serial")
@@ -12,8 +13,8 @@ public class ModeloTablaReservas extends AbstractTableModel {
 	private List<Reserva> listaReservas;
 	private String[] titulosColumnas = {"DNI","MATRICULA","FECHA","NUMERO DE DIAS","HORA DE RESERVA","RECOGIDA","ESTADO"};
 
-	public ModeloTablaReservas(List<Reserva> llistaReservasAMostrar) {
-		this.listaReservas = llistaReservasAMostrar;
+	public ModeloTablaReservas(List<Reserva> listaReservasAMostrar) {
+		this.listaReservas = listaReservasAMostrar;
 	}
 	
 	@Override
@@ -25,7 +26,7 @@ public class ModeloTablaReservas extends AbstractTableModel {
 	@Override
 	public int getColumnCount() {
 		//Numero de campos que tiene cada registro
-		return 8;
+		return 7;
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class ModeloTablaReservas extends AbstractTableModel {
 			case 4:
 				return reservaObtenida.getHoraReserva();
 			case 5:
-				return reservaObtenida.isRecogida();
+				return Auxiliar.leerRecogida(reservaObtenida.isRecogida());
 			case 6:
 				return reservaObtenida.getEstado();
 			default:

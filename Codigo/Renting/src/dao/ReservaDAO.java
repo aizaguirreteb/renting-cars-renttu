@@ -229,6 +229,27 @@ public class ReservaDAO {
 		return listaTodasReservasPorDni;
 	}
 	
+	public List<Reserva> obtenerTodasReservasPorFecha(String fechaAbuscar){
+
+		List<Reserva> listaTodasReservasPorFecha = new ArrayList<>();
+		String consulta = "Select * from reserva where fechaInicio=?;";
+		try (PreparedStatement pStatement = conexion.prepareStatement(consulta);){
+			pStatement.setString(1, fechaAbuscar);
+			ResultSet rs = pStatement.executeQuery();
+			while(rs.next()) {
+				listaTodasReservasPorFecha.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
+						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
+						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return listaTodasReservasPorFecha;
+	}
+	
 	//Metodo para insertar una nueva reserva
 	public boolean insertarNuevaReserva(Reserva nuevaReserva) {
 		String insercionSQL = "Insert into reserva values (?,?,?,?,?,?,?);";
@@ -272,6 +293,20 @@ public class ReservaDAO {
 			e.printStackTrace();
 		}
 		return filasAfectadas != 0;
+	}
+	
+	public List<Reserva> buscarReserva(String string){
+		List<Reserva> listaReservas = new ArrayList<>();
+		
+		if(string.toUpperCase().matches("[0-9]{8}[A-Z]"))
+			listaReservas = obtenerTodasReservasPorDni(string);
+		if(string.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}"))
+			listaReservas = obtenerTodasReservasPorFecha(string);
+		else if (string.toUpperCase().matches("[0-9]{4}-[A-Z]{3}"))
+			listaReservas = obtenerTodasReservasPorMatricula(string);		
+			
+		return listaReservas;
+		
 	}
 }
 
