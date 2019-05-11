@@ -43,7 +43,7 @@ public class ReservaDAO {
 		String consulta = "Select * from reserva;";
 		try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(consulta)){
 			while(rs.next()) {
-				listaReservas.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaReservas.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -63,7 +63,7 @@ public class ReservaDAO {
 		String consulta = "Select * from reserva where estado='alta';";
 		try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(consulta)){
 			while(rs.next()) {
-				listaReservasActivas.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaReservasActivas.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -84,7 +84,7 @@ public class ReservaDAO {
 		String consulta = "Select * from reserva where estado='baja';";
 		try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(consulta)){
 			while(rs.next()) {
-				listaReservasCanceladas.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaReservasCanceladas.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -102,12 +102,12 @@ public class ReservaDAO {
 	public List<Reserva> obtenerReservasActivasPorDni(String dniABuscar){
 
 		List<Reserva> listaReservasActivasPorDni = new ArrayList<>();
-		String consulta = "Select * from reserva where estado='alta' and dni=?;";
+		String consulta = "Select * from reserva where estado='alta' and dniCliente like %?%;";
 		try (PreparedStatement pStatement = conexion.prepareStatement(consulta);){
 			pStatement.setString(1, dniABuscar);
 			ResultSet rs = pStatement.executeQuery();
 			while(rs.next()) {
-				listaReservasActivasPorDni.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaReservasActivasPorDni.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -124,12 +124,12 @@ public class ReservaDAO {
 	public List<Reserva> obtenerReservasCanceladasPorDni(String dniABuscar){
 
 		List<Reserva> listaReservasCanceladasPorDni = new ArrayList<>();
-		String consulta = "Select * from reserva where estado='baja' and dni=?;";
+		String consulta = "Select * from reserva where estado='baja' and dniCliente like %?%;";
 		try (PreparedStatement pStatement = conexion.prepareStatement(consulta);){
 			pStatement.setString(1, dniABuscar);
 			ResultSet rs = pStatement.executeQuery();
 			while(rs.next()) {
-				listaReservasCanceladasPorDni.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaReservasCanceladasPorDni.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -152,7 +152,7 @@ public class ReservaDAO {
 			pStatement.setString(1, matricula);
 			ResultSet rs = pStatement.executeQuery();
 			while(rs.next()) {
-				listaReservasActivasPorMatricula.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaReservasActivasPorMatricula.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -174,7 +174,7 @@ public class ReservaDAO {
 			pStatement.setString(1, matricula);
 			ResultSet rs = pStatement.executeQuery();
 			while(rs.next()) {
-				listaReservasACanceladasPorMatricula.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaReservasACanceladasPorMatricula.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -195,7 +195,7 @@ public class ReservaDAO {
 			pStatement.setString(1, matricula);
 			ResultSet rs = pStatement.executeQuery();
 			while(rs.next()) {
-				listaTodasReservasPorMatricula.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaTodasReservasPorMatricula.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -211,12 +211,12 @@ public class ReservaDAO {
 	public List<Reserva> obtenerTodasReservasPorDni(String dniABuscar){
 
 		List<Reserva> listaTodasReservasPorDni = new ArrayList<>();
-		String consulta = "Select * from reserva where dni=?;";
+		String consulta = "Select * from reserva where dniCliente like %?%;";
 		try (PreparedStatement pStatement = conexion.prepareStatement(consulta);){
 			pStatement.setString(1, dniABuscar);
 			ResultSet rs = pStatement.executeQuery();
 			while(rs.next()) {
-				listaTodasReservasPorDni.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaTodasReservasPorDni.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -237,7 +237,7 @@ public class ReservaDAO {
 			pStatement.setString(1, fechaAbuscar);
 			ResultSet rs = pStatement.executeQuery();
 			while(rs.next()) {
-				listaTodasReservasPorFecha.add(new Reserva(rs.getString("dni"), rs.getString("matricula"),
+				listaTodasReservasPorFecha.add(new Reserva(rs.getString("dniCliente"), rs.getString("matricula"),
 						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
 						rs.getInt("diasContratados"), Auxiliar.formatearHora(rs.getString("horaReserva")),
 						Auxiliar.comprobarRecogida(rs.getString("recogida")), Auxiliar.comprobarEstado(rs.getString("estado"))));
@@ -276,7 +276,7 @@ public class ReservaDAO {
 	//Mientras dure el tiempo de la reserva si no se ha recogido el coche el estado será de alta
 	//Si nunca se llega a recoger el coche y pasa el tiempo de la reserva, pasa el estado también a baja.
 	public boolean actualizarEstadoReservaPorDni(String recogida, String estado, Reserva reservaAeditar) {
-		String updateSQL = "Update reserva set recogida=?, estado=? where dni=? and matricula=? and fechaInicio=?;";
+		String updateSQL = "Update reserva set recogida=?, estado=? where dniCliente=? and matricula=? and fechaInicio=?;";
 		
 		int filasAfectadas = 0;
 		try (PreparedStatement pStatement = conexion.prepareStatement(updateSQL);){

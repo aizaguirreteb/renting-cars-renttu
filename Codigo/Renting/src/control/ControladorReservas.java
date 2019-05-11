@@ -27,7 +27,7 @@ public class ControladorReservas implements Controlador {
 	@Override
 	public void obtenerReservasBaja() {
 		List<Reserva> listaReservas = reservaDao.obtenerReservasCanceladas();
-		panelReserva.mostrarReservas(listaReservas);		
+		panelReserva.mostrarReservasHistorial(listaReservas);		
 	}
 
 	@Override

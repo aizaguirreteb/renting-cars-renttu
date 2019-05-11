@@ -8,12 +8,16 @@ public interface InterfazReserva {
 	public interface Vista{
 		
 		//Metodo para añadir las reservas a la tabla correspondiente para la tabla del panel de Reservas
-		public void mostrarReservas(List<Reserva> listaReservas);		
+		public void mostrarReservas(List<Reserva> listaReservas);	
+		
+		public void mostrarReservasHistorial(List<Reserva> listaReservas);
 		
 		//JOptionPane de error cuando uno o varios datos de la reserva no se encuentran en la base de datos
 		public void errorEnRegistroDeReserva();
 		
 		public void insercionCorrecta();
+		
+		public void dadoDeBajaCorrectamente();
 	}
 	
 	public interface Controlador{
