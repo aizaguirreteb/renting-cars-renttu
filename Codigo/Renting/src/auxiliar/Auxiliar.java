@@ -10,7 +10,7 @@ import modelos.Estado;
 
 public class Auxiliar {
 	
-	public static DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("YYYY/MM/dd");
+	public static DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
 	
 	
@@ -33,6 +33,14 @@ public class Auxiliar {
 	//Devuelve true si en la base de datos la tenemos como SI
 	public static boolean comprobarRecogida(String recogida) {
 		return recogida.toLowerCase().matches("si");
+	}
+	
+	//METODO PARA LEER EL BOOLEANO DE LA RECOGIDA E INSERTAR EN LA BASE DE DATOS LO QUE CORRESPONDE
+	public static String leerRecogida (boolean recogida) {
+		if(recogida) {
+			return "SI";
+		}
+		return "NO";
 	}
 	
 	//METODO PARA COMPROBAR EL ESTADO DE CUALQUIER OBJETO: RESERVA, ALQUILER, VEHHICULO O CLIENTE
