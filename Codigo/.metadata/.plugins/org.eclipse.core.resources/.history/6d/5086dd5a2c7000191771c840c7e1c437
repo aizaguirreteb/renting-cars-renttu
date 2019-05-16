@@ -1,0 +1,107 @@
+package dao;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+import conexion.Conexion;
+import modelos.Cliente;
+import modelos.Estado;
+
+public class ClienteDAO {
+
+	private static Connection conexion;
+
+	public ClienteDAO () {
+		try {
+			conexion = Conexion.getConexion();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static List<Cliente> obtenerListaClientes(List<Cliente> listaClientes){
+		//Va a ser el comando a usar en la base de datos
+		String sql = "SELECT * FROM CLIENTES";
+		try (Statement statement =  conexion.createStatement();) {
+
+			ResultSet rsSet = statement.executeQuery(sql);
+
+			while(rsSet.next()) {
+				if (rsSet.getString(6).equals(Estado.alta.toString()
+						)) {
+					listaClientes.add(new Cliente(rsSet.getString("DNI"),rsSet.getString("POBLACION"),
+							rsSet.getString("NOMBRE"),rsSet.getString("DIRECCION"),rsSet.getString("COD_POSTAL"),
+							Estado.alta,rsSet.getInt("TELEFONO"),rsSet.getString("CARNET_CONDUCIR"),
+							rsSet.getString("NUM_TARJ_CREDITO")));
+				}else {
+					listaClientes.add(new Cliente(rsSet.getString("DNI"),rsSet.getString("POBLACION"),
+							rsSet.getString("NOMBRE"),rsSet.getString("DIRECCION"),rsSet.getString("COD_POSTAL"),
+							Estado.baja,rsSet.getInt("TELEFONO"),rsSet.getString("CARNET_CONDUCIR"),
+							rsSet.getString("NUM_TARJ_CREDITO")));
+				}
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return listaClientes;
+	}
+	
+	public 
+	
+	
+	
+	
+	
+	
+	public  boolean crearCliente(Cliente cliente) {
+		//Va a ser el comando a usar en la base de datos
+		String sql = "INSERT INTO CLIENTES VALUES (?,?,?,?,?,?,?,?,?)";
+		//Variable que va a guardar el número de filas actualizadas
+		int rows = 0;
+		try (PreparedStatement ps =  conexion.prepareStatement(sql);) {
+			//Introduce los valores del cliente a sus respectivas filas 
+			ps.setString(1,cliente.getDni());
+			ps.setString(2,cliente.getPoblacion());
+			ps.setString(3,cliente.getNombre());
+			ps.setString(4,cliente.getDireccion());
+			ps.setString(5,cliente.getCodPostal());
+			ps.setString(6,cliente.getEstado().toString());
+			ps.setInt(7,cliente.getTlf());
+			ps.setString(8,cliente.getCarnetConducir());
+			ps.setString(9,cliente.getNumTarjCredito());
+
+			rows = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rows != 0;
+
+	}
+
+
+
+
+
+}
