@@ -36,15 +36,6 @@ public class VehiculosDAO {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public List<Vehiculos> obtenerTodosLosVehiculos(){
 		List<Vehiculos> listaVehiculos = new ArrayList<>();
 		String sql = "SELECT * FROM VEHICULOS;";
@@ -52,9 +43,9 @@ public class VehiculosDAO {
 		 try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(sql)){
 			while(rs.next()) {
 				listaVehiculos.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
-						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("num_puertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anyo"))
+						,rs.getInt("Tara_Max"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("Km_Parciales")
+						,rs.getInt("plazas"),rs.getInt("Km_Totales"),rs.getDouble("Precio_Dia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -74,9 +65,9 @@ public class VehiculosDAO {
 		 try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(sql)){
 			while(rs.next()) {
 				listaVehiculosActivos.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
-						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("num_puertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anyo"))
+						,rs.getInt("Tara_Max"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("Km_Parciales")
+						,rs.getInt("plazas"),rs.getInt("Km_Totales"),rs.getDouble("Precio_Dia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -95,9 +86,9 @@ public class VehiculosDAO {
 		 try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(sql)){
 			while(rs.next()) {
 				listaVehiculosBaja.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
-						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("num_puertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anyo"))
+						,rs.getInt("Tara_Max"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("Km_Parciales")
+						,rs.getInt("plazas"),rs.getInt("Km_Totales"),rs.getDouble("Precio_Dia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -118,9 +109,9 @@ public class VehiculosDAO {
 			 ResultSet rs = psstatement.executeQuery();
 			while(rs.next()) {
 				listaVehiculosAM.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
-						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("num_puertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anyo"))
+						,rs.getInt("Tara_Max"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("Km_Parciales")
+						,rs.getInt("plazas"),rs.getInt("Km_Totales"),rs.getDouble("Precio_Dia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -142,9 +133,9 @@ public class VehiculosDAO {
 			 ResultSet rs = psstatement.executeQuery();
 			while(rs.next()) {
 				listaVehiculosBM.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
-						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("num_puertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anyo"))
+						,rs.getInt("Tara_Max"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("Km_Parciales")
+						,rs.getInt("plazas"),rs.getInt("Km_Totales"),rs.getDouble("Precio_Dia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -172,9 +163,9 @@ public class VehiculosDAO {
 			 ResultSet rs = psstatement.executeQuery();
 			while(rs.next()) {
 				listaVehiculosAC.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
-						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
-						,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
-						,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
+						,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("num_puertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anyo"))
+						,rs.getInt("Tara_Max"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("Km_Parciales")
+						,rs.getInt("plazas"),rs.getInt("Km_Totales"),rs.getDouble("Precio_Dia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -196,9 +187,9 @@ public class VehiculosDAO {
 					 ResultSet rs = psstatement.executeQuery();
 					while(rs.next()) {
 						listaVehiculosBC.add(new Vehiculos(rs.getString("matricula"),Auxiliar.tipoCategoria(rs.getString("categoria")),rs.getString("marca")
-								,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("numPuertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anio"))
-								,rs.getInt("TaraMax"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("KmParciales")
-								,rs.getInt("plazas"),rs.getInt("KmTotales"),rs.getDouble("PrecioDia")));
+								,Auxiliar.tipoCombustible(rs.getString("combustible")),rs.getInt("num_puertas"),rs.getInt("potencia"),Auxiliar.formatearFecha(rs.getString("anyo"))
+								,rs.getInt("Tara_Max"),Auxiliar.comprobarEstado(rs.getString("estado")),rs.getBoolean("revision"),rs.getInt("Km_Parciales")
+								,rs.getInt("plazas"),rs.getInt("Km_Totales"),rs.getDouble("Precio_Dia")));
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -210,7 +201,7 @@ public class VehiculosDAO {
 
 
 			public boolean actualizarEstadoYKmvehiculo(String KmParciales,String estado) {
-				String updateSQL = "UPDATE VEHICULOS SET  estado=?,KmParciales=?;";
+				String updateSQL = "UPDATE VEHICULOS SET  estado=?,Km_Parciales=?;";
 				
 				int filasAfectadas = 0;
 				try (PreparedStatement pStatement = conexion.prepareStatement(updateSQL);){
