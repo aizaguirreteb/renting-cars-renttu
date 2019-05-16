@@ -46,24 +46,26 @@ public class ModeloTablasVehiculos extends AbstractTableModel{
 		case 2:
 			return vehiculoObtenido.getMarca();
 		case 3:
-			return vehiculoObtenido.getCombustible().toString();
+			return vehiculoObtenido.getModelo();
 		case 4:
-			return vehiculoObtenido.getNumPuertas();
+			return vehiculoObtenido.getCombustible().toString();
 		case 5:
-			return vehiculoObtenido.getPotencia();
+			return vehiculoObtenido.getNumPuertas();
 		case 6:
-			return vehiculoObtenido.getTaraMax();
+			return vehiculoObtenido.getPotencia();
 		case 7:
-			return vehiculoObtenido.getEstado().toString();
+			return vehiculoObtenido.getTaraMax();
 		case 8:
-			return Auxiliar.leerRecogida(vehiculoObtenido.getRevision());
+			return vehiculoObtenido.getEstado().toString();
 		case 9:
-			return vehiculoObtenido.getKmParciales();
+			return Auxiliar.leerRecogida(vehiculoObtenido.getRevision());
 		case 10:
-			return vehiculoObtenido.getPlazas();
+			return vehiculoObtenido.getKmParciales();
 		case 11:
-			return vehiculoObtenido.getKmTotales();
+			return vehiculoObtenido.getPlazas();
 		case 12:
+			return vehiculoObtenido.getKmTotales();
+		case 13:
 			return vehiculoObtenido.getPrecioDia();
 		
 		default:

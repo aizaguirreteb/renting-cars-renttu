@@ -38,7 +38,9 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 	 */
 	public VentanaPrincipalGestion() {
 		//PanelClientes panelClientes = new PanelClientes();
+		
 		PanelVehiculos panelReservas2 = new PanelVehiculos();
+		PanelReservas panelReservas = new PanelReservas();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		panel1 = new JPanel();
@@ -48,6 +50,7 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 		JTabbedPane tabbedPane = new JTabbedPane();
 		//tabbedPane.addTab("Clientes", panelClientes);
 		tabbedPane.addTab("Vehiculos", panelReservas2);
+		tabbedPane.addTab("Reservas", panelReservas);
 		setContentPane(tabbedPane);
 	}
 }

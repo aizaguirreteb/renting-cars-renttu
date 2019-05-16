@@ -10,7 +10,7 @@ public class Vehiculos {
 	private Combustible combustible;
 	private int numPuertas;
 	private int potencia;
-	private LocalDate anio;
+	private String anio;
 	private int TaraMax;
 	private Estado estado;
 	private boolean revision ;
@@ -20,7 +20,7 @@ public class Vehiculos {
 	private double PrecioDia;
 	
 	public Vehiculos(String matricula, Categoria categoria, String marca,String modelo, Combustible combustible,int numPuertas,
-			int potencia, LocalDate anio, int taraMax, Estado estado, boolean revision, int kmParciales, int plazas,
+			int potencia, String anio, int taraMax, Estado estado, boolean revision, int kmParciales, int plazas,
 			int kmTotales, double precioDia) {
 		
 		this.matricula = matricula;
@@ -84,10 +84,10 @@ public class Vehiculos {
 	public void setPotencia(int potencia) {
 		this.potencia = potencia;
 	}
-	public LocalDate getAnio() {
+	public String getAnio() {
 		return anio;
 	}
-	public void setAnio(LocalDate anio) {
+	public void setAnio(String anio) {
 		this.anio = anio;
 	}
 	public int getTaraMax() {
