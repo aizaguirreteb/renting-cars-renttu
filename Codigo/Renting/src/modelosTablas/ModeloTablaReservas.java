@@ -26,7 +26,7 @@ public class ModeloTablaReservas extends AbstractTableModel {
 	@Override
 	public int getColumnCount() {
 		//Numero de campos que tiene cada registro
-		return 7;
+		return titulosColumnas.length;
 	}
 
 	@Override

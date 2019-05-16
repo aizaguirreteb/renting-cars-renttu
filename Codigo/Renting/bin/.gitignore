@@ -1,9 +1,10 @@
-/modelos/
-/principal/
-/vistas/
-/modelosTablas/
-/dialogos/
 /auxiliar/
+/conexion/
 /control/
 /dao/
+/dialogos/
 /interfaces/
+/modelos/
+/modelosTablas/
+/principal/
+/vistas/

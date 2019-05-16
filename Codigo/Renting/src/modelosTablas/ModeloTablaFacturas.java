@@ -15,11 +15,17 @@ public class ModeloTablaFacturas extends AbstractTableModel  {
 	public ModeloTablaFacturas(List<Factura> listaFacturasAMostrar) {
 		this.listaFacturas = listaFacturasAMostrar;
 	}
+	
+	@Override
+	public String getColumnName(int columna) {
+		// TODO Auto-generated method stub
+		return titulosColumnas[columna];
+	}
 
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 9;
+		return titulosColumnas.length;
 	}
 
 	@Override
