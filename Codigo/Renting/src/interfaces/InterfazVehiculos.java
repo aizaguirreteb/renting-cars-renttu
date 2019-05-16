@@ -2,7 +2,6 @@ package interfaces;
 
 import java.util.List;
 
-import modelos.Reserva;
 import modelos.Vehiculos;
 
 public interface InterfazVehiculos {
