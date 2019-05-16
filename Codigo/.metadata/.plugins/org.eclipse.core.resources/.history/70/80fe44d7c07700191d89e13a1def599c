@@ -1,9 +1,0 @@
-package vistas;
-
-import interfaces.InterfazCliente;
-import modelos.Cliente;
-import java.swing.JPanel;
-
-public class PanelClientes extends JPanel implements InterfazCliente.Vista {
-
-}
