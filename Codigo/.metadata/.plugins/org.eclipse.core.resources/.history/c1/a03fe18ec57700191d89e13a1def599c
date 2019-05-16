@@ -4,7 +4,6 @@ import interfaces.InterfazCliente;
 import modelos.Cliente;
 import control.ControladorClientes;
 import modelosTablas.ModeloTablaClientes;
-import dialogos.DialogoFormularioCliente;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +26,7 @@ import javax.swing.event.ListSelectionListener;
 import auxiliar.Auxiliar;
 
 public class PanelClientes extends JPanel implements InterfazCliente.Vista {
-	private JTable tableClientes;
+	private JTable tableReservas;
 	private JTextField textBusqueda;
 	private JScrollPane scrollPane;
 	private JSeparator separator;
@@ -63,7 +62,7 @@ public class PanelClientes extends JPanel implements InterfazCliente.Vista {
 	private void setPanel() {
 		scrollPane = new JScrollPane();
 		setTabla();
-		scrollPane.setViewportView(tableClientes);
+		scrollPane.setViewportView(tableReservas);
 		crearSeparadores();		
 		crearBotones();		
 		crearTextFields();		
@@ -71,12 +70,12 @@ public class PanelClientes extends JPanel implements InterfazCliente.Vista {
 		setLayout(groupLayout);
 	}
 	private void setTabla() {
-		tableClientes = new JTable();
-		tableClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tableClientes.setRowSelectionAllowed(true);
-		tableClientes.setColumnSelectionAllowed(false);
-		tableClientes.setCellSelectionEnabled(false);
-		tableClientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		tableReservas = new JTable();
+		tableReservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableReservas.setRowSelectionAllowed(true);
+		tableReservas.setColumnSelectionAllowed(false);
+		tableReservas.setCellSelectionEnabled(false);
+		tableReservas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -156,14 +155,14 @@ public class PanelClientes extends JPanel implements InterfazCliente.Vista {
 	}
 	
 	private void nuevoCliente() {
-		DialogoFormularioCliente dialogoClientes = new DialogoFormularioCliente(PanelClientes.this);
+		DialogoFormularioClientes dialogoClientes = new DialogoFormularioClientes(PanelClientes.this);
 		Cliente cliente = dialogoClientes.getCliente();
 		controladorC.crearNuevoCliente(cliente);
 		
 	}
 	
 	public void editarCliente(int filaSeleccionada) {
-		ModeloTablaClientes modeloTabla = (ModeloTablaClientes) tableClientes.getModel();
+		ModeloTablaClientes modeloTabla = (ModeloTablaClientes) tableReservas.getModel();
 		Cliente clienteAEditar = modeloTabla.getListaCliente().get(filaSeleccionada);
 		DialogoFormularioCliente dialogo = new DialogoFormularioCliente(PanelClientes.this);
 		Cliente nuevoCliente = dialogo.getCliente();
@@ -183,7 +182,7 @@ public class PanelClientes extends JPanel implements InterfazCliente.Vista {
 
 	@Override
 	public void mostrarClientes(List<Cliente> listaClientes) {
-		tableClientes.setModel(new ModeloTablaClientes(listaClientes));		
+		tableReservas.setModel(new ModeloTablaClientes(listaClientes));		
 		
 	}
 
@@ -191,7 +190,7 @@ public class PanelClientes extends JPanel implements InterfazCliente.Vista {
 
 	@Override
 	public void mostrarClientesBaja(List<Cliente> listaClientesBaja) {
-		tableClientes.setModel(new ModeloTablaClientes(listaClientesBaja));			
+		tableReservas.setModel(new ModeloTablaClientes(listaClientesBaja));			
 		
 	}
 
