@@ -27,7 +27,7 @@ public class ControladorClientes implements InterfazCliente.Controlador {
 	@Override
 	public void obtenerListaClientesAlta() {
 		List<Cliente> listaClientesAlta = clienteDao.obtenerListaClientesAlta();
-		vistaCliente.mostrarClientes(listaClientesAlta);
+		vistaCliente.mostrarClientesAlta(listaClientesAlta);
 	}
 
 	@Override

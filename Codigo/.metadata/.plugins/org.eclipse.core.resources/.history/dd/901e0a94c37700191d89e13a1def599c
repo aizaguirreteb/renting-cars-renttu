@@ -11,7 +11,7 @@ public interface InterfazCliente {
 	public interface Vista{
 		//Métodos para añadir los clientes a la tabla correspondiente del panel Clientes 
 		public void mostrarClientes(List<Cliente> listaClientes);
-//		public void mostrarClientesAlta(List<Cliente> listaClientesAlta);
+		public void mostrarClientesAlta(List<Cliente> listaClientesAlta);
 		public void mostrarClientesBaja(List<Cliente> listaClientesBaja);
 		//public void mostrarClientePorDniAlta(Cliente clienteDniAlta);
 		//public void mostrarClientePorDniBaja(Cliente clienteDniBaja);
