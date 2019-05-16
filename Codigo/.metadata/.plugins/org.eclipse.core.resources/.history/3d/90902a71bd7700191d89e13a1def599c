@@ -1,0 +1,10 @@
+package modelosTablas;
+import javax.swing.table.AbstractTableModel;
+
+
+public class ModeloTablaClientes extends AbstractTableModel {
+	private List<Cliente> listaClientes;
+	private String[] titulosColumnas = {"DNI","POBLACION","NOMBRE",
+			"DIRECCION","CODIGO POSTAL","TELEFONO","CARNET DE CONDUCIR",
+			"NUMERO DE TARJETA DE CREDITO"};
+}

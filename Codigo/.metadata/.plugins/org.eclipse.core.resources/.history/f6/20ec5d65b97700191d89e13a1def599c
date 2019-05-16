@@ -1,0 +1,21 @@
+package control;
+
+import dao.ClienteDAO;
+import interfaces.InterfazCliente;
+import interfaces.InterfazCliente.Vista;
+
+public class ControladorClientes {
+	//Tiene a la vista y al DAO asociados como atributos
+	InterfazCliente.Vista vistaCliente;
+	ClienteDAO clienteDao;
+
+	//constructor que inicializa el ClienteDAO y recoge la vista de cliente
+	public ControladorClientes(Vista vistaCliente) {
+		this.vistaCliente = vistaCliente;
+		this.clienteDao = new ClienteDAO();
+	}
+	
+		
+	
+	
+}
