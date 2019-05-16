@@ -2,7 +2,6 @@ package dialogos;
 
 import javax.swing.JDialog;
 
-import modelos.Reserva;
 import modelos.Vehiculos;
 
 public class DialogoFormularioVehiculo extends JDialog {
