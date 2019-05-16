@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;facturaObtenida&apos; in &apos;modelosTablas.ModeloTablaClientes.getValueAt(...)&apos; to &apos;clienteObtenido&apos;&#x0A;- Original project: &apos;Renting&apos;&#x0A;- Original element: &apos;modelosTablas.ModeloTablaClientes.getValueAt(int, int).facturaObtenida&apos;&#x0A;- Renamed element: &apos;facturaObtenida&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;facturaObtenida&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;modelosTablas{ModeloTablaClientes.java[ModeloTablaClientes~getValueAt~I~I@facturaObtenida!947!1002!955!969!QCliente;!0!false" name="clienteObtenido" references="true" stamp="1557999314922" version="1.0"/>
+</session>
