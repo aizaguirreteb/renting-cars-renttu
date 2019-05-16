@@ -12,6 +12,7 @@ public class Auxiliar {
 	
 	public static DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	public static DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+	public static DateTimeFormatter formatterVehiculos = DateTimeFormatter.ofPattern("yyyy");
 	
 	
 	//METODOS PARA FORMATEAR FECHAS Y HORAS
@@ -20,6 +21,10 @@ public class Auxiliar {
 	//					v
 	public static LocalDate formatearFecha (String fechaAFormatear) {
 		return LocalDate.parse(fechaAFormatear, formatterFecha);
+	}
+	
+	public static LocalDate formatearFechaVehiculos (String fechaAFormatear) {
+		return LocalDate.parse(fechaAFormatear, formatterVehiculos);
 	}
 	
 	public static LocalTime formatearHora(String horaAFormatear) {

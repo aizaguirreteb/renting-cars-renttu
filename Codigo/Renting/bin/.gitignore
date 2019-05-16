@@ -1,12 +1,12 @@
+/.classpath
+/.project
+/auxiliar/
+/conexion/
 /control/
 /dao/
 /dialogos/
 /interfaces/
 /modelos/
 /modelosTablas/
-/vistas/
-/auxiliar/
-/conexion/
 /principal/
-/.classpath
-/.project
+/vistas/

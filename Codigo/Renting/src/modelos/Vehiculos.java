@@ -6,6 +6,7 @@ public class Vehiculos {
 	private String matricula;
 	private Categoria categoria;
 	private String marca;
+	private String modelo;
 	private Combustible combustible;
 	private int numPuertas;
 	private int potencia;
@@ -18,13 +19,14 @@ public class Vehiculos {
 	private int KmTotales;
 	private double PrecioDia;
 	
-	public Vehiculos(String matricula, Categoria categoria, String marca, Combustible combustible,int numPuertas,
+	public Vehiculos(String matricula, Categoria categoria, String marca,String modelo, Combustible combustible,int numPuertas,
 			int potencia, LocalDate anio, int taraMax, Estado estado, boolean revision, int kmParciales, int plazas,
 			int kmTotales, double precioDia) {
-		super();
+		
 		this.matricula = matricula;
 		this.categoria = categoria;
 		this.marca = marca;
+		this.modelo = modelo;
 		this.combustible = combustible;
 		this.numPuertas = numPuertas;
 		this.potencia = potencia;
@@ -36,6 +38,14 @@ public class Vehiculos {
 		this.plazas = plazas;
 		KmTotales = kmTotales;
 		PrecioDia = precioDia;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
 
 	public String getMatricula() {
