@@ -8,8 +8,8 @@ import modelos.Cliente;
 
 public class ControladorClientes implements InterfazCliente.Controlador {
 	//Tiene a la vista y al DAO asociados como atributos
-	InterfazCliente.Vista vistaCliente;
-	ClienteDAO clienteDao;
+	private InterfazCliente.Vista vistaCliente;
+	private ClienteDAO clienteDao;
 
 	//constructor que inicializa el ClienteDAO y recoge la vista de cliente
 	public ControladorClientes(Vista vistaCliente) {
