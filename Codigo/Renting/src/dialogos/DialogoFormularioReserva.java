@@ -72,6 +72,7 @@ public class DialogoFormularioReserva extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * @wbp.parser.constructor
 	 */
 	
 	public DialogoFormularioReserva(JPanel padre) {		
