@@ -56,6 +56,46 @@ public class ContratoDAO {
 		return listaContratos;
 	}
 	
+	public List<Contrato> obtenerTodasLosContratosEnAlta(){
+		List<Contrato> listaContratos = new ArrayList<>();
+
+		String consulta = "SELECT * FROM CONTRATO WHERE estadoContrato = alta;";
+		try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(consulta)){
+			while(rs.next()) {
+				listaContratos.add(new Contrato(rs.getInt("id"), rs.getString("dniCliente"),
+						rs.getString("matricula"),
+						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
+						rs.getInt("diasContratados"), rs.getInt("numRenovaciones"),
+						Auxiliar.comprobarEstado(rs.getString("estadoContrato"))));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return listaContratos;
+	}
+	
+	public List<Contrato> obtenerTodasLosContratosEnBaja(){
+		List<Contrato> listaContratos = new ArrayList<>();
+
+		String consulta = "SELECT * FROM CONTRATO WHERE estadoContrato = baja;";
+		try (Statement statement = conexion.createStatement();ResultSet rs = statement.executeQuery(consulta)){
+			while(rs.next()) {
+				listaContratos.add(new Contrato(rs.getInt("id"), rs.getString("dniCliente"),
+						rs.getString("matricula"),
+						Auxiliar.formatearFecha(rs.getString("fechaInicio")),
+						rs.getInt("diasContratados"), rs.getInt("numRenovaciones"),
+						Auxiliar.comprobarEstado(rs.getString("estadoContrato"))));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return listaContratos;
+	}
+	
 	public List<Contrato> obtenerContratosPorDNI(String dni){
 		List<Contrato> listaContratos = new ArrayList<>();
 
@@ -163,6 +203,27 @@ public class ContratoDAO {
 			pStatement.setInt(1, contrato.getDiasContratados() * 2);
 			pStatement.setInt(2, contrato.getRenovaciones() - 1);
 			pStatement.setInt(3, contrato.getId());
+			filasAfectadas = pStatement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return filasAfectadas != 0;
+	}
+	
+	public boolean actualizarContrato(int id, Contrato contrato) {
+		String updateSQL = "UPDATE CONTRATO SET id = ?, dniCliente = ?, matricula = ?, fechaInicio  = ?, diasContratados=?, numRenovaciones=?, estadoContrato = ?, WHERE id=?;";
+		
+		int filasAfectadas = 0;
+		try (PreparedStatement pStatement = conexion.prepareStatement(updateSQL);){
+			pStatement.setInt(1, contrato.getId());
+			pStatement.setString(2, contrato.getDni());
+			pStatement.setString(3, contrato.getMatricula());
+			pStatement.setString(4, contrato.getFechaInicio().toString());
+			pStatement.setInt(5, contrato.getDiasContratados());
+			pStatement.setInt(6, contrato.getRenovaciones());
+			pStatement.setString(7, contrato.getEstado().toString());
+			pStatement.setInt(8, id);
 			filasAfectadas = pStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

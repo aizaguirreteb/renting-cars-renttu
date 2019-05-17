@@ -10,3 +10,9 @@
 /InterfazVehiculos.class
 /InterfazVehiculos$Controlador.class
 /InterfazVehiculos$Vista.class
+/InterfazCliente$Controlador.class
+/InterfazCliente$Vista.class
+/InterfazCliente.class
+/VentanaPrincipal$Controlador.class
+/VentanaPrincipal$Vista.class
+/VentanaPrincipal.class
