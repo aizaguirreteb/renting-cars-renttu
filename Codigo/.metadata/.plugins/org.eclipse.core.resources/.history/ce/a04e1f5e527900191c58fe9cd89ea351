@@ -41,29 +41,46 @@ public class DialogoFormularioCliente extends JDialog {
 	
 	private Cliente cliente = null;
 	private InterfazCliente.Controlador controlador;
-	private GroupLayout gl_contentPanel;
 
-	public DialogoFormularioCliente(JPanel padre) {		
+	public DIalogoFormularioVehiculos(JPanel padre) {		
 		setLocationRelativeTo(padre);
 		inicializarUI();
 		pack();
 		setVisible(true);
 	}
 	
-	
-
-	public DialogoFormularioCliente(JPanel padre, Cliente cliente) {
+	public DIalogoFormularioVehiculos(JPanel padre, Vehiculos vehiculo) {
 		setLocationRelativeTo(padre);
 		inicializarUI();
 		pack();
-		if (cliente != null) {
-			this.cliente = cliente;
+		if (vehiculo != null) {
+			this.vehiculo = vehiculo;
 	//		actualizarVehiculo();
 		}
 		setVisible(true);
 	}
-	public void crearElementos() {
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			DialogoFormularioCliente dialog = new DialogoFormularioCliente();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
+	/**
+	 * Create the dialog.
+	 */
+	public DialogoFormularioCliente() {
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		
 		lblDni = new JLabel("Dni");
 		
 		textField = new JTextField();
@@ -95,14 +112,7 @@ public class DialogoFormularioCliente extends JDialog {
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
-	}
-	private void inicializarUI() {
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		
-		gl_contentPanel = new GroupLayout(contentPanel);
+		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
@@ -192,7 +202,5 @@ public class DialogoFormularioCliente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		
 	}
-	
 }
