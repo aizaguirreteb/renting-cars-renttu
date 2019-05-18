@@ -41,7 +41,6 @@ public class DialogoFormularioCliente extends JDialog {
 	
 	private Cliente cliente = null;
 	private InterfazCliente.Controlador controlador;
-	private GroupLayout gl_contentPanel;
 
 	public DialogoFormularioCliente(JPanel padre) {		
 		setLocationRelativeTo(padre);
@@ -50,7 +49,10 @@ public class DialogoFormularioCliente extends JDialog {
 		setVisible(true);
 	}
 	
-	
+	private void inicializarUI() {
+		
+		
+	}
 
 	public DialogoFormularioCliente(JPanel padre, Cliente cliente) {
 		setLocationRelativeTo(padre);
@@ -96,13 +98,17 @@ public class DialogoFormularioCliente extends JDialog {
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
 	}
-	private void inicializarUI() {
+
+	/**
+	 * Create the dialog.
+	 */
+	public DialogoFormularioCliente() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
-		gl_contentPanel = new GroupLayout(contentPanel);
+		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
@@ -192,7 +198,5 @@ public class DialogoFormularioCliente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		
 	}
-	
 }

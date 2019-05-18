@@ -50,52 +50,6 @@ public class DialogoFormularioCliente extends JDialog {
 		setVisible(true);
 	}
 	
-	
-
-	public DialogoFormularioCliente(JPanel padre, Cliente cliente) {
-		setLocationRelativeTo(padre);
-		inicializarUI();
-		pack();
-		if (cliente != null) {
-			this.cliente = cliente;
-	//		actualizarVehiculo();
-		}
-		setVisible(true);
-	}
-	public void crearElementos() {
-
-		lblDni = new JLabel("Dni");
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		lblPoblacin = new JLabel("Población");
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		lblNombre = new JLabel("Nombre");
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		lblDireccin = new JLabel("Dirección");
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		lblNewLabel = new JLabel("Código Postal");
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		
-		lblEstado = new JLabel("Estado");
-		
-		comboBox = new JComboBox();
-		
-		lblTelfono = new JLabel("Teléfono");
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		
-		lblNewLabel_1 = new JLabel("Número de tarjeta de credito");
-		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-	}
 	private void inicializarUI() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -194,5 +148,56 @@ public class DialogoFormularioCliente extends JDialog {
 		}
 		
 	}
-	
+
+	public DialogoFormularioCliente(JPanel padre, Cliente cliente) {
+		setLocationRelativeTo(padre);
+		inicializarUI();
+		pack();
+		if (cliente != null) {
+			this.cliente = cliente;
+	//		actualizarVehiculo();
+		}
+		setVisible(true);
+	}
+	public void crearElementos() {
+
+		lblDni = new JLabel("Dni");
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		lblPoblacin = new JLabel("Población");
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		lblNombre = new JLabel("Nombre");
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		lblDireccin = new JLabel("Dirección");
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		lblNewLabel = new JLabel("Código Postal");
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		
+		lblEstado = new JLabel("Estado");
+		
+		comboBox = new JComboBox();
+		
+		lblTelfono = new JLabel("Teléfono");
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		
+		lblNewLabel_1 = new JLabel("Número de tarjeta de credito");
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DialogoFormularioCliente() {
+		
+	}
 }
