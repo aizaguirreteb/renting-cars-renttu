@@ -23,6 +23,7 @@ import control.ControladorReservas;
 import control.ControladorVehiculos;
 import dialogos.DialogoFormularioReserva;
 import dialogos.DialogoFormularioVehiculo;
+import dialogos.DialogoFormularioVehiculos;
 import interfaces.InterfazVehiculos;
 import modelos.Reserva;
 import modelos.Vehiculos;
@@ -160,7 +161,7 @@ public class PanelVehiculos extends JPanel implements InterfazVehiculos.Vista {
 	}
 	
 	private void nuevoVehiculo() {
-		DialogoFormularioVehiculo dialogoVehiculo = new DialogoFormularioVehiculo(PanelVehiculos.this);
+		DialogoFormularioVehiculos dialogoVehiculo = new DialogoFormularioVehiculos(PanelVehiculos.this);
 		Vehiculos vehiculo = dialogoVehiculo.getVehiculos();
 		controladorVehiculos.registrarVehiculos(vehiculo);
 		
@@ -169,7 +170,7 @@ public class PanelVehiculos extends JPanel implements InterfazVehiculos.Vista {
 	public void editarVehiculo(int filaSeleccionada) {
 		ModeloTablasVehiculos modeloTabla = (ModeloTablasVehiculos) tableReservas.getModel();
 		Vehiculos vehiculoAEditar = modeloTabla.getListaVehiculos().get(filaSeleccionada);
-		DialogoFormularioVehiculo dialogo = new DialogoFormularioVehiculo(PanelVehiculos.this);
+		DialogoFormularioVehiculos dialogo = new DialogoFormularioVehiculos(PanelVehiculos.this);
 		Vehiculos nuevaVehiculo = dialogo.getVehiculos();
 		dialogo.getBotonDarDeBaja().addActionListener(new ActionListener() {
 			
