@@ -21,7 +21,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 
-public class DIalogoFormularioVehiculos extends JDialog {
+public class DialogoFormularioVehiculos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField_1;
@@ -62,14 +62,14 @@ public class DIalogoFormularioVehiculos extends JDialog {
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public DIalogoFormularioVehiculos(JPanel padre) {		
+	public DialogoFormularioVehiculos(JPanel padre) {		
 		setLocationRelativeTo(padre);
 		inicializarUI();
 		pack();
 		setVisible(true);
 	}
 	
-	public DIalogoFormularioVehiculos(JPanel padre, Vehiculos vehiculo) {
+	public DialogoFormularioVehiculos(JPanel padre, Vehiculos vehiculo) {
 		setLocationRelativeTo(padre);
 		inicializarUI();
 		pack();

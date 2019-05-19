@@ -21,6 +21,7 @@ import javax.swing.event.ListSelectionListener;
 import auxiliar.Auxiliar;
 import control.ControladorContrato;
 import control.ControladorReservas;
+import dialogos.DialogoFormularioContrato;
 import dialogos.DialogoFormularioReserva;
 import dialogos.DialogoHistorialReservas;
 import interfaces.InterfazContrato;
