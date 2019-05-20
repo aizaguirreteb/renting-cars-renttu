@@ -388,12 +388,14 @@ private void inicializarUI() {
 	
 	private void extraerVehiculo() {
 		if(validarCampos()) {
-//			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
-//			vehiculo = new Vehiculos(textFieldMatricula.getText(), comboBoxCategoria.getSelectedItem().toString(),
-//					textFieldMarca.getText(), textFieldModelo.getText(), comboBoxCombustible.getSelectedItem().toString(), Integer.parseInt(comboBoxNumPuertas.getSelectedItem().toString()),
-//					Integer.parseInt(textFieldPotencia.getText()), comboBoxAnio.getSelectedItem().toString(), Integer.parseInt(textFieldTaraMax.getText()),
-//					Auxiliar.comprobarEstado(comboBoxEstado.getSelectedItem().toString()),comboBoxRevision.getSelectedItem().toString(), Integer.parseInt(textFieldKmParciales.getText()),
-//					Integer.parseInt(comboBoxPlazas.getSelectedItem().toString()), Integer.parseInt(textFieldKmTotales.getText()), Double.parseDouble(textFieldPrecio.getText()));
+			
+			vehiculo = new Vehiculos(textFieldMatricula.getText(), Auxiliar.tipoCategoria(comboBoxCategoria.getSelectedItem().toString()),
+					textFieldMarca.getText(), textFieldModelo.getText(), Auxiliar.tipoCombustible(comboBoxCombustible.getSelectedItem().toString()),
+					Integer.parseInt(comboBoxNumPuertas.getSelectedItem().toString()), Integer.parseInt(textFieldPotencia.getText()), comboBoxAnio.getSelectedItem().toString(),
+					Integer.parseInt(textFieldTaraMax.getText()), Auxiliar.comprobarEstado(comboBoxEstado.getSelectedItem().toString()),
+					Auxiliar.comprobarRecogida(comboBoxRevision.getSelectedItem().toString()), Integer.parseInt(textFieldKmParciales.getText()), 
+					Integer.parseInt(comboBoxPlazas.getSelectedItem().toString()), Integer.parseInt(textFieldKmTotales.getText()),Double.parseDouble(textFieldPrecio.getText()));
+		
 			cerrarDialogo();
 		}
 	}
