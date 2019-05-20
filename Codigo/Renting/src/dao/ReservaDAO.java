@@ -250,6 +250,52 @@ public class ReservaDAO {
 		return listaTodasReservasPorFecha;
 	}
 	
+	public List<Reserva> buscarReservas(String string){
+		
+		List<Reserva> listaReservas = new ArrayList<>();
+		
+		String consulta1 = "Select * from reserva where matricula like '%?%';";
+		String consulta2 = "Select * from reserva where dniCliente like '%?%';";
+		String consulta3 = "Select * from reserva where fechaInicio like '%?%';";
+		try (PreparedStatement pStatement1 = conexion.prepareStatement(consulta1);
+				PreparedStatement pStatement2 = conexion.prepareStatement(consulta2);
+				PreparedStatement pStatement3 = conexion.prepareStatement(consulta3);){
+			pStatement1.setString(1, string);
+			ResultSet rs1 = pStatement1.executeQuery();
+			while(rs1.next()) {
+				listaReservas.add(new Reserva(rs1.getString("dniCliente"), rs1.getString("matricula"),
+						Auxiliar.formatearFecha(rs1.getString("fechaInicio")),
+						rs1.getInt("diasContratados"), Auxiliar.formatearHora(rs1.getString("horaReserva")),
+						Auxiliar.comprobarRecogida(rs1.getString("recogida")), Auxiliar.comprobarEstado(rs1.getString("estado"))));
+			}
+			
+			pStatement2.setString(1, string);
+			ResultSet rs2 = pStatement2.executeQuery();
+			while(rs2.next()) {
+				listaReservas.add(new Reserva(rs2.getString("dniCliente"), rs2.getString("matricula"),
+						Auxiliar.formatearFecha(rs2.getString("fechaInicio")),
+						rs1.getInt("diasContratados"), Auxiliar.formatearHora(rs2.getString("horaReserva")),
+						Auxiliar.comprobarRecogida(rs2.getString("recogida")), Auxiliar.comprobarEstado(rs2.getString("estado"))));
+			}
+			
+			pStatement3.setString(1, string);
+			ResultSet rs3 = pStatement3.executeQuery();
+			while(rs3.next()) {
+				listaReservas.add(new Reserva(rs3.getString("dniCliente"), rs3.getString("matricula"),
+						Auxiliar.formatearFecha(rs3.getString("fechaInicio")),
+						rs3.getInt("diasContratados"), Auxiliar.formatearHora(rs3.getString("horaReserva")),
+						Auxiliar.comprobarRecogida(rs3.getString("recogida")), Auxiliar.comprobarEstado(rs3.getString("estado"))));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listaReservas;
+		
+	}
+	
 	//Metodo para insertar una nueva reserva
 	public boolean insertarNuevaReserva(Reserva nuevaReserva) {
 		String insercionSQL = "Insert into reserva values (?,?,?,?,?,?,?);";

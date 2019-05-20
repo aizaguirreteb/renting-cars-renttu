@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import auxiliar.Auxiliar;
 import conexion.Conexion;
 import modelos.Contrato;
 import modelos.Factura;
@@ -49,7 +51,8 @@ public class FacturaDAO {
 						rs.getString("MATRICULA"),
 						rs.getFloat("PRECIO_DIA"),
 						rs.getFloat("DESCUENTO_DIA"),
-						rs.getFloat("TOTAL")));
+						rs.getFloat("TOTAL"),
+						Auxiliar.formatearFecha(rs.getString("FECHA_INICIO_CONTRATO"))));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -75,7 +78,8 @@ public class FacturaDAO {
 						rs.getString("MATRICULA"),
 						rs.getFloat("PRECIO_DIA"),
 						rs.getFloat("DESCUENTO_DIA"),
-						rs.getFloat("TOTAL")));
+						rs.getFloat("TOTAL"),
+						Auxiliar.formatearFecha(rs.getString("FECHA_INICIO_CONTRATO"))));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -85,6 +89,68 @@ public class FacturaDAO {
 		return listaFactura;
 	}
 	
+	public List<Factura> buscarContrato(String string) {
+		
+		List<Factura> listaFactura = new ArrayList<>();
+
+		String consulta1 = "SELECT * FROM FACTURA WHERE DNI like '%?%';";
+		String consulta2 = "SELECT * FROM FACTURA WHERE MATRICULA like '%?%';";
+		String consulta3 = "SELECT * FROM FACTURA WHERE fechaInicio like '%?%';";
+		try (PreparedStatement pStatement1 = conexion.prepareStatement(consulta1);
+				PreparedStatement pStatement2 = conexion.prepareStatement(consulta2);
+				PreparedStatement pStatement3 = conexion.prepareStatement(consulta3);){
+			pStatement1.setString(1, string);
+			ResultSet rs1 = pStatement1.executeQuery();
+			while(rs1.next()) {
+				listaFactura.add(new Factura(rs1.getInt("ID_CONTRATO"),
+						rs1.getInt("KM_RECORRIDOS"),
+						rs1.getInt("CARGO_RETRASO"),
+						rs1.getInt("CARGO_DEPOSITO"),
+						rs1.getString("DNI"),
+						rs1.getString("MATRICULA"),
+						rs1.getFloat("PRECIO_DIA"),
+						rs1.getFloat("DESCUENTO_DIA"),
+						rs1.getFloat("TOTAL"),
+						Auxiliar.formatearFecha(rs1.getString("FECHA_INICIO_CONTRATO"))));
+			}
+			
+			pStatement2.setString(1, string);
+			ResultSet rs2 = pStatement2.executeQuery();
+			while(rs2.next()) {
+				listaFactura.add(new Factura(rs2.getInt("ID_CONTRATO"),
+						rs2.getInt("KM_RECORRIDOS"),
+						rs2.getInt("CARGO_RETRASO"),
+						rs2.getInt("CARGO_DEPOSITO"),
+						rs2.getString("DNI"),
+						rs2.getString("MATRICULA"),
+						rs2.getFloat("PRECIO_DIA"),
+						rs2.getFloat("DESCUENTO_DIA"),
+						rs2.getFloat("TOTAL"),
+						Auxiliar.formatearFecha(rs2.getString("FECHA_INICIO_CONTRATO"))));
+			}
+			
+			pStatement3.setString(1, string);
+			ResultSet rs3 = pStatement3.executeQuery();
+			while(rs3.next()) {
+				listaFactura.add(new Factura(rs3.getInt("ID_CONTRATO"),
+						rs3.getInt("KM_RECORRIDOS"),
+						rs3.getInt("CARGO_RETRASO"),
+						rs3.getInt("CARGO_DEPOSITO"),
+						rs3.getString("DNI"),
+						rs3.getString("MATRICULA"),
+						rs3.getFloat("PRECIO_DIA"),
+						rs3.getFloat("DESCUENTO_DIA"),
+						rs3.getFloat("TOTAL"),
+						Auxiliar.formatearFecha(rs3.getString("FECHA_INICIO_CONTRATO"))));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
+		return listaFactura;
+		
+	}
 	
 }
