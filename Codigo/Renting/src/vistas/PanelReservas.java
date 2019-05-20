@@ -76,7 +76,7 @@ public class PanelReservas extends JPanel implements InterfazReserva.Vista{
 		btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        		buscarReservas();
+        		buscarReserva();
             }		
         });
 		

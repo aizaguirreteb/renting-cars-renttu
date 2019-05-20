@@ -36,36 +36,21 @@ public class PanelFacturas extends JPanel implements InterfazFactura.Vista {
 	private JTextField textBusqueda;
 	private JScrollPane scrollPane;
 	private JSeparator separator;
-	private JButton btnHistorial;
 	private JButton btnBuscar;
 	private JSeparator separator_1;
 	private GroupLayout groupLayout;
 
 	private InterfazFactura.Controlador controladorFactura;
-	private JButton btnAltas;
 
 	public PanelFacturas() {
 		controladorFactura = new ControladorFactura(this);
 		setPanel();
 		controladorFactura.obtenerFacturas();
-		btnAltas.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-        		controladorFactura.obtenerFacturas();
-            }		
-        });
-		
-		btnHistorial.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-        		controladorFactura.obtenerFacturasBajas();
-            }		
-        });
 		
 		btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        		buscarFacturas();
+        		buscarFactura();
             }		
         });
 	}
@@ -104,8 +89,6 @@ public class PanelFacturas extends JPanel implements InterfazFactura.Vista {
 	}
 
 	private void insertarObjetos() {
-		
-		btnAltas = new JButton("ALTAS");
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -114,13 +97,7 @@ public class PanelFacturas extends JPanel implements InterfazFactura.Vista {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(243)
-									.addComponent(btnAltas)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnHistorial, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addComponent(separator, GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
+							.addComponent(separator, GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
 							.addGap(1))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(textBusqueda, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
@@ -145,11 +122,7 @@ public class PanelFacturas extends JPanel implements InterfazFactura.Vista {
 						.addComponent(btnBuscar))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnHistorial)
-						.addComponent(btnAltas))
-					.addContainerGap(37, Short.MAX_VALUE))
+					.addContainerGap(70, Short.MAX_VALUE))
 		);
 	}
 
@@ -164,8 +137,6 @@ public class PanelFacturas extends JPanel implements InterfazFactura.Vista {
 	}
 
 	private void crearBotones() {
-
-		btnHistorial = new JButton("HISTORIAL");
 		btnBuscar = new JButton("BUSCAR");
 	}
 	

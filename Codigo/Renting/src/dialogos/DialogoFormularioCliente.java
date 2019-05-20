@@ -61,14 +61,14 @@ public class DialogoFormularioCliente extends JDialog {
 	
 
 	public DialogoFormularioCliente(JPanel padre, Cliente cliente) {
-//		setLocationRelativeTo(padre);
-//		inicializarUI();
-//		pack();
-//		if (cliente != null) {
-//			this.cliente = cliente;
-//	//		actualizarVehiculo();
-//		}
-//		//setVisible(true);
+		setLocationRelativeTo(padre);
+		inicializarUI();
+		pack();
+		if (cliente != null) {
+			this.cliente = cliente;
+			actualizarCliente();
+		}
+		setVisible(true);
 	}
 	public void crearElementos() {
 
@@ -227,21 +227,15 @@ public class DialogoFormularioCliente extends JDialog {
 	
 	private void actualizarCliente() {
 		if(cliente != null) {
-//			textFieldMatricula.setText(vehiculo.getMatricula());
-//			textFieldPotencia.setText(""+vehiculo.getPotencia());
-//			textFieldModelo.setText(vehiculo.getModelo());
-//			textFieldMarca.setText(vehiculo.getMarca());
-//			textFieldTaraMax.setText(""+vehiculo.getRevision());
-//			textFieldKmTotales.setText(""+vehiculo.getKmTotales());
-//			textFieldKmParciales.setText(""+vehiculo.getKmParciales());
-//			textFieldPrecio.setText(""+vehiculo.getPrecioDia());
-//			comboBoxAnio.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getAnio(), Auxiliar.arrayAnios));
-//			comboBoxNumPuertas.setSelectedIndex(Auxiliar.leerComboBox(""+ vehiculo.getNumPuertas(), Auxiliar.arrayNumPuertas));
-//			comboBoxEstado.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getEstado().toString(), Auxiliar.arrayEstado));
-//			comboBoxPlazas.setSelectedIndex(Auxiliar.leerComboBox(""+vehiculo.getPlazas(), Auxiliar.arrayPlazas));
-//			comboBoxRevision.setSelectedIndex(Auxiliar.leerComboBox(""+vehiculo.getRevision(), Auxiliar.arrayRevisionRecogida));
-//			comboBoxCombustible.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getCombustible().toString(), Auxiliar.arrayCombustible));
-//			comboBoxCategoria.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getCategoria().toString(), Auxiliar.arrayTipoVehiculo));
+			textField.setText(cliente.getDni());
+			textField_1.setText(cliente.getPoblacion());
+			textField_2.setText(cliente.getNombre());
+			textField_3.setText(cliente.getDireccion());
+			textField_5.setText(""+cliente.getTlf());
+			textField_6.setText(""+cliente.getNumTarjCredito());
+			//comboBoxCarnetConducir.setSelectedIndex(Auxiliar.leerComboBox(cliente.getCarnetConducir(), Auxiliar.arrayCarnet));
+			comboBox.setSelectedIndex(Auxiliar.leerComboBox(cliente.getEstado().toString(), Auxiliar.arrayEstado));
+			
 			extraerCliente();
 			cerrarDialogo();
 		}
@@ -250,11 +244,9 @@ public class DialogoFormularioCliente extends JDialog {
 	private void extraerCliente() {
 		if(validarCampos()) {
 //			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
-//			vehiculo = new Vehiculos(textFieldMatricula.getText(), comboBoxCategoria.getSelectedItem().toString(),
-//					textFieldMarca.getText(), textFieldModelo.getText(), comboBoxCombustible.getSelectedItem().toString(), Integer.parseInt(comboBoxNumPuertas.getSelectedItem().toString()),
-//					Integer.parseInt(textFieldPotencia.getText()), comboBoxAnio.getSelectedItem().toString(), Integer.parseInt(textFieldTaraMax.getText()),
-//					Auxiliar.comprobarEstado(comboBoxEstado.getSelectedItem().toString()),comboBoxRevision.getSelectedItem().toString(), Integer.parseInt(textFieldKmParciales.getText()),
-//					Integer.parseInt(comboBoxPlazas.getSelectedItem().toString()), Integer.parseInt(textFieldKmTotales.getText()), Double.parseDouble(textFieldPrecio.getText()));
+			cliente = new Cliente(textField.getText(), textField_1.getText(), textField_3.getText(), textField_4.getText(),
+					textField_4.getText(), Auxiliar.comprobarEstado(comboBox.getSelectedItem().toString()), Integer.parseInt(textField_5.getText()),
+					"B1", textField_6.getText());
 			cerrarDialogo();
 		}
 	}

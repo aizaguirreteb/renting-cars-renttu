@@ -42,4 +42,6 @@ public class ControladorFactura implements InterfazFactura.Controlador {
 		
 	}
 
+
+
 }

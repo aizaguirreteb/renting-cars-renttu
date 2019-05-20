@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import dialogos.DialogoFormularioCliente;
 import interfaces.VentanaPrincipal;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
