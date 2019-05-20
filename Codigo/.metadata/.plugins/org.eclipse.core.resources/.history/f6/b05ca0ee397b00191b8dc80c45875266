@@ -48,7 +48,7 @@ public class DialogoFormularioCliente extends JDialog {
 	private InterfazCliente.Controlador controlador;
 	private GroupLayout gl_contentPanel;
 	private JButton btnDarDeBaja;
-	private JLabel lblCarnetDeConducir;
+	private JLabel lblC;
 	private JComboBox comboBox_1;
 
 	/**
@@ -125,7 +125,7 @@ private void inicializarUI() {
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
-		lblCarnetDeConducir = new JLabel("Carnet de Conducir");
+		lblC = new JLabel("Carnet de Conducir");
 		
 		comboBox_1 = new JComboBox();
 	}
@@ -178,7 +178,7 @@ private void inicializarUI() {
 							.addGap(26)
 							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(101)
-							.addComponent(lblCarnetDeConducir)
+							.addComponent(lblC)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
@@ -217,7 +217,7 @@ private void inicializarUI() {
 							.addComponent(lblEstado)
 							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblCarnetDeConducir)
+							.addComponent(lblC)
 							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(33, Short.MAX_VALUE))
 		);

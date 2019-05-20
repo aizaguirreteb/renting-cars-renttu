@@ -2,7 +2,6 @@ package dialogos;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Dialog.ModalExclusionType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -48,8 +47,6 @@ public class DialogoFormularioCliente extends JDialog {
 	private InterfazCliente.Controlador controlador;
 	private GroupLayout gl_contentPanel;
 	private JButton btnDarDeBaja;
-	private JLabel lblCarnetDeConducir;
-	private JComboBox comboBox_1;
 
 	/**
 	 * @wbp.parser.constructor
@@ -73,25 +70,6 @@ public class DialogoFormularioCliente extends JDialog {
 		}
 		setVisible(true);
 	}
-	
-private void inicializarUI() {
-		
-		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-		setTitle("DATOS DEL CLIENTE");
-		setModal(true);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		
-		crearElementos();
-		setLayout();
-	}
-	
-	
-	
-	
 	public void crearElementos() {
 
 		lblDni = new JLabel("Dni");
@@ -125,20 +103,12 @@ private void inicializarUI() {
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
-		lblCarnetDeConducir = new JLabel("Carnet de Conducir");
-		
-		comboBox_1 = new JComboBox();
 	}
-	
-	
-	
-	private void setLayout() {
+	private void inicializarUI() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		
-		
 		
 		gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
@@ -176,11 +146,7 @@ private void inicializarUI() {
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addComponent(lblEstado)
 							.addGap(26)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(101)
-							.addComponent(lblCarnetDeConducir)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_contentPanel.setVerticalGroup(
@@ -212,13 +178,9 @@ private void inicializarUI() {
 						.addComponent(lblNewLabel_1)
 						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblEstado)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblCarnetDeConducir)
-							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEstado)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(33, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
@@ -298,7 +260,7 @@ private void inicializarUI() {
 		StringBuffer errores = new StringBuffer();
 		boolean valido = true;
 //		if (!ValidarDNI.validar(textFieldDNI.getText())) {
-//			errores.append("El Dni no es vï¿½lido.");
+//			errores.append("El Dni no es válido.");
 //			valido = false;
 //		}
 		if (textField.getText().length()<2  ) {
@@ -318,4 +280,5 @@ private void inicializarUI() {
 	public JButton getBotonDarDeBaja() {
 		return btnDarDeBaja;
 	}
+	
 }
