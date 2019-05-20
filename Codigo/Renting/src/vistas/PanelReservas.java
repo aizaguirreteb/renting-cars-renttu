@@ -42,6 +42,7 @@ public class PanelReservas extends JPanel implements InterfazReserva.Vista{
 	private GroupLayout groupLayout;
 	
 	private InterfazReserva.Controlador controladorReserva;
+	private JButton btnAltas;
 
 	/**
 	 * Create the panel.
@@ -62,6 +63,20 @@ public class PanelReservas extends JPanel implements InterfazReserva.Vista{
             @Override
             public void actionPerformed(ActionEvent e) {
         		controladorReserva.obtenerReservasBaja();
+            }		
+        });
+		
+		btnAltas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+        		controladorReserva.obtenerReservasAlta();
+            }		
+        });
+		
+		btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+        		controladorReserva.buscarReservas();
             }		
         });
 		
@@ -101,19 +116,23 @@ public class PanelReservas extends JPanel implements InterfazReserva.Vista{
 	}
 
 	private void insertarObjetos() {
+		
+		btnAltas = new JButton("ALTAS");
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnNuevaReserva, GroupLayout.PREFERRED_SIZE, 70, Short.MAX_VALUE)
-									.addGap(225)
-									.addComponent(btnHistorial, GroupLayout.PREFERRED_SIZE, 44, Short.MAX_VALUE))
+									.addComponent(btnNuevaReserva, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGap(130)
+									.addComponent(btnAltas)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnHistorial, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 								.addComponent(separator, GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
 							.addGap(1))
 						.addGroup(groupLayout.createSequentialGroup()
@@ -142,7 +161,8 @@ public class PanelReservas extends JPanel implements InterfazReserva.Vista{
 					.addGap(10)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNuevaReserva)
-						.addComponent(btnHistorial))
+						.addComponent(btnHistorial)
+						.addComponent(btnAltas))
 					.addContainerGap(37, Short.MAX_VALUE))
 		);
 	}

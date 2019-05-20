@@ -43,6 +43,7 @@ public class PanelContrato extends JPanel implements InterfazContrato.Vista{
 	private GroupLayout groupLayout;
 	
 	private InterfazContrato.Controlador controladorContrato;
+	private JButton btnAltas;
 	
 	public PanelContrato() {
 		
@@ -60,6 +61,20 @@ public class PanelContrato extends JPanel implements InterfazContrato.Vista{
             @Override
             public void actionPerformed(ActionEvent e) {
         		controladorContrato.obtenerListaContratoBaja();
+            }		
+        });
+		
+		btnAltas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+        		controladorContrato.obtenerListaContratoAlta();
+            }		
+        });
+		
+		btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+        		controladorContrato.buscarContrato();
             }		
         });
 		
@@ -99,19 +114,23 @@ public class PanelContrato extends JPanel implements InterfazContrato.Vista{
 	}
 
 	private void insertarObjetos() {
+		
+		btnAltas = new JButton("ALTA");
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnNuevoContrato, GroupLayout.PREFERRED_SIZE, 70, Short.MAX_VALUE)
-									.addGap(225)
-									.addComponent(btnHistorial, GroupLayout.PREFERRED_SIZE, 44, Short.MAX_VALUE))
+									.addComponent(btnNuevoContrato, GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE)
+									.addGap(130)
+									.addComponent(btnAltas)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnHistorial, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 								.addComponent(separator, GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
 							.addGap(1))
 						.addGroup(groupLayout.createSequentialGroup()
@@ -140,7 +159,8 @@ public class PanelContrato extends JPanel implements InterfazContrato.Vista{
 					.addGap(10)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNuevoContrato)
-						.addComponent(btnHistorial))
+						.addComponent(btnHistorial)
+						.addComponent(btnAltas))
 					.addContainerGap(37, Short.MAX_VALUE))
 		);
 	}
