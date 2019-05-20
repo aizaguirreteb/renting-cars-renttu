@@ -72,7 +72,7 @@ public class PanelClientes extends JPanel implements InterfazCliente.Vista {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controladorC.buscarCliente();
+				buscarCliente();
 				
 			}
 		});
@@ -203,6 +203,11 @@ public class PanelClientes extends JPanel implements InterfazCliente.Vista {
 		);
 		
 		
+	}
+	
+	public void buscarCliente() {
+		String dato = textBusqueda.getText();
+		controladorC.buscarCliente(dato);
 	}
 
 	@Override

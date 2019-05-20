@@ -23,6 +23,8 @@ public interface InterfazContrato {
 		public void crearNuevoContrato(Contrato contratoNuevo);
 		public void actualizarContrato(int id , Contrato contratoNuevo);
 		
+		//metodo para buscar contratos
+		public void buscarContrato(String dato);
 		
 	}
 	

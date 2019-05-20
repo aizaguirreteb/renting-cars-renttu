@@ -39,6 +39,9 @@ public interface InterfazCliente {
 		//Sirve para actualizar un cliente de la lista 
 		public void actualizarCliente(String dni , Cliente clienteNuevo);
 		
+		//metodo para buscar clientes
+		public void buscarCliente(String dato);
+		
 		
 	}
 	

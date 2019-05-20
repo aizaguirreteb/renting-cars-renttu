@@ -72,7 +72,7 @@ public class PanelVehiculos extends JPanel implements InterfazVehiculos.Vista {
 		btnBuscar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controladorVehiculos.buscarVehiculo();
+				buscarVehiculo();
 			}		
 		});
 
@@ -203,6 +203,11 @@ public class PanelVehiculos extends JPanel implements InterfazVehiculos.Vista {
 		);
 		
 		
+	}
+	
+	public void buscarVehiculo() {
+		String dato = textBusqueda.getText();
+		controladorVehiculos.buscarVehiculos(dato);
 	}
 	@Override
 	public void mostrarVehiculos(List<Vehiculos> listaVehiculo) {

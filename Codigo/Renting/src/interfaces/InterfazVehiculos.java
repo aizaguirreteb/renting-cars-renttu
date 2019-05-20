@@ -25,5 +25,8 @@ public interface InterfazVehiculos {
 		
 		public void registrarVehiculos(Vehiculos vehiculoRegistrar);
 		public void editarVehiculos(String matricula, Vehiculos vehiculoAEditar);
+		
+		//metodo para buscar vehiculos
+		public void buscarVehiculos(String dato);
 	}
 }

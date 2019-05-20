@@ -76,7 +76,7 @@ public class PanelReservas extends JPanel implements InterfazReserva.Vista{
 		btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        		controladorReserva.buscarReservas();
+        		buscarReservas();
             }		
         });
 		
@@ -209,6 +209,11 @@ public class PanelReservas extends JPanel implements InterfazReserva.Vista{
 		);
 		
 		
+	}
+	
+	public void buscarReserva() {
+		String dato = textBusqueda.getText();
+		controladorReserva.buscarReserva(dato);
 	}
 	
 	

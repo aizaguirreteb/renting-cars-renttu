@@ -65,7 +65,7 @@ public class PanelFacturas extends JPanel implements InterfazFactura.Vista {
 		btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        		controladorFactura.buscarFacturas();
+        		buscarFacturas();
             }		
         });
 	}
@@ -185,6 +185,11 @@ public class PanelFacturas extends JPanel implements InterfazFactura.Vista {
 //			}
 //		}
 //		);
+	}
+	
+	public void buscarFactura() {
+		String dato = textBusqueda.getText();
+		controladorFactura.buscarFactura(dato);
 	}
 
 	@Override

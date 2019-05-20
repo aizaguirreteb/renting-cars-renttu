@@ -74,7 +74,7 @@ public class PanelContrato extends JPanel implements InterfazContrato.Vista{
 		btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        		controladorContrato.buscarContrato();
+        		buscarContrato();
             }		
         });
 		
@@ -206,6 +206,11 @@ public class PanelContrato extends JPanel implements InterfazContrato.Vista{
 		);
 		
 		
+	}
+	
+	public void buscarContrato() {
+		String dato = textBusqueda.getText();
+		controladorContrato.buscarContrato(dato);
 	}
 	
 	
