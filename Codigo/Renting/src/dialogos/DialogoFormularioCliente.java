@@ -2,12 +2,15 @@ package dialogos;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import auxiliar.Auxiliar;
 import interfaces.InterfazCliente;
 import modelos.Cliente;
 import modelos.Vehiculos;
@@ -15,6 +18,7 @@ import modelos.Vehiculos;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
@@ -42,7 +46,11 @@ public class DialogoFormularioCliente extends JDialog {
 	private Cliente cliente = null;
 	private InterfazCliente.Controlador controlador;
 	private GroupLayout gl_contentPanel;
+	private JButton btnDarDeBaja;
 
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public DialogoFormularioCliente(JPanel padre) {		
 		setLocationRelativeTo(padre);
 		inicializarUI();
@@ -53,14 +61,14 @@ public class DialogoFormularioCliente extends JDialog {
 	
 
 	public DialogoFormularioCliente(JPanel padre, Cliente cliente) {
-		setLocationRelativeTo(padre);
-		inicializarUI();
-		pack();
-		if (cliente != null) {
-			this.cliente = cliente;
-	//		actualizarVehiculo();
-		}
-		setVisible(true);
+//		setLocationRelativeTo(padre);
+//		inicializarUI();
+//		pack();
+//		if (cliente != null) {
+//			this.cliente = cliente;
+//	//		actualizarVehiculo();
+//		}
+//		//setVisible(true);
 	}
 	public void crearElementos() {
 
@@ -84,7 +92,7 @@ public class DialogoFormularioCliente extends JDialog {
 		
 		lblEstado = new JLabel("Estado");
 		
-		comboBox = new JComboBox();
+		comboBox = new JComboBox(Auxiliar.arrayEstado);
 		
 		lblTelfono = new JLabel("Tel√©fono");
 		
@@ -180,19 +188,105 @@ public class DialogoFormularioCliente extends JDialog {
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			btnDarDeBaja = new JButton("Dar de Baja");
+			btnDarDeBaja.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					actualizarCliente();
+				}
+			});
+			buttonPane.add(btnDarDeBaja);
 			{
 				JButton okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						extraerCliente();
+					}
+				});
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						cliente = null;
+						cerrarDialogo();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 		
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	
+	private void actualizarCliente() {
+		if(cliente != null) {
+//			textFieldMatricula.setText(vehiculo.getMatricula());
+//			textFieldPotencia.setText(""+vehiculo.getPotencia());
+//			textFieldModelo.setText(vehiculo.getModelo());
+//			textFieldMarca.setText(vehiculo.getMarca());
+//			textFieldTaraMax.setText(""+vehiculo.getRevision());
+//			textFieldKmTotales.setText(""+vehiculo.getKmTotales());
+//			textFieldKmParciales.setText(""+vehiculo.getKmParciales());
+//			textFieldPrecio.setText(""+vehiculo.getPrecioDia());
+//			comboBoxAnio.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getAnio(), Auxiliar.arrayAnios));
+//			comboBoxNumPuertas.setSelectedIndex(Auxiliar.leerComboBox(""+ vehiculo.getNumPuertas(), Auxiliar.arrayNumPuertas));
+//			comboBoxEstado.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getEstado().toString(), Auxiliar.arrayEstado));
+//			comboBoxPlazas.setSelectedIndex(Auxiliar.leerComboBox(""+vehiculo.getPlazas(), Auxiliar.arrayPlazas));
+//			comboBoxRevision.setSelectedIndex(Auxiliar.leerComboBox(""+vehiculo.getRevision(), Auxiliar.arrayRevisionRecogida));
+//			comboBoxCombustible.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getCombustible().toString(), Auxiliar.arrayCombustible));
+//			comboBoxCategoria.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getCategoria().toString(), Auxiliar.arrayTipoVehiculo));
+			extraerCliente();
+			cerrarDialogo();
+		}
+	}
+	
+	private void extraerCliente() {
+		if(validarCampos()) {
+//			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
+//			vehiculo = new Vehiculos(textFieldMatricula.getText(), comboBoxCategoria.getSelectedItem().toString(),
+//					textFieldMarca.getText(), textFieldModelo.getText(), comboBoxCombustible.getSelectedItem().toString(), Integer.parseInt(comboBoxNumPuertas.getSelectedItem().toString()),
+//					Integer.parseInt(textFieldPotencia.getText()), comboBoxAnio.getSelectedItem().toString(), Integer.parseInt(textFieldTaraMax.getText()),
+//					Auxiliar.comprobarEstado(comboBoxEstado.getSelectedItem().toString()),comboBoxRevision.getSelectedItem().toString(), Integer.parseInt(textFieldKmParciales.getText()),
+//					Integer.parseInt(comboBoxPlazas.getSelectedItem().toString()), Integer.parseInt(textFieldKmTotales.getText()), Double.parseDouble(textFieldPrecio.getText()));
+			cerrarDialogo();
+		}
+	}
+	
+	private void cerrarDialogo() {
+		setVisible(false);
+		dispose();
+	}
+	
+	private boolean validarCampos() {
+		StringBuffer errores = new StringBuffer();
+		boolean valido = true;
+//		if (!ValidarDNI.validar(textFieldDNI.getText())) {
+//			errores.append("El Dni no es v·lido.");
+//			valido = false;
+//		}
+		if (textField.getText().length()<2  ) {
+			errores.append("Hay campos obligatorios sin cumplimentar");
+			valido = false;
+		}
+		
+		if (!valido)
+			muestraError(errores);
+		return valido;
+	}
+	
+	private void muestraError(StringBuffer errores) {
+		JOptionPane.showMessageDialog(this, errores.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public JButton getBotonDarDeBaja() {
+		return btnDarDeBaja;
 	}
 	
 }

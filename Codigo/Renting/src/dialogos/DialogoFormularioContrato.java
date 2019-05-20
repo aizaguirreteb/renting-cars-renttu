@@ -77,8 +77,8 @@ public class DialogoFormularioContrato extends JDialog {
 		setVisible(true);
 	}
 	
-	public DialogoFormularioContrato(JFrame padre, Contrato contrato) {
-		super(padre, "Formulario Contrato", true);
+	public DialogoFormularioContrato(JPanel padre, Contrato contrato) {
+		
 		setLocationRelativeTo(padre);
 		inicializarUI();
 		pack();
@@ -266,12 +266,15 @@ public class DialogoFormularioContrato extends JDialog {
 		if(contrato != null) {
 			txtDni.setText(contrato.getDni());
 			txtMatricula.setText(contrato.getMatricula());
-//			comboBoxNumDias.setSelectedItem(reserva.getDiasContratados());
-//			comboBoxEstado.setSelectedItem(reserva.getEstado());
-//			comboBoxYears.setSelectedItem(reserva.getFechaInicio().getYear());
-//			comboBoxMonths.setSelectedItem(reserva.getFechaInicio().getMonthValue());
-//			comboBoxDays.setSelectedItem(reserva.getFechaInicio().getDayOfMonth());
-//			comboBoxRecogida.setSelectedItem(Auxiliar.leerRecogida(reserva.isRecogida()));;
+			comboBoxNumDias.setSelectedIndex(Auxiliar.leerComboBox(""+contrato.getDiasContratados(), Auxiliar.arrayDiasContratados));
+			comboBoxEstado.setSelectedIndex(Auxiliar.leerComboBox(contrato.getEstado().toString(), Auxiliar.arrayEstado));
+			comboBoxYears.setSelectedIndex(Auxiliar.leerComboBox(""+contrato.getFechaInicio().getYear(), Auxiliar.arrayYear));
+			comboBoxMonths.setSelectedIndex(Auxiliar.leerComboBox(""+contrato.getFechaInicio().getMonthValue(), Auxiliar.arrayMes));
+			comboBoxDays.setSelectedIndex(Auxiliar.leerComboBox(""+contrato.getFechaInicio().getDayOfMonth(), Auxiliar.arrayDia));
+			comboBoxRenovaciones.setSelectedIndex(Auxiliar.leerComboBox(""+contrato.getRenovaciones(), Auxiliar.arrayRenovaciones));
+			
+			extraerContrato();
+			cerrarDialogo();
 		}
 	}
 	

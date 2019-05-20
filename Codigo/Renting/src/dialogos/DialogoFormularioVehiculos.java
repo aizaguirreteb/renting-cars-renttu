@@ -3,6 +3,7 @@ package dialogos;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Dialog.ModalExclusionType;
+import java.time.LocalTime;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -10,44 +11,48 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import auxiliar.Auxiliar;
 import interfaces.InterfazVehiculos;
 import modelos.Reserva;
 import modelos.Vehiculos;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DialogoFormularioVehiculos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField_1;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField textFieldMatricula;
+	private JTextField textFieldMarca;
+	private JTextField textFieldModelo;
+	private JTextField textFieldKmParciales;
+	private JTextField textFieldKmTotales;
+	private JTextField textFieldTaraMax;
+	private JTextField textFieldPrecio;
 	private JLabel lblMarca ;
 	private JLabel lblMatricula;
 	private JLabel lblModelo;
 	private JLabel lblEstado;
 	private JLabel lblNmeroPuertas;
-	private JComboBox comboBox;
+	private JComboBox comboBoxNumPuertas;
 	private JLabel lblKmparciales;
 	private JLabel lblKmtotales;
 	private JLabel lblTaramax;
-	private JComboBox comboBox_1;
+	private JComboBox comboBoxEstado;
 	private JLabel lblCombustible;
-	private JComboBox comboBox_2;
+	private JComboBox comboBoxCombustible;
 	private JLabel lblPrecio;
 	private JLabel lblPlazas;
-	private JComboBox comboBox_3;
+	private JComboBox comboBoxPlazas;
 	private JLabel lblRevision;
-	private JComboBox comboBox_4;
+	private JComboBox comboBoxRevision;
 	private GroupLayout gl_contentPanel;
 	private JPanel buttonPane;
 	private JButton okButton;
@@ -55,6 +60,12 @@ public class DialogoFormularioVehiculos extends JDialog {
 	
 	private Vehiculos vehiculo=null;
 	private InterfazVehiculos.Controlador controlador;
+	private JComboBox comboBoxCategoria;
+	private JLabel lblPotencia;
+	private JTextField textFieldPotencia;
+	private JLabel lblAo;
+	private JComboBox comboBoxAnio;
+	private JButton btnDarDeBaja;
 	
 	
 	
@@ -100,58 +111,59 @@ private void inicializarUI() {
 	
 
 	private void crearElementos() {
-		// TODO Auto-generated method stub
 		lblMarca = new JLabel("Marca");
 		lblMatricula = new JLabel("Matricula");
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textFieldMatricula = new JTextField();
+		textFieldMatricula.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textFieldMarca = new JTextField();
+		textFieldMarca.setColumns(10);
 		
 		lblModelo = new JLabel("Modelo");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		textFieldModelo = new JTextField();
+		textFieldModelo.setColumns(10);
 		
 		lblEstado = new JLabel("Estado");
 
 		 lblNmeroPuertas = new JLabel("N\u00FAmero Puertas");
 		
-		comboBox = new JComboBox();
+		comboBoxNumPuertas = new JComboBox(Auxiliar.arrayNumPuertas);
 		
 		lblKmparciales = new JLabel("KmParciales");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		textFieldKmParciales = new JTextField();
+		textFieldKmParciales.setColumns(10);
 		
 		lblKmtotales = new JLabel("KmTotales");
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		textFieldKmTotales = new JTextField();
+		textFieldKmTotales.setColumns(10);
         lblTaramax = new JLabel("TaraMax");
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		textFieldTaraMax = new JTextField();
+		textFieldTaraMax.setColumns(10);
 		
-		comboBox_1 = new JComboBox();
+		comboBoxEstado = new JComboBox(Auxiliar.arrayEstado);
 		
 		lblCombustible = new JLabel("Combustible");
 		
-		comboBox_2 = new JComboBox();
+		comboBoxCombustible = new JComboBox(Auxiliar.arrayCombustible);
 		
 		lblPrecio = new JLabel("Precio");
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
+		textFieldPrecio = new JTextField();
+		textFieldPrecio.setColumns(10);
 		
 		lblPlazas = new JLabel("plazas");
 		
-		comboBox_3 = new JComboBox();
+		comboBoxPlazas = new JComboBox(Auxiliar.arrayPlazas);
 		
 		lblRevision = new JLabel("Revision");
 		
-		comboBox_4 = new JComboBox();
+		comboBoxRevision = new JComboBox(Auxiliar.arrayRevisionRecogida);
+		
+		comboBoxCategoria = new JComboBox(Auxiliar.arrayTipoVehiculo);
 	}
 	
 	private void setLayout() {
@@ -159,6 +171,19 @@ private void inicializarUI() {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		
+		JLabel lblCategora = new JLabel("Categor\u00EDa");
+		
+		lblPotencia = new JLabel("Potencia");
+		
+		textFieldPotencia = new JTextField();
+		textFieldPotencia.setColumns(10);
+		
+		lblAo = new JLabel("A\u00F1o");
+		
+		comboBoxAnio = new JComboBox();
+		
+		
 		
 		
 		
@@ -170,14 +195,6 @@ private void inicializarUI() {
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGap(19)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(lblEstado, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(lblNmeroPuertas, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 							.addGroup(gl_contentPanel.createSequentialGroup()
 								.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -185,50 +202,70 @@ private void inicializarUI() {
 										.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 											.addComponent(lblModelo, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 											.addComponent(lblMarca, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+										.addPreferredGap(ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
 										.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-											.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+											.addComponent(textFieldModelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(textFieldMarca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 									.addGroup(gl_contentPanel.createSequentialGroup()
 										.addComponent(lblKmparciales)
-										.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-										.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+										.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+										.addComponent(textFieldKmParciales, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addComponent(textFieldPotencia, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(ComponentPlacement.RELATED))
 							.addGroup(gl_contentPanel.createSequentialGroup()
 								.addComponent(lblPlazas, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxPlazas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addGap(18)
 								.addComponent(lblRevision, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBoxRevision, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGap(28)
-							.addComponent(lblCombustible)
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(lblPotencia, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblEstado, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxEstado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(71))
+							.addComponent(lblNmeroPuertas, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxNumPuertas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPanel.createSequentialGroup()
+									.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_contentPanel.createSequentialGroup()
+											.addComponent(lblMatricula, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+											.addComponent(textFieldMatricula, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addGroup(gl_contentPanel.createSequentialGroup()
+											.addComponent(lblKmtotales, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+											.addComponent(textFieldKmTotales, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addComponent(textFieldTaraMax, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_contentPanel.createSequentialGroup()
+											.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addGap(28))
+								.addGroup(gl_contentPanel.createSequentialGroup()
+									.addComponent(lblTaramax, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+									.addContainerGap()))
 							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addGap(28)
 								.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_contentPanel.createSequentialGroup()
-										.addComponent(lblMatricula, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-										.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGroup(gl_contentPanel.createSequentialGroup()
-										.addComponent(lblKmtotales, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-										.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addComponent(textField_5, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
-										.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-								.addGap(28))
-							.addGroup(gl_contentPanel.createSequentialGroup()
-								.addComponent(lblTaramax, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap()))))
+									.addComponent(lblCombustible)
+									.addComponent(lblCategora))
+								.addGap(18)
+								.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+									.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(comboBoxCombustible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(comboBoxAnio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGap(71)))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(lblAo)
+							.addContainerGap())))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -236,37 +273,52 @@ private void inicializarUI() {
 					.addGap(19)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblMarca)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldMatricula, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblMatricula)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldMarca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblModelo)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldModelo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTaramax)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldTaraMax, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblKmparciales)
 						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textFieldKmParciales, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblKmtotales)
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(36)
+							.addComponent(textFieldKmTotales, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGap(11)
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblPotencia)
+								.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+									.addComponent(textFieldPotencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblAo))))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(comboBoxAnio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEstado)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxEstado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNmeroPuertas)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxNumPuertas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCombustible)
-						.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+						.addComponent(comboBoxCombustible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCategora)
+						.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPlazas)
-						.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxPlazas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPrecio)
-						.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxRevision, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblRevision))
 					.addContainerGap())
 		);
@@ -275,20 +327,104 @@ private void inicializarUI() {
 			buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			
+			btnDarDeBaja = new JButton("Dar de Baja");
+			btnDarDeBaja.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					actualizarVehiculo();
+				}
+			});
+			buttonPane.add(btnDarDeBaja);
 			{
 				okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						extraerVehiculo();
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						vehiculo = null;
+						cerrarDialogo();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
 	
-
+	public Vehiculos getVehiculos() {
+		return vehiculo;
+	}
 	
+	private void actualizarVehiculo() {
+		if(vehiculo != null) {
+			textFieldMatricula.setText(vehiculo.getMatricula());
+			textFieldPotencia.setText(""+vehiculo.getPotencia());
+			textFieldModelo.setText(vehiculo.getModelo());
+			textFieldMarca.setText(vehiculo.getMarca());
+			textFieldTaraMax.setText(""+vehiculo.getRevision());
+			textFieldKmTotales.setText(""+vehiculo.getKmTotales());
+			textFieldKmParciales.setText(""+vehiculo.getKmParciales());
+			textFieldPrecio.setText(""+vehiculo.getPrecioDia());
+			comboBoxAnio.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getAnio(), Auxiliar.arrayAnios));
+			comboBoxNumPuertas.setSelectedIndex(Auxiliar.leerComboBox(""+ vehiculo.getNumPuertas(), Auxiliar.arrayNumPuertas));
+			comboBoxEstado.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getEstado().toString(), Auxiliar.arrayEstado));
+			comboBoxPlazas.setSelectedIndex(Auxiliar.leerComboBox(""+vehiculo.getPlazas(), Auxiliar.arrayPlazas));
+			comboBoxRevision.setSelectedIndex(Auxiliar.leerComboBox(""+vehiculo.getRevision(), Auxiliar.arrayRevisionRecogida));
+			comboBoxCombustible.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getCombustible().toString(), Auxiliar.arrayCombustible));
+			comboBoxCategoria.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getCategoria().toString(), Auxiliar.arrayTipoVehiculo));
+			extraerVehiculo();
+			cerrarDialogo();
+		}
+	}
+	
+	private void extraerVehiculo() {
+		if(validarCampos()) {
+//			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
+//			vehiculo = new Vehiculos(textFieldMatricula.getText(), comboBoxCategoria.getSelectedItem().toString(),
+//					textFieldMarca.getText(), textFieldModelo.getText(), comboBoxCombustible.getSelectedItem().toString(), Integer.parseInt(comboBoxNumPuertas.getSelectedItem().toString()),
+//					Integer.parseInt(textFieldPotencia.getText()), comboBoxAnio.getSelectedItem().toString(), Integer.parseInt(textFieldTaraMax.getText()),
+//					Auxiliar.comprobarEstado(comboBoxEstado.getSelectedItem().toString()),comboBoxRevision.getSelectedItem().toString(), Integer.parseInt(textFieldKmParciales.getText()),
+//					Integer.parseInt(comboBoxPlazas.getSelectedItem().toString()), Integer.parseInt(textFieldKmTotales.getText()), Double.parseDouble(textFieldPrecio.getText()));
+			cerrarDialogo();
+		}
+	}
+	
+	private void cerrarDialogo() {
+		setVisible(false);
+		dispose();
+	}
+	
+	private boolean validarCampos() {
+		StringBuffer errores = new StringBuffer();
+		boolean valido = true;
+//		if (!ValidarDNI.validar(textFieldDNI.getText())) {
+//			errores.append("El Dni no es válido.");
+//			valido = false;
+//		}
+		if (textFieldMatricula.getText().length()<2  ) {
+			errores.append("Hay campos obligatorios sin cumplimentar");
+			valido = false;
+		}
+		
+		if (!valido)
+			muestraError(errores);
+		return valido;
+	}
+	
+	private void muestraError(StringBuffer errores) {
+		JOptionPane.showMessageDialog(this, errores.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public JButton getBotonDarDeBaja() {
+		return btnDarDeBaja;
+	}
 }

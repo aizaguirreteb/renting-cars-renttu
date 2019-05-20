@@ -82,8 +82,7 @@ public class DialogoFormularioReserva extends JDialog {
 		setVisible(true);
 	}
 	
-	public DialogoFormularioReserva(JFrame padre, Reserva reserva) {
-		super(padre, "Formulario Cliente", true);
+	public DialogoFormularioReserva(JPanel padre, Reserva reserva) {
 		setLocationRelativeTo(padre);
 		inicializarUI();
 		pack();
@@ -271,12 +270,15 @@ public class DialogoFormularioReserva extends JDialog {
 		if(reserva != null) {
 			txtDni.setText(reserva.getDniCliente());
 			txtMatricula.setText(reserva.getMatricula());
-//			comboBoxNumDias.setSelectedItem(reserva.getDiasContratados());
-//			comboBoxEstado.setSelectedItem(reserva.getEstado());
-//			comboBoxYears.setSelectedItem(reserva.getFechaInicio().getYear());
-//			comboBoxMonths.setSelectedItem(reserva.getFechaInicio().getMonthValue());
-//			comboBoxDays.setSelectedItem(reserva.getFechaInicio().getDayOfMonth());
-//			comboBoxRecogida.setSelectedItem(Auxiliar.leerRecogida(reserva.isRecogida()));;
+			comboBoxNumDias.setSelectedIndex(Auxiliar.leerComboBox(""+reserva.getDiasContratados(), Auxiliar.arrayDiasContratados));
+			comboBoxEstado.setSelectedIndex(Auxiliar.leerComboBox(reserva.getEstado().toString(), Auxiliar.arrayEstado));
+			comboBoxYears.setSelectedIndex(Auxiliar.leerComboBox(""+reserva.getFechaInicio().getYear(), Auxiliar.arrayYear));
+			comboBoxMonths.setSelectedIndex(Auxiliar.leerComboBox(""+reserva.getFechaInicio().getMonthValue(), Auxiliar.arrayMes));
+			comboBoxDays.setSelectedIndex(Auxiliar.leerComboBox(""+reserva.getFechaInicio().getDayOfMonth(), Auxiliar.arrayDia));
+			comboBoxRecogida.setSelectedIndex(Auxiliar.leerComboBox("" + reserva.isRecogida(), Auxiliar.arrayRevisionRecogida));
+			
+			extraerReserva();
+			cerrarDialogo();
 		}
 	}
 	
