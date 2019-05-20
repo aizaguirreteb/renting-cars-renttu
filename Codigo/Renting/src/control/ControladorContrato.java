@@ -68,4 +68,10 @@ public class ControladorContrato implements InterfazContrato.Controlador{
 		}
 	}
 
+	@Override
+	public void buscarContrato(String dato) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

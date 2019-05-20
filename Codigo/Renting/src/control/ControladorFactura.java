@@ -35,4 +35,11 @@ public class ControladorFactura implements InterfazFactura.Controlador {
 		
 	}
 
+
+	@Override
+	public void buscarFactura(String dato) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

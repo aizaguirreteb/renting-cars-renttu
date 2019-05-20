@@ -63,6 +63,12 @@ public class ControladorReservas implements Controlador {
 
 	}
 
+	@Override
+	public void buscarReserva(String dato) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }

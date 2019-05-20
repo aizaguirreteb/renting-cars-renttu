@@ -62,6 +62,12 @@ public class ControladorClientes implements InterfazCliente.Controlador {
 		}
 	}
 
+	@Override
+	public void buscarCliente(String dato) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 

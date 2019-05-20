@@ -54,6 +54,11 @@ public class ControladorVehiculos implements InterfazVehiculos.Controlador {
 			obtenerVehiculossAlta();
 		}
 	}
+	@Override
+	public void buscarVehiculos(String dato) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
