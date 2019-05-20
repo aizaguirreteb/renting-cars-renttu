@@ -1,5 +1,7 @@
 package modelos;
 
+import java.time.LocalDate;
+
 /**
  * @author José Luis Gómez López
  *
@@ -21,6 +23,7 @@ public class Factura {
 	private int idContrato, kmRecorridos = 0, cargoRetraso = 0, cargoDeposito = 0;
 	private String dni, matricula;
 	private float precioDia, descuentoPorDia = 0.5f, total = 0;
+	private LocalDate fechaInicio;
 	
 	/**
 	 * @param idContrato
@@ -28,11 +31,12 @@ public class Factura {
 	 * @param matricula
 	 * @param precioDia
 	 */
-	public Factura(int idContrato, String dni, String matricula, float precioDia) {
+	public Factura(int idContrato, String dni, String matricula, float precioDia, LocalDate fechaInicio) {
 		this.idContrato = idContrato;
 		this.dni = dni;
 		this.matricula = matricula;
 		this.precioDia = precioDia;
+		this.fechaInicio = fechaInicio;
 	}
 
 	/**
@@ -47,7 +51,7 @@ public class Factura {
 	 * @param total
 	 */
 	public Factura(int idContrato, int kmRecorridos, int cargoRetraso, int cargoDeposito, String dni, String matricula,
-			float precioDia, float descuentoPorDia, float total) {
+			float precioDia, float descuentoPorDia, float total, LocalDate fechaInicio) {
 		this.idContrato = idContrato;
 		this.kmRecorridos = kmRecorridos;
 		this.cargoRetraso = cargoRetraso;
@@ -57,6 +61,7 @@ public class Factura {
 		this.precioDia = precioDia;
 		this.descuentoPorDia = descuentoPorDia;
 		this.total = total;
+		this.fechaInicio = fechaInicio;
 	}
 
 
@@ -185,6 +190,20 @@ public class Factura {
 	 */
 	public void setTotal(float total) {
 		this.total = total;
+	}
+	
+	/**
+	 * @return the fechaInicio
+	 */
+	public LocalDate getFechaInicio() {
+		return fechaInicio;
+	}
+
+	/**
+	 * @param fechaInicio the fechaInicio to set
+	 */
+	public void setFechaInicio(LocalDate fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
 	@Override

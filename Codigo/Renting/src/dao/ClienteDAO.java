@@ -10,9 +10,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import auxiliar.Auxiliar;
 import conexion.Conexion;
 import modelos.Cliente;
 import modelos.Estado;
+import modelos.Factura;
 
 public class ClienteDAO {
 
@@ -161,6 +163,40 @@ public class ClienteDAO {
 		return null;
 	}
 	
+	public List<Cliente> buscarContrato(String string) {
+			
+		List<Cliente> listaCliente = new ArrayList<>();
+	
+		String consulta1 = "SELECT * FROM CLIENTES WHERE DNI like '%?%';";
+		String consulta2 = "SELECT * FROM CLIENTES WHERE NOMBRE like '%?%';";
+		try (PreparedStatement pStatement1 = conexion.prepareStatement(consulta1);
+				PreparedStatement pStatement2 = conexion.prepareStatement(consulta2);){
+			pStatement1.setString(1, string);
+			ResultSet rsSet1 = pStatement1.executeQuery();
+			while(rsSet1.next()) {
+				listaCliente.add(new Cliente(rsSet1.getString("DNI"),rsSet1.getString("POBLACION"),
+						rsSet1.getString("NOMBRE"),rsSet1.getString("DIRECCION"),rsSet1.getString("COD_POSTAL"),
+						Estado.baja,rsSet1.getInt("TELEFONO"),rsSet1.getString("CARNET_CONDUCIR"),
+						rsSet1.getString("NUM_TARJ_CREDITO")));
+			}
+			
+			pStatement2.setString(1, string);
+			ResultSet rsSet2 = pStatement2.executeQuery();
+			while(rsSet2.next()) {
+				listaCliente.add(new Cliente(rsSet2.getString("DNI"),rsSet2.getString("POBLACION"),
+						rsSet2.getString("NOMBRE"),rsSet2.getString("DIRECCION"),rsSet2.getString("COD_POSTAL"),
+						Estado.baja,rsSet2.getInt("TELEFONO"),rsSet2.getString("CARNET_CONDUCIR"),
+						rsSet2.getString("NUM_TARJ_CREDITO")));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		return listaCliente;
+			
+	}
 	
 	public boolean actualizarCliente(Cliente cliente) {
 		String sql = "UPDATE CLIENTES SET ?,?,?,?,?,?,?,?,? WHERE DNI=?";
