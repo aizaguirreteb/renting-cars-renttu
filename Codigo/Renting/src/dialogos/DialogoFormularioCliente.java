@@ -271,7 +271,7 @@ private void inicializarUI() {
 			textField_3.setText(cliente.getDireccion());
 			textField_5.setText(""+cliente.getTlf());
 			textField_6.setText(""+cliente.getNumTarjCredito());
-			//comboBoxCarnetConducir.setSelectedIndex(Auxiliar.leerComboBox(cliente.getCarnetConducir(), Auxiliar.arrayCarnet));
+			comboBox_1.setSelectedIndex(Auxiliar.leerComboBox(cliente.getCarnetConducir(), Auxiliar.arrayCarnet));
 			comboBox.setSelectedIndex(Auxiliar.leerComboBox(cliente.getEstado().toString(), Auxiliar.arrayEstado));
 			
 			extraerCliente();
@@ -284,7 +284,7 @@ private void inicializarUI() {
 //			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
 			cliente = new Cliente(textField.getText(), textField_1.getText(), textField_3.getText(), textField_4.getText(),
 					textField_4.getText(), Auxiliar.comprobarEstado(comboBox.getSelectedItem().toString()), Integer.parseInt(textField_5.getText()),
-					"B1", textField_6.getText());
+					comboBox_1.getSelectedItem().toString(), textField_6.getText());
 			cerrarDialogo();
 		}
 	}
