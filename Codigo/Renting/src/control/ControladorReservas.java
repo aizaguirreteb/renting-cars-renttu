@@ -6,6 +6,7 @@ import dao.ReservaDAO;
 import interfaces.InterfazReserva;
 import interfaces.InterfazReserva.Controlador;
 import modelos.Reserva;
+import modelos.Vehiculos;
 
 public class ControladorReservas implements Controlador {
 	
@@ -66,7 +67,8 @@ public class ControladorReservas implements Controlador {
 	@Override
 	public void buscarReserva(String dato) {
 		// TODO Auto-generated method stub
-		
+		List<Reserva> listaEncontrados = reservaDao.buscarReserva(dato);
+		panelReserva.mostrarReservas(listaEncontrados);
 	}
 
 	

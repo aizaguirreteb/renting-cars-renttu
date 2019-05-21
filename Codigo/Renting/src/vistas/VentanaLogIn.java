@@ -54,7 +54,7 @@ public class VentanaLogIn extends JFrame implements AccesoLogIn.Vista{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(controladorAdministrador.validarLogIn(getAdministrador())) {
-					VentanaPrincipalGestion ventanaPrincipal = new VentanaPrincipalGestion();
+					VentanaPrincipalGestion ventanaPrincipal = new VentanaPrincipalGestion("ALEJANDRA");
 					dispose();
 				} else {
 					errorAutenticacion();

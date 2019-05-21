@@ -14,6 +14,8 @@ public interface VentanaPrincipal {
 	public interface Vista{
 		public void mostrarVentananuevoUsuario();
 		public void mostrarVentanaActualizarUsuario();
+		public void errorNuevoUsuario();
+		public void insercionCorrecta();
 	}
 	
 	

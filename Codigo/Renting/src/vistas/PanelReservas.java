@@ -238,8 +238,8 @@ public class PanelReservas extends JPanel implements InterfazReserva.Vista{
 	
 	@Override
 	public void mostrarReservasHistorial(List<Reserva> listaReservas) {
-		DialogoHistorialReservas dialogo = new DialogoHistorialReservas(PanelReservas.this);
-		dialogo.getTable().setModel(new ModeloTablaReservas(listaReservas));
+		
+		tableReservas.setModel(new ModeloTablaReservas(listaReservas));
 		
 	}
 

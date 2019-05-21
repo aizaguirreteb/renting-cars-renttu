@@ -50,13 +50,15 @@ public class ControladorVehiculos implements InterfazVehiculos.Controlador {
 	public void editarVehiculos(String matricula, Vehiculos vehiculoAEditar) {
 		// TODO Auto-generated method stub
 		if(vehiculoAEditar != null) {
-			//vehiculosDAO.actualizarEstadoYKmvehiculo(matricula, estado)
+			vehiculosDAO.actualizarEstadoYKmvehiculo(matricula, vehiculoAEditar);
 			obtenerVehiculossAlta();
 		}
 	}
 	@Override
 	public void buscarVehiculos(String dato) {
 		// TODO Auto-generated method stub
+		List<Vehiculos> listaEncontrados = vehiculosDAO.buscarVehiculos(dato);
+		panelVehiculo.mostrarVehiculos(listaEncontrados);
 		
 	}
 	

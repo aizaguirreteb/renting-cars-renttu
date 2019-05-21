@@ -5,6 +5,8 @@ import dao.ClienteDAO;
 import interfaces.InterfazCliente;
 import interfaces.InterfazCliente.Vista;
 import modelos.Cliente;
+import modelos.Vehiculos;
+import vistas.PanelClientes;
 
 public class ControladorClientes implements InterfazCliente.Controlador {
 	//Tiene a la vista y al DAO asociados como atributos
@@ -65,7 +67,8 @@ public class ControladorClientes implements InterfazCliente.Controlador {
 	@Override
 	public void buscarCliente(String dato) {
 		// TODO Auto-generated method stub
-		
+		List<Cliente> listaEncontrados = clienteDao.buscarContrato(dato);
+		vistaCliente.mostrarClientes(listaEncontrados);
 	}
 
 

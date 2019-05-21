@@ -21,6 +21,7 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 
 	private JPanel panel1;
 	private VentanaPrincipal.Controlador controladorPrincipal;
+	private String usuario;
 
 	/**
 	 * Launch the application.
@@ -29,7 +30,7 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaPrincipalGestion frame = new VentanaPrincipalGestion();
+					VentanaPrincipalGestion frame = new VentanaPrincipalGestion("ALEJANDRA");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,8 +42,9 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 	/**
 	 * Create the frame.
 	 */
-	public VentanaPrincipalGestion() {
+	public VentanaPrincipalGestion(String usuarioIntroducido) {
 		//PanelClientes panelClientes = new PanelClientes();
+		this.usuario = usuarioIntroducido;
 		PanelFacturas panelFacturas = new PanelFacturas();
 		PanelContrato panelContratos = new PanelContrato();
 		PanelClientes panelClientes = new PanelClientes();
@@ -91,5 +93,17 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 		//DialogoFormularioUsuario dialogo = new DialogoFormularioUsuario(this,adminAeditar);
 		//Administrador nuevoUsuario = dialogo.getUsuario();
 		//controladorPrincipal.nuevoUsuario(nuevoUsuario);		
+	}
+
+	@Override
+	public void errorNuevoUsuario() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insercionCorrecta() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -7,6 +7,8 @@ import interfaces.InterfazContrato;
 import interfaces.InterfazContrato.Vista;
 import modelos.Cliente;
 import modelos.Contrato;
+import modelos.Vehiculos;
+import vistas.PanelContrato;
 
 public class ControladorContrato implements InterfazContrato.Controlador{
 
@@ -71,7 +73,8 @@ public class ControladorContrato implements InterfazContrato.Controlador{
 	@Override
 	public void buscarContrato(String dato) {
 		// TODO Auto-generated method stub
-		
+		List<Contrato> listaEncontrados = contratoDao.buscarContrato(dato);
+		vistaContrato.mostrarContrato(listaEncontrados);
 	}
 
 }

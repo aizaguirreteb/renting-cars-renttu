@@ -6,6 +6,7 @@ import java.util.List;
 import dao.FacturaDAO;
 import interfaces.InterfazFactura;
 import modelos.Factura;
+import modelos.Vehiculos;
 
 public class ControladorFactura implements InterfazFactura.Controlador {
 	
@@ -39,7 +40,8 @@ public class ControladorFactura implements InterfazFactura.Controlador {
 	@Override
 	public void buscarFactura(String dato) {
 		// TODO Auto-generated method stub
-		
+		List<Factura> listaEncontrados = facturaDao.buscarContrato(dato);
+		panelFactura.mostrarFacturas(listaEncontrados);
 	}
 
 

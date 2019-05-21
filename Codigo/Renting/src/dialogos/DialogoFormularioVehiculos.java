@@ -86,7 +86,7 @@ public class DialogoFormularioVehiculos extends JDialog {
 		pack();
 		if (vehiculo != null) {
 			this.vehiculo = vehiculo;
-	//		actualizarVehiculo();
+			actualizarVehiculo();
 		}
 		setVisible(true);
 	}
@@ -181,7 +181,7 @@ private void inicializarUI() {
 		
 		lblAo = new JLabel("A\u00F1o");
 		
-		comboBoxAnio = new JComboBox();
+		comboBoxAnio = new JComboBox(Auxiliar.arrayAnios);
 		
 		
 		
