@@ -1248,3 +1248,97 @@ java.lang.NumberFormatException: null
 	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1148)
 	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:55)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2019-05-20 22:05:04.373
+!MESSAGE An internal error occurred during: "Periodic workspace save.".
+!STACK 0
+java.lang.NumberFormatException: null
+	at java.base/java.lang.Integer.parseInt(Integer.java:614)
+	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1592)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1268)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1260)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1237)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1148)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:55)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2019-05-21 09:32:31.504 -----------------------------------------------
+eclipse.buildId=4.9.0.I20180906-0745
+java.version=10.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2019-05-21 09:32:40.586
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jdt.core 4 0 2019-05-21 09:32:45.930
+!MESSAGE Unexpected internal error
+!STACK 1
+Java Model Exception: Java Model Status [<module:jdk.compiler> is not on its project's build path]
+	at org.eclipse.jdt.internal.core.JavaElement.newJavaModelException(JavaElement.java:583)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:256)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:326)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:312)
+	at org.eclipse.jdt.internal.core.JavaElement.getChildren(JavaElement.java:267)
+	at org.eclipse.jdt.internal.core.PackageFragmentRoot.getModuleDescription(PackageFragmentRoot.java:888)
+	at org.eclipse.jdt.internal.core.JarPackageFragmentRoot.getModuleDescription(JarPackageFragmentRoot.java:321)
+	at org.eclipse.jdt.internal.core.JrtPackageFragmentRoot.getModule(JrtPackageFragmentRoot.java:144)
+	at org.eclipse.jdt.internal.core.JavaProject.lambda$6(JavaProject.java:792)
+	at org.eclipse.jdt.internal.core.JavaProject.internalDefaultRootModules(JavaProject.java:814)
+	at org.eclipse.jdt.internal.core.JavaProject.defaultRootModules(JavaProject.java:790)
+	at org.eclipse.jdt.internal.core.JavaProject.computePackageFragmentRoots(JavaProject.java:737)
+	at org.eclipse.jdt.internal.core.JavaProject.computePackageFragmentRoots(JavaProject.java:1045)
+	at org.eclipse.jdt.internal.core.JavaProject.computePackageFragmentRoots(JavaProject.java:990)
+	at org.eclipse.jdt.internal.core.JavaProject.computePackageFragmentRoots(JavaProject.java:967)
+	at org.eclipse.jdt.internal.core.JavaProject.buildStructure(JavaProject.java:481)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.Openable.openAncestors(Openable.java:530)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250)
+	at org.eclipse.jdt.internal.core.Openable.openAncestors(Openable.java:530)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250)
+	at org.eclipse.jdt.internal.core.Openable.openAncestors(Openable.java:530)
+	at org.eclipse.jdt.internal.core.CompilationUnit.openAncestors(CompilationUnit.java:1243)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:326)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:312)
+	at org.eclipse.jdt.internal.core.JavaElement.getChildren(JavaElement.java:267)
+	at org.eclipse.jdt.internal.core.JavaElement.getSourceElementAt(JavaElement.java:445)
+	at org.eclipse.jdt.internal.core.CompilationUnit.getElementAt(CompilationUnit.java:736)
+	at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.getElementAt(CompilationUnitEditor.java:1228)
+	at org.eclipse.jdt.internal.ui.javaeditor.JavaEditor.computeHighlightRangeSourceReference(JavaEditor.java:4002)
+	at org.eclipse.jdt.internal.ui.javaeditor.JavaEditor.selectionChanged(JavaEditor.java:2274)
+	at org.eclipse.jdt.internal.ui.javaeditor.JavaEditor$EditorSelectionChangedListener.selectionChanged(JavaEditor.java:310)
+	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2613)
+	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2561)
+	at org.eclipse.jface.text.TextViewer$2.run(TextViewer.java:2540)
+	at org.eclipse.swt.widgets.Display.timerProc(Display.java:5700)
+	at org.eclipse.swt.internal.gtk.OS._g_main_context_iteration(Native Method)
+	at org.eclipse.swt.internal.gtk.OS.g_main_context_iteration(OS.java:1596)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4581)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:628)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:563)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:151)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:199)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:391)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:246)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:595)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1474)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1006 2019-05-21 09:32:45.933
+!MESSAGE <module:jdk.compiler> is not on its project's build path
