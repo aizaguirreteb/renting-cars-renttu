@@ -8,7 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dialogos.DialogoFormularioCliente;
+import dialogos.DialogoFormularioUsuario;
 import interfaces.VentanaPrincipal;
+import modelos.Administrador;
+
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -16,6 +19,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.Vista{
 
@@ -64,9 +71,19 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 		menuBar.add(mnInicio);
 		
 		JMenuItem mntmEditarUsuario = new JMenuItem("Editar Usuario");
+		mntmEditarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mostrarVentanaActualizarUsuario();
+			}
+		});
 		mnInicio.add(mntmEditarUsuario);
 		
 		JMenuItem mntmNuevoUsuario = new JMenuItem("Nuevo Usuario");
+		mntmNuevoUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mostrarVentananuevoUsuario();
+			}
+		});
 		mnInicio.add(mntmNuevoUsuario);
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
@@ -77,33 +94,35 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 		tabbedPane.addTab("Facturas", panelFacturas);
 		setContentPane(tabbedPane);
 	}
+	
+	
 
 	@Override
 	public void mostrarVentananuevoUsuario() {
-		//DialogoFormularioUsuario dialogo = new DialogoFormularioUsuario(this);
-		//Administrador nuevoUsuario = dialogo.getUsuario();
-		//controladorPrincipal.nuevoUsuario(nuevoUsuario);
+		DialogoFormularioUsuario dialogo = new DialogoFormularioUsuario(this);
+		Administrador nuevoUsuario = dialogo.getAdmin();
+		controladorPrincipal.nuevoUsuario(nuevoUsuario);
 		
 		
 	}
 
 	@Override
 	public void mostrarVentanaActualizarUsuario() {
-		//Administrador adminAeditar = dialogo.getUsuario();
-		//DialogoFormularioUsuario dialogo = new DialogoFormularioUsuario(this,adminAeditar);
-		//Administrador nuevoUsuario = dialogo.getUsuario();
-		//controladorPrincipal.nuevoUsuario(nuevoUsuario);		
+		
+		DialogoFormularioUsuario dialogo = new DialogoFormularioUsuario(this,usuario);
+		Administrador nuevoUsuario = dialogo.getAdmin();
+		controladorPrincipal.actualizarUsuario(usuario,nuevoUsuario);		
 	}
 
 	@Override
 	public void errorNuevoUsuario() {
-		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this, "No es posible registrar la administrador.");
 		
 	}
 
 	@Override
 	public void insercionCorrecta() {
-		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this, "Nuevo Usuario Registrado");
 		
 	}
 }
