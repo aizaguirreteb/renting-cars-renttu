@@ -21,7 +21,18 @@ public class Contrato {
 	 * @param dni
 	 * @param matricula
 	 */
-	public Contrato(int id, String dni, String matricula, LocalDate fechaInicio, int diasContratados, int renovaciones,   
+	public Contrato(String dni, String matricula, LocalDate fechaInicio, int diasContratados, int renovaciones,   
+			Estado estado) {
+		
+		this.renovaciones = renovaciones;
+		this.diasContratados = diasContratados;
+		this.fechaInicio = fechaInicio;
+		this.dni = dni;
+		this.matricula = matricula;
+		this.estado = estado;
+	}
+
+	public Contrato(int id,String dni, String matricula, LocalDate fechaInicio, int diasContratados, int renovaciones,   
 			Estado estado) {
 		this.id = id;
 		this.renovaciones = renovaciones;
@@ -29,8 +40,9 @@ public class Contrato {
 		this.fechaInicio = fechaInicio;
 		this.dni = dni;
 		this.matricula = matricula;
+		this.estado = estado;
 	}
-
+	
 	public Contrato() {}
 
 	/**
@@ -165,7 +177,7 @@ public class Contrato {
 	@Override
 	public String toString() {
 		return String.format(
-				"Contrato [id=%s, renovaciones=%s, diasContratados=%s, fechaInicio=%s, dni=%s, matricula=%s, estado=%s]",
+				"Contrato [ renovaciones=%s, diasContratados=%s, fechaInicio=%s, dni=%s, matricula=%s, estado=%s]",
 				id, renovaciones, diasContratados, fechaInicio, dni, matricula, estado);
 	}
 	

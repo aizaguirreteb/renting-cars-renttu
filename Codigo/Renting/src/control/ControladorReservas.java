@@ -52,12 +52,12 @@ public class ControladorReservas implements Controlador {
 	}
 
 	@Override
-	public void editarReserva(String estado, String recogida, Reserva reservaAEditar) {
-		if(reservaAEditar != null) {
+	public void editarReserva(Reserva reservaAEditar, Reserva nuevaReserva) {
+		if(nuevaReserva != null) {
 			
 			//Cuando se edita una reserva es para darla de baja, tanto si la han recogido como si no.
 			//despues hay que volver a rellenar la tabla del panel de reservas para ver los cambios
-			reservaDao.actualizarEstadoReservaPorDni(recogida, estado, reservaAEditar);
+			reservaDao.actualizarEstadoReservaPorDni(reservaAEditar, nuevaReserva);
 			obtenerReservasAlta();		
 			
 		}

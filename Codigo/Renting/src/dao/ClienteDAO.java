@@ -167,11 +167,11 @@ public class ClienteDAO {
 			
 		List<Cliente> listaCliente = new ArrayList<>();
 	
-		String consulta1 = "SELECT * FROM CLIENTES WHERE DNI like '%?%';";
-		String consulta2 = "SELECT * FROM CLIENTES WHERE NOMBRE like '%?%';";
+		String consulta1 = "SELECT * FROM CLIENTES WHERE DNI like ?;";
+		String consulta2 = "SELECT * FROM CLIENTES WHERE NOMBRE like ?;";
 		try (PreparedStatement pStatement1 = conexion.prepareStatement(consulta1);
 				PreparedStatement pStatement2 = conexion.prepareStatement(consulta2);){
-			pStatement1.setString(1, string);
+			pStatement1.setString(1, "%"+string+"%");
 			ResultSet rsSet1 = pStatement1.executeQuery();
 			while(rsSet1.next()) {
 				listaCliente.add(new Cliente(rsSet1.getString("DNI"),rsSet1.getString("POBLACION"),
@@ -180,7 +180,7 @@ public class ClienteDAO {
 						rsSet1.getString("NUM_TARJ_CREDITO")));
 			}
 			
-			pStatement2.setString(1, string);
+			pStatement2.setString(1, "%"+string+"%");
 			ResultSet rsSet2 = pStatement2.executeQuery();
 			while(rsSet2.next()) {
 				listaCliente.add(new Cliente(rsSet2.getString("DNI"),rsSet2.getString("POBLACION"),
@@ -198,8 +198,8 @@ public class ClienteDAO {
 			
 	}
 	
-	public boolean actualizarCliente(Cliente cliente) {
-		String sql = "UPDATE CLIENTES SET ?,?,?,?,?,?,?,?,? WHERE DNI=?";
+	public boolean actualizarCliente(String dni,Cliente cliente) {
+		String sql = "UPDATE CLIENTES SET dni=?,poblacion=?,nombre=?,direccion=?,cod_postal=?,estado=?,telefono=?,carnet_conducir=?,num_tarj_credito=? WHERE DNI=?";
 		int rows = 0 ;
 		try (PreparedStatement psStatement = conexion.prepareStatement(sql);) {
 			psStatement.setString(1,cliente.getDni());
@@ -211,7 +211,7 @@ public class ClienteDAO {
 			psStatement.setInt(7,cliente.getTlf());
 			psStatement.setString(8,cliente.getCarnetConducir());
 			psStatement.setString(9,cliente.getNumTarjCredito());
-			psStatement.setString(10,cliente.getDni());
+			psStatement.setString(10,dni);
 			
 			rows = psStatement.executeUpdate();
 		} catch (SQLException e) {

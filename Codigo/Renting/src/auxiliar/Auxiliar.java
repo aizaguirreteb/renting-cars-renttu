@@ -25,7 +25,8 @@ public class Auxiliar {
 		public static String[] arrayRevisionRecogida = {"SI","NO"};
 		public static String[] arrayPlazas = {"2","4","5","7","8"};
 		
-		public static DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		public static DateTimeFormatter formatterContrato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		public static DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		public static DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
 		public static DateTimeFormatter formatterVehiculos = DateTimeFormatter.ofPattern("yyyy");
 		
@@ -56,6 +57,10 @@ public class Auxiliar {
 	//					v
 	public static LocalDate formatearFecha (String fechaAFormatear) {
 		return LocalDate.parse(fechaAFormatear, formatterFecha);
+	}
+	
+	public static LocalDate formatearFechaContrato (String fechaAFormatear) {
+		return LocalDate.parse(fechaAFormatear, formatterContrato);
 	}
 	
 	public static LocalDate formatearFechaVehiculos (String fechaAFormatear) {

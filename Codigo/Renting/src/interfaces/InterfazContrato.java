@@ -21,7 +21,7 @@ public interface InterfazContrato {
 		public void obtenerListaContratoAlta();
 		public void obtenerListaContratoBaja();
 		public void crearNuevoContrato(Contrato contratoNuevo);
-		public void actualizarContrato(int id , Contrato contratoNuevo);
+		public void actualizarContrato(Contrato contratoAeditar , Contrato contratoNuevo);
 		
 		//metodo para buscar contratos
 		public void buscarContrato(String dato);

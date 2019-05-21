@@ -194,15 +194,15 @@ public class PanelReservas extends JPanel implements InterfazReserva.Vista{
 	public void editarReserva(int filaSeleccionada) {
 		ModeloTablaReservas modeloTabla = (ModeloTablaReservas) tableReservas.getModel();
 		Reserva reservaAEditar = modeloTabla.getListaReservas().get(filaSeleccionada);
-		DialogoFormularioReserva dialogo = new DialogoFormularioReserva(PanelReservas.this);
+		DialogoFormularioReserva dialogo = new DialogoFormularioReserva(PanelReservas.this, reservaAEditar);
 		Reserva nuevaReserva = dialogo.getReserva();
+		controladorReserva.editarReserva(reservaAEditar, nuevaReserva);
 		dialogo.getBotonDarDeBaja().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(nuevaReserva != null)
-					controladorReserva.editarReserva(nuevaReserva.getEstado().toString(),
-							Auxiliar.leerRecogida(nuevaReserva.isRecogida()), reservaAEditar);
+					controladorReserva.editarReserva(reservaAEditar, nuevaReserva);
 				
 			}
 		}

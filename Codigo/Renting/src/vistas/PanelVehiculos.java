@@ -191,12 +191,13 @@ public class PanelVehiculos extends JPanel implements InterfazVehiculos.Vista {
 		Vehiculos vehiculoAEditar = modeloTabla.getListaVehiculos().get(filaSeleccionada);
 		DialogoFormularioVehiculos dialogo = new DialogoFormularioVehiculos(PanelVehiculos.this,vehiculoAEditar);
 		Vehiculos nuevaVehiculo = dialogo.getVehiculos();
+		controladorVehiculos.editarVehiculos(vehiculoAEditar.getMatricula(), nuevaVehiculo);
 		dialogo.getBotonDarDeBaja().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(nuevaVehiculo != null)
-					controladorVehiculos.editarVehiculos(vehiculoAEditar.getMatricula(), vehiculoAEditar);
+					controladorVehiculos.editarVehiculos(vehiculoAEditar.getMatricula(), nuevaVehiculo);
 				
 			}
 		}

@@ -58,13 +58,13 @@ public class ControladorContrato implements InterfazContrato.Controlador{
 	}
 
 	@Override
-	public void actualizarContrato(int id, Contrato contratoNuevo) {
+	public void actualizarContrato(Contrato contratoAeditar, Contrato contratoNuevo) {
 		// TODO Auto-generated method stub
 		if(contratoNuevo != null) {
 
 			//Cuando se edita una reserva es para darla de baja, tanto si la han recogido como si no.
 			//despues hay que volver a rellenar la tabla del panel de reservas para ver los cambios
-			contratoDao.actualizarContrato(id, contratoNuevo);
+			contratoDao.actualizarContrato(contratoAeditar, contratoNuevo);
 			obtenerListaContratoAlta();		
 
 		}

@@ -47,7 +47,7 @@ public class ControladorClientes implements InterfazCliente.Controlador {
 				vistaCliente.errorAlRegistrarCliente();
 			} else {
 				vistaCliente.registroCorrecto();
-				obtenerListaClientes();
+				obtenerListaClientesAlta();
 			}
 		}
 	}
@@ -58,7 +58,7 @@ public class ControladorClientes implements InterfazCliente.Controlador {
 
 			//Cuando se edita una reserva es para darla de baja, tanto si la han recogido como si no.
 			//despues hay que volver a rellenar la tabla del panel de reservas para ver los cambios
-			clienteDao.actualizarCliente(clienteEdit);
+			clienteDao.actualizarCliente(dni,clienteEdit);
 			obtenerListaClientesAlta();		
 
 		}

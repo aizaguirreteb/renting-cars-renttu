@@ -268,6 +268,7 @@ private void inicializarUI() {
 			textField.setText(cliente.getDni());
 			textField_1.setText(cliente.getPoblacion());
 			textField_2.setText(cliente.getNombre());
+			textField_4.setText(cliente.getCodPostal());
 			textField_3.setText(cliente.getDireccion());
 			textField_5.setText(""+cliente.getTlf());
 			textField_6.setText(""+cliente.getNumTarjCredito());
@@ -291,7 +292,7 @@ private void inicializarUI() {
 	
 	private void cerrarDialogo() {
 		setVisible(false);
-		dispose();
+		
 	}
 	
 	private boolean validarCampos() {

@@ -370,7 +370,7 @@ private void inicializarUI() {
 			textFieldPotencia.setText(""+vehiculo.getPotencia());
 			textFieldModelo.setText(vehiculo.getModelo());
 			textFieldMarca.setText(vehiculo.getMarca());
-			textFieldTaraMax.setText(""+vehiculo.getRevision());
+			textFieldTaraMax.setText(""+vehiculo.getTaraMax());
 			textFieldKmTotales.setText(""+vehiculo.getKmTotales());
 			textFieldKmParciales.setText(""+vehiculo.getKmParciales());
 			textFieldPrecio.setText(""+vehiculo.getPrecioDia());
@@ -378,7 +378,7 @@ private void inicializarUI() {
 			comboBoxNumPuertas.setSelectedIndex(Auxiliar.leerComboBox(""+ vehiculo.getNumPuertas(), Auxiliar.arrayNumPuertas));
 			comboBoxEstado.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getEstado().toString(), Auxiliar.arrayEstado));
 			comboBoxPlazas.setSelectedIndex(Auxiliar.leerComboBox(""+vehiculo.getPlazas(), Auxiliar.arrayPlazas));
-			comboBoxRevision.setSelectedIndex(Auxiliar.leerComboBox(""+vehiculo.getRevision(), Auxiliar.arrayRevisionRecogida));
+			comboBoxRevision.setSelectedIndex(Auxiliar.leerComboBox(Auxiliar.leerRecogida(vehiculo.getRevision()), Auxiliar.arrayRevisionRecogida));
 			comboBoxCombustible.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getCombustible().toString(), Auxiliar.arrayCombustible));
 			comboBoxCategoria.setSelectedIndex(Auxiliar.leerComboBox(vehiculo.getCategoria().toString(), Auxiliar.arrayTipoVehiculo));
 			extraerVehiculo();
@@ -402,7 +402,7 @@ private void inicializarUI() {
 	
 	private void cerrarDialogo() {
 		setVisible(false);
-		dispose();
+		
 	}
 	
 	private boolean validarCampos() {

@@ -34,7 +34,7 @@ public interface InterfazReserva {
 		
 		//Metodo para dar de baja por recogida o no recogida una reserva, pasandole la reserva que se ha pinchado de la tabla
 		//Hay que cambiar el metodo del dao que actualiza las reservas
-		public void editarReserva(String estado, String recogida, Reserva reservaAEditar);
+		public void editarReserva(Reserva reservaAEditar, Reserva nuevaReserva);
 		
 		//metodo para buscar reservas
 		public void buscarReserva(String dato);

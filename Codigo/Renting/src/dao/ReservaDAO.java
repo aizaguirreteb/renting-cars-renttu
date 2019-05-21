@@ -254,13 +254,13 @@ public class ReservaDAO {
 		
 		List<Reserva> listaReservas = new ArrayList<>();
 		
-		String consulta1 = "Select * from reserva where matricula like '%?%';";
-		String consulta2 = "Select * from reserva where dniCliente like '%?%';";
-		String consulta3 = "Select * from reserva where fechaInicio like '%?%';";
+		String consulta1 = "Select * from reserva where matricula like ?;";
+		String consulta2 = "Select * from reserva where dniCliente like ?;";
+		String consulta3 = "Select * from reserva where fechaInicio like ?;";
 		try (PreparedStatement pStatement1 = conexion.prepareStatement(consulta1);
 				PreparedStatement pStatement2 = conexion.prepareStatement(consulta2);
 				PreparedStatement pStatement3 = conexion.prepareStatement(consulta3);){
-			pStatement1.setString(1, string);
+			pStatement1.setString(1, "%"+string+"%");
 			ResultSet rs1 = pStatement1.executeQuery();
 			while(rs1.next()) {
 				listaReservas.add(new Reserva(rs1.getString("dniCliente"), rs1.getString("matricula"),
@@ -269,7 +269,7 @@ public class ReservaDAO {
 						Auxiliar.comprobarRecogida(rs1.getString("recogida")), Auxiliar.comprobarEstado(rs1.getString("estado"))));
 			}
 			
-			pStatement2.setString(1, string);
+			pStatement2.setString(1, "%"+string+"%");
 			ResultSet rs2 = pStatement2.executeQuery();
 			while(rs2.next()) {
 				listaReservas.add(new Reserva(rs2.getString("dniCliente"), rs2.getString("matricula"),
@@ -278,7 +278,7 @@ public class ReservaDAO {
 						Auxiliar.comprobarRecogida(rs2.getString("recogida")), Auxiliar.comprobarEstado(rs2.getString("estado"))));
 			}
 			
-			pStatement3.setString(1, string);
+			pStatement3.setString(1, "%"+string+"%");
 			ResultSet rs3 = pStatement3.executeQuery();
 			while(rs3.next()) {
 				listaReservas.add(new Reserva(rs3.getString("dniCliente"), rs3.getString("matricula"),
@@ -321,18 +321,21 @@ public class ReservaDAO {
 	//En el caso de que se recoja el coche, el estado pasa a baja
 	//Mientras dure el tiempo de la reserva si no se ha recogido el coche el estado será de alta
 	//Si nunca se llega a recoger el coche y pasa el tiempo de la reserva, pasa el estado también a baja.
-	public boolean actualizarEstadoReservaPorDni(String recogida, String estado, Reserva reservaAeditar) {
-		String updateSQL = "Update reserva set recogida=?, estado=? where dniCliente=? and matricula=? and fechaInicio=?;";
+	public boolean actualizarEstadoReservaPorDni(Reserva reservaAeditar, Reserva nuevaReserva) {
+		String updateSQL = "Update reserva set dniCliente=?, matricula=?, fechaInicio=?, diasContratados=?, horaReserva=?, recogida=?, estado=? where dniCliente=? and matricula=? and fechaInicio=?;";
 		
 		int filasAfectadas = 0;
 		try (PreparedStatement pStatement = conexion.prepareStatement(updateSQL);){
-			pStatement.setString(1, recogida);
-			
-			pStatement.setString(2, Auxiliar.comprobarEstado(estado).toString());
-			pStatement.setString(3, reservaAeditar.getDniCliente());
-			pStatement.setString(4, reservaAeditar.getMatricula());
-			pStatement.setString(5, reservaAeditar.getFechaInicio().toString());
-			
+			pStatement.setString(1, nuevaReserva.getDniCliente());
+			pStatement.setString(2, nuevaReserva.getMatricula());
+			pStatement.setString(3, nuevaReserva.getFechaInicio().toString());
+			pStatement.setInt(4, nuevaReserva.getDiasContratados());
+			pStatement.setString(5, nuevaReserva.getHoraReserva().toString());
+			pStatement.setString(6, Auxiliar.leerRecogida(nuevaReserva.isRecogida()));
+			pStatement.setString(7, nuevaReserva.getEstado().toString());
+			pStatement.setString(8, reservaAeditar.getDniCliente());
+			pStatement.setString(9, reservaAeditar.getMatricula());
+			pStatement.setString(10, reservaAeditar.getFechaInicio().toString());
 			filasAfectadas = pStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

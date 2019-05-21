@@ -192,14 +192,15 @@ public class PanelContrato extends JPanel implements InterfazContrato.Vista{
 	public void editarContrato(int filaSeleccionada) {
 		ModeloTablaContrato modeloTabla = (ModeloTablaContrato) tableContrato.getModel();
 		Contrato contratoAEditar = modeloTabla.getListaContrato().get(filaSeleccionada);
-		DialogoFormularioContrato dialogo = new DialogoFormularioContrato(PanelContrato.this);
+		DialogoFormularioContrato dialogo = new DialogoFormularioContrato(PanelContrato.this, contratoAEditar);
 		Contrato nuevaContrato = dialogo.getContrato();
+		controladorContrato.actualizarContrato(contratoAEditar, nuevaContrato);
 		dialogo.getBotonDarDeBaja().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(nuevaContrato != null)
-					controladorContrato.actualizarContrato(contratoAEditar.getId(), nuevaContrato);
+					controladorContrato.actualizarContrato(contratoAEditar, nuevaContrato);
 				
 			}
 		}

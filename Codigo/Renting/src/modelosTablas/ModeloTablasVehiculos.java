@@ -9,7 +9,7 @@ import modelos.Vehiculos;
 
 public class ModeloTablasVehiculos extends AbstractTableModel{
 	private List<Vehiculos> vehiculos ;
-	private String[] titulosColumnas = {"MATRICULA","CATEGORIA","MARCA","COMBUSTIBLE",
+	private String[] titulosColumnas = {"MATRICULA","CATEGORIA","MARCA","MODELO","COMBUSTIBLE",
 			"NUMERO PUERTAS","POTENCIA","AÑO","TARA MAXIMA","ESTADO","REVISION",
 			"KM PARCIALES","PLAZAS","KM TOTALES","PRECIO DIA"};
 	public ModeloTablasVehiculos(List<Vehiculos> vehiculos) {

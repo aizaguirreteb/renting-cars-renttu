@@ -205,14 +205,14 @@ public class VehiculosDAO {
 		
 		List<Vehiculos> listaVehiculos = new ArrayList<>();
 		
-		String sql1 = "SELECT * FROM VEHICULOS WHERE MATRICULA LIKE '%?%';";
-		String sql2 = "SELECT * FROM VEHICULOS WHERE MARCA LIKE '%?%';";
-		String sql3 = "SELECT * FROM VEHICULOS WHERE MODELO LIKE '%?%';";
+		String sql1 = "SELECT * FROM VEHICULOS WHERE MATRICULA LIKE ?;";
+		String sql2 = "SELECT * FROM VEHICULOS WHERE MARCA LIKE ?;";
+		String sql3 = "SELECT * FROM VEHICULOS WHERE MODELO LIKE ?;";
 		
 		try (PreparedStatement psstatement1 = conexion.prepareStatement(sql1);
 				PreparedStatement psstatement2 = conexion.prepareStatement(sql2);
 				PreparedStatement psstatement3 = conexion.prepareStatement(sql3);){
-			psstatement1.setString(1, string);
+			psstatement1.setString(1, "%"+string+"%");
 			ResultSet rs1 = psstatement1.executeQuery();
 			while(rs1.next()) {
 				listaVehiculos.add(new Vehiculos(rs1.getString("MATRICULA"),Auxiliar.tipoCategoria(rs1.getString("CATEGORIA")),rs1.getString("MARCA"),rs1.getString("MODELO")
@@ -221,7 +221,7 @@ public class VehiculosDAO {
 						,rs1.getInt("PLAZAS"),rs1.getInt("KM_TOTALES"),rs1.getDouble("PRECIO_DIA")));
 			}
 			
-			psstatement2.setString(1, string);
+			psstatement2.setString(1, "%"+string+"%");
 			ResultSet rs2 = psstatement2.executeQuery();
 			while(rs2.next()) {
 				listaVehiculos.add(new Vehiculos(rs2.getString("MATRICULA"),Auxiliar.tipoCategoria(rs2.getString("CATEGORIA")),rs2.getString("MARCA"),rs2.getString("MODELO")
@@ -230,7 +230,7 @@ public class VehiculosDAO {
 						,rs2.getInt("PLAZAS"),rs2.getInt("KM_TOTALES"),rs2.getDouble("PRECIO_DIA")));
 			}
 			
-			psstatement3.setString(1, string);
+			psstatement3.setString(1, "%"+string+"%");
 			ResultSet rs3 = psstatement3.executeQuery();
 			while(rs3.next()) {
 				listaVehiculos.add(new Vehiculos(rs3.getString("MATRICULA"),Auxiliar.tipoCategoria(rs3.getString("CATEGORIA")),rs3.getString("MARCA"),rs3.getString("MODELO")
@@ -251,7 +251,7 @@ public class VehiculosDAO {
 			public boolean actualizarEstadoYKmvehiculo(String matricula, Vehiculos nuevoVehiculo) {
 				String updateSQL = "UPDATE VEHICULOS SET  MATRICULA=?,CATEGORIA=?,MARCA=?,MODELO=?,COMBUSTIBLE=?,NUM_PUERTAS=?," +
 			"POTENCIA=?,ANYO=?,TARA_MAX=?,REVISION=?,KM_PARCIALES=?,PLAZAS=?,KM_TOTALES=?,PRECIO_DIA=?,ESTADO=?" +
-						"WWHERE MATRICULA=?;";
+						" WHERE MATRICULA=?;";
 				
 				int filasAfectadas = 0;
 				try (PreparedStatement pStatement = conexion.prepareStatement(updateSQL);){
@@ -259,17 +259,18 @@ public class VehiculosDAO {
 					pStatement.setString(2, nuevoVehiculo.getCategoria().toString());
 					pStatement.setString(3, nuevoVehiculo.getMarca());
 					pStatement.setString(4, nuevoVehiculo.getModelo());
-					pStatement.setString(4, nuevoVehiculo.getCombustible().toString());
-					pStatement.setInt(5, nuevoVehiculo.getNumPuertas());
-					pStatement.setInt(6, nuevoVehiculo.getPotencia());
-					pStatement.setString(7, nuevoVehiculo.getAnio().toString());
-					pStatement.setInt(8, nuevoVehiculo.getTaraMax());					
-					pStatement.setString(9, Auxiliar.leerRecogida(nuevoVehiculo.getRevision()));
-					pStatement.setInt(10, nuevoVehiculo.getKmParciales());
-					pStatement.setInt(11, nuevoVehiculo.getPlazas());
-					pStatement.setInt(12, nuevoVehiculo.getKmTotales());
-					pStatement.setDouble(13, nuevoVehiculo.getPrecioDia());
-					pStatement.setString(14, nuevoVehiculo.getEstado().toString());
+					pStatement.setString(5, nuevoVehiculo.getCombustible().toString());
+					pStatement.setInt(6, nuevoVehiculo.getNumPuertas());
+					pStatement.setInt(7, nuevoVehiculo.getPotencia());
+					pStatement.setString(8, nuevoVehiculo.getAnio().toString());
+					pStatement.setInt(9, nuevoVehiculo.getTaraMax());					
+					pStatement.setString(10, Auxiliar.leerRecogida(nuevoVehiculo.getRevision()));
+					pStatement.setInt(11, nuevoVehiculo.getKmParciales());
+					pStatement.setInt(12, nuevoVehiculo.getPlazas());
+					pStatement.setInt(13, nuevoVehiculo.getKmTotales());
+					pStatement.setDouble(14, nuevoVehiculo.getPrecioDia());
+					pStatement.setString(15, nuevoVehiculo.getEstado().toString());
+					pStatement.setString(16, matricula);
 					filasAfectadas = pStatement.executeUpdate();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -283,23 +284,24 @@ public class VehiculosDAO {
 			
 			
 			public boolean insertarVehiculos(Vehiculos nuevoVehiculo) {
-				String insercionSQL = "Insert into reserva values (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+				String insercionSQL = "Insert into vehiculos values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 				int filasAfectadas = 0;
 				try (PreparedStatement pStatement = conexion.prepareStatement(insercionSQL);){
 					pStatement.setString(1, nuevoVehiculo.getMatricula());
 					pStatement.setString(2, nuevoVehiculo.getCategoria().toString());
 					pStatement.setString(3, nuevoVehiculo.getMarca());
-					pStatement.setString(4, nuevoVehiculo.getCombustible().toString());
-					pStatement.setInt(5, nuevoVehiculo.getNumPuertas());
-					pStatement.setInt(6, nuevoVehiculo.getPotencia());
-					pStatement.setString(7, nuevoVehiculo.getAnio().toString());
-					pStatement.setInt(8, nuevoVehiculo.getTaraMax());
-					pStatement.setString(9, nuevoVehiculo.getEstado().toString());
-					pStatement.setBoolean(10, nuevoVehiculo.getRevision());
+					pStatement.setString(4, nuevoVehiculo.getModelo());
+					pStatement.setString(5, nuevoVehiculo.getCombustible().toString());
+					pStatement.setInt(6, nuevoVehiculo.getNumPuertas());
+					pStatement.setInt(7, nuevoVehiculo.getPotencia());
+					pStatement.setString(8, nuevoVehiculo.getAnio().toString());
+					pStatement.setInt(9, nuevoVehiculo.getTaraMax());
+					pStatement.setString(10, Auxiliar.leerRecogida(nuevoVehiculo.getRevision()));										
 					pStatement.setInt(11, nuevoVehiculo.getKmParciales());
 					pStatement.setInt(12, nuevoVehiculo.getPlazas());
 					pStatement.setInt(13, nuevoVehiculo.getKmTotales());
 					pStatement.setDouble(14, nuevoVehiculo.getPrecioDia());
+					pStatement.setString(15, nuevoVehiculo.getEstado().toString());
 					filasAfectadas = pStatement.executeUpdate();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block

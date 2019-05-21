@@ -181,13 +181,13 @@ public class ContratoDAO {
 		
 	List<Contrato> listaContratos = new ArrayList<>();
 
-	String consulta1 = "SELECT * FROM CONTRATO WHERE dniCliente like '%?%';";
-	String consulta2 = "SELECT * FROM CONTRATO WHERE matricula like '%?%';";
-	String consulta3 = "SELECT * FROM CONTRATO WHERE fechaInicio like '%?%';";
+	String consulta1 = "SELECT * FROM CONTRATO WHERE dniCliente like ?;";
+	String consulta2 = "SELECT * FROM CONTRATO WHERE matricula like ?;";
+	String consulta3 = "SELECT * FROM CONTRATO WHERE fechaInicio like ?;";
 	try (PreparedStatement pStatement1 = conexion.prepareStatement(consulta1);
 			PreparedStatement pStatement2 = conexion.prepareStatement(consulta2);
 			PreparedStatement pStatement3 = conexion.prepareStatement(consulta3);){
-		pStatement1.setString(1, string);
+		pStatement1.setString(1, "%"+string+"%");
 		ResultSet rs1 = pStatement1.executeQuery();
 		while(rs1.next()) {
 			listaContratos.add(new Contrato(rs1.getInt("id"), rs1.getString("dniCliente"),
@@ -197,7 +197,7 @@ public class ContratoDAO {
 					Auxiliar.comprobarEstado(rs1.getString("estadoContrato"))));
 		}
 		
-		pStatement2.setString(1, string);
+		pStatement2.setString(1, "%"+string+"%");
 		ResultSet rs2 = pStatement2.executeQuery();
 		while(rs2.next()) {
 			listaContratos.add(new Contrato(rs2.getInt("id"), rs2.getString("dniCliente"),
@@ -207,7 +207,7 @@ public class ContratoDAO {
 					Auxiliar.comprobarEstado(rs2.getString("estadoContrato"))));
 		}
 		
-		pStatement3.setString(1, string);
+		pStatement3.setString(1, "%"+string+"%");
 		ResultSet rs3 = pStatement3.executeQuery();
 		while(rs3.next()) {
 			listaContratos.add(new Contrato(rs3.getInt("id"), rs3.getString("dniCliente"),
@@ -227,7 +227,7 @@ public class ContratoDAO {
 }
 	
 	public boolean insertarNuevoContrato(Contrato nuevoContrato) {
-		String insercionSQL = "INSERT INTO CONTRATO VALUES (?,?,?,?,?,?);";
+		String insercionSQL = "INSERT INTO CONTRATO (DNICLIENTE,MATRICULA,fechaInicio,DIASCONTRATADOS,NUMRENOVACIONES,ESTADOCONTRATO) VALUES (?,?,?,?,?,?);";
 		int filasAfectadas = 0;
 		try (PreparedStatement pStatement = conexion.prepareStatement(insercionSQL);){
 			pStatement.setString(1, nuevoContrato.getDni());
@@ -244,14 +244,14 @@ public class ContratoDAO {
 		return filasAfectadas != 0;
 	}
 	
-	public boolean renovarContrato(Contrato contrato) {
+	public boolean renovarContrato(int id,Contrato contrato) {
 		String updateSQL = "UPDATE CONTRATO SET diasContratados=?, numRenovaciones=? WHERE id=?;";
 		
 		int filasAfectadas = 0;
 		try (PreparedStatement pStatement = conexion.prepareStatement(updateSQL);){
 			pStatement.setInt(1, contrato.getDiasContratados() * 2);
 			pStatement.setInt(2, contrato.getRenovaciones() - 1);
-			pStatement.setInt(3, contrato.getId());
+			pStatement.setInt(3, id);
 			filasAfectadas = pStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -260,19 +260,20 @@ public class ContratoDAO {
 		return filasAfectadas != 0;
 	}
 	
-	public boolean actualizarContrato(int id, Contrato contrato) {
-		String updateSQL = "UPDATE CONTRATO SET id = ?, dniCliente = ?, matricula = ?, fechaInicio  = ?, diasContratados=?, numRenovaciones=?, estadoContrato = ?, WHERE id=?;";
+	public boolean actualizarContrato(Contrato contratoAEditar, Contrato contrato) {
+		String updateSQL = "UPDATE CONTRATO SET dniCliente = ?, matricula = ?, fechaInicio  = ?, diasContratados=?, numRenovaciones=?, estadoContrato = ? WHERE id=?;";
 		
 		int filasAfectadas = 0;
 		try (PreparedStatement pStatement = conexion.prepareStatement(updateSQL);){
-			pStatement.setInt(1, contrato.getId());
-			pStatement.setString(2, contrato.getDni());
-			pStatement.setString(3, contrato.getMatricula());
-			pStatement.setString(4, contrato.getFechaInicio().toString());
-			pStatement.setInt(5, contrato.getDiasContratados());
-			pStatement.setInt(6, contrato.getRenovaciones());
-			pStatement.setString(7, contrato.getEstado().toString());
-			pStatement.setInt(8, id);
+			
+			pStatement.setString(1, contrato.getDni());
+			pStatement.setString(2, contrato.getMatricula());
+			pStatement.setString(3, contrato.getFechaInicio().toString());
+			pStatement.setInt(4, contrato.getDiasContratados());
+			pStatement.setInt(5, contrato.getRenovaciones());
+			pStatement.setString(6, contrato.getEstado().toString());
+			pStatement.setInt(7, contratoAEditar.getId());
+			
 			filasAfectadas = pStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

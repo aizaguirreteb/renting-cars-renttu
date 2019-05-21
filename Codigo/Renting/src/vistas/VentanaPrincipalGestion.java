@@ -95,11 +95,11 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 		tabbedPane.addTab("Facturas", panelFacturas);
 		setContentPane(tabbedPane);
 		
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_A);
-		tabbedPane.setMnemonicAt(1, KeyEvent.VK_C);
-		tabbedPane.setMnemonicAt(2, KeyEvent.VK_V);
-		tabbedPane.setMnemonicAt(3, KeyEvent.VK_R);
-		tabbedPane.setMnemonicAt(4, KeyEvent.VK_F);
+//		tabbedPane.setMnemonicAt(0, KeyEvent.VK_A);
+//		tabbedPane.setMnemonicAt(1, KeyEvent.VK_C);
+//		tabbedPane.setMnemonicAt(2, KeyEvent.VK_V);
+//		tabbedPane.setMnemonicAt(3, KeyEvent.VK_R);
+//		tabbedPane.setMnemonicAt(4, KeyEvent.VK_F);
 
 
 

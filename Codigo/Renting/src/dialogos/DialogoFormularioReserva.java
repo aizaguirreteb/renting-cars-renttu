@@ -275,7 +275,7 @@ public class DialogoFormularioReserva extends JDialog {
 			comboBoxYears.setSelectedIndex(Auxiliar.leerComboBox(""+reserva.getFechaInicio().getYear(), Auxiliar.arrayYear));
 			comboBoxMonths.setSelectedIndex(Auxiliar.leerComboBox(""+reserva.getFechaInicio().getMonthValue(), Auxiliar.arrayMes));
 			comboBoxDays.setSelectedIndex(Auxiliar.leerComboBox(""+reserva.getFechaInicio().getDayOfMonth(), Auxiliar.arrayDia));
-			comboBoxRecogida.setSelectedIndex(Auxiliar.leerComboBox("" + reserva.isRecogida(), Auxiliar.arrayRevisionRecogida));
+			comboBoxRecogida.setSelectedIndex(Auxiliar.leerComboBox(Auxiliar.leerRecogida(reserva.isRecogida()), Auxiliar.arrayRevisionRecogida));
 			
 			extraerReserva();
 			cerrarDialogo();
@@ -283,11 +283,18 @@ public class DialogoFormularioReserva extends JDialog {
 	}
 	
 	private void extraerReserva() {
+		LocalTime hora;
+		if(reserva == null) {
+			hora = LocalTime.now();
+		} else {
+			hora = reserva.getHoraReserva();
+		}
 		if(validarCampos()) {
-			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
+			
+			String fecha = "" + comboBoxDays.getSelectedItem()+ "/" + comboBoxMonths.getSelectedItem()+ "/"+comboBoxYears.getSelectedItem();
 			reserva = new Reserva(txtDni.getText(), txtMatricula.getText(),
 					Auxiliar.formatearFecha(fecha), Integer.parseInt((String) comboBoxNumDias.getSelectedItem()),
-					LocalTime.now(), Auxiliar.comprobarRecogida(comboBoxRecogida.getSelectedItem().toString()),
+					hora, Auxiliar.comprobarRecogida(comboBoxRecogida.getSelectedItem().toString()),
 					Auxiliar.comprobarEstado(comboBoxEstado.getSelectedItem().toString()));
 			cerrarDialogo();
 		}

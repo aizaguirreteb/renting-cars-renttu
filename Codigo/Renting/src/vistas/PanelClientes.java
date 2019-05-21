@@ -191,6 +191,7 @@ public class PanelClientes extends JPanel implements InterfazCliente.Vista {
 		Cliente clienteAEditar = modeloTabla.getListaCliente().get(filaSeleccionada);
 		DialogoFormularioCliente dialogo = new DialogoFormularioCliente(PanelClientes.this, clienteAEditar);
 		Cliente nuevoCliente = dialogo.getCliente();
+		controladorC.actualizarCliente(clienteAEditar.getDni(), nuevoCliente);
 		dialogo.getBotonDarDeBaja().addActionListener(new ActionListener() {
 			
 			@Override
