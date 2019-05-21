@@ -2,6 +2,7 @@ package dialogos;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Dialog.ModalExclusionType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,6 +48,8 @@ public class DialogoFormularioCliente extends JDialog {
 	private InterfazCliente.Controlador controlador;
 	private GroupLayout gl_contentPanel;
 	private JButton btnDarDeBaja;
+	private JLabel lblCarnetDeConducir;
+	private JComboBox comboBox_1;
 
 	/**
 	 * @wbp.parser.constructor
@@ -70,6 +73,25 @@ public class DialogoFormularioCliente extends JDialog {
 		}
 		setVisible(true);
 	}
+	
+private void inicializarUI() {
+		
+		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+		setTitle("DATOS DEL CLIENTE");
+		setModal(true);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		
+		crearElementos();
+		setLayout();
+	}
+	
+	
+	
+	
 	public void crearElementos() {
 
 		lblDni = new JLabel("Dni");
@@ -103,12 +125,20 @@ public class DialogoFormularioCliente extends JDialog {
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
+		lblCarnetDeConducir = new JLabel("Carnet de Conducir");
+		
+		comboBox_1 = new JComboBox(Auxiliar.arrayCarnet);
 	}
-	private void inicializarUI() {
+	
+	
+	
+	private void setLayout() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		
+		
 		
 		gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
@@ -128,9 +158,9 @@ public class DialogoFormularioCliente extends JDialog {
 									.addGap(26)
 									.addComponent(lblPoblacin)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-								.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)))
+									.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+								.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+								.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)))
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addComponent(lblNewLabel)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -142,11 +172,15 @@ public class DialogoFormularioCliente extends JDialog {
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addComponent(lblNewLabel_1)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_6, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+							.addComponent(textField_6, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addComponent(lblEstado)
 							.addGap(26)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(101)
+							.addComponent(lblCarnetDeConducir)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_contentPanel.setVerticalGroup(
@@ -178,9 +212,13 @@ public class DialogoFormularioCliente extends JDialog {
 						.addComponent(lblNewLabel_1)
 						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblEstado)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblEstado)
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblCarnetDeConducir)
+							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(33, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
@@ -260,7 +298,7 @@ public class DialogoFormularioCliente extends JDialog {
 		StringBuffer errores = new StringBuffer();
 		boolean valido = true;
 //		if (!ValidarDNI.validar(textFieldDNI.getText())) {
-//			errores.append("El Dni no es válido.");
+//			errores.append("El Dni no es vï¿½lido.");
 //			valido = false;
 //		}
 		if (textField.getText().length()<2  ) {
@@ -280,5 +318,4 @@ public class DialogoFormularioCliente extends JDialog {
 	public JButton getBotonDarDeBaja() {
 		return btnDarDeBaja;
 	}
-	
 }
