@@ -22,6 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import auxiliar.Auxiliar;
+import control.ControladorContrato;
 import interfaces.InterfazContrato;
 import modelos.Contrato;
 import modelos.Estado;
@@ -70,7 +71,7 @@ public class DialogoFormularioContrato extends JDialog {
 	 * @wbp.parser.constructor
 	 */
 	
-	public DialogoFormularioContrato(JPanel padre) {		
+	public DialogoFormularioContrato(JPanel padre) {	
 		setLocationRelativeTo(padre);
 		inicializarUI();
 		pack();
@@ -240,6 +241,10 @@ public class DialogoFormularioContrato extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						extraerContrato();
+						if(contrato.getEstado().toString().equals("baja")) {
+							DialogoFactura dialogo = new DialogoFactura(contrato);						
+						}
+						cerrarDialogo();
 						
 					}
 				});
@@ -285,7 +290,7 @@ public class DialogoFormularioContrato extends JDialog {
 					Auxiliar.formatearFecha(fecha), Integer.parseInt((String) comboBoxNumDias.getSelectedItem()),
 					Integer.parseInt((String) comboBoxRenovaciones.getSelectedItem().toString()),
 					Auxiliar.comprobarEstado(comboBoxEstado.getSelectedItem().toString()));
-			cerrarDialogo();
+			
 		}
 	}
 	

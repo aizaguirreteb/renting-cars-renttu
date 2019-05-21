@@ -105,7 +105,7 @@ BEGIN
 		ID_CONTRATO = new.id,
         DNI = new.dniCliente,
         MATRICULA = new.matricula,
-        FECHA_INICIO = new.fechaInicio ,
+        FECHA_INICIO_CONTRATO = new.fechaInicio ,
         PRECIO_DIA = (SELECT PRECIO_DIA FROM VEHICULOS WHERE MATRICULA = NEW.matricula);
 END;
 |

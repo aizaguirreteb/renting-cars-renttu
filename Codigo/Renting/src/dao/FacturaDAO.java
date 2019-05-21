@@ -62,15 +62,15 @@ public class FacturaDAO {
 		return listaFactura;
 	}
 	
-	public List<Factura> obtenerFacturaPorContrato(Contrato contrato){
-		List<Factura> listaFactura = new ArrayList<>();
+	public Factura obtenerFacturaPorContrato(Contrato contrato){
+		Factura factura = null;
 
 		String consulta = "SELECT * FROM FACTURA WHERE ID_CONTRATO = ?;";
 		try (PreparedStatement pStatement = conexion.prepareStatement(consulta);){
 			pStatement.setInt(1, contrato.getId());
 			ResultSet rs = pStatement.executeQuery();
 			while(rs.next()) {
-				listaFactura.add(new Factura(rs.getInt("ID_CONTRATO"),
+				factura = new Factura(rs.getInt("ID_CONTRATO"),
 						rs.getInt("KM_RECORRIDOS"),
 						rs.getInt("CARGO_RETRASO"),
 						rs.getInt("CARGO_DEPOSITO"),
@@ -79,14 +79,14 @@ public class FacturaDAO {
 						rs.getFloat("PRECIO_DIA"),
 						rs.getFloat("DESCUENTO_DIA"),
 						rs.getFloat("TOTAL"),
-						Auxiliar.formatearFecha(rs.getString("FECHA_INICIO_CONTRATO"))));
+						Auxiliar.formatearFecha(rs.getString("FECHA_INICIO_CONTRATO")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return listaFactura;
+		return factura;
 	}
 	
 	public List<Factura> buscarContrato(String string) {

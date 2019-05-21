@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.List;
 
+import modelos.Contrato;
 import modelos.Factura;
 import modelos.Reserva;
 
@@ -30,6 +31,8 @@ public interface InterfazFactura {
 		
 		//metodo para buscar contratos
 		public void buscarFactura(String dato);
+		
+		public Factura obtenerFacturaPorContrato(Contrato contrato);
 	}
 
 }
