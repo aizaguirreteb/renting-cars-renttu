@@ -285,7 +285,7 @@ public class DialogoFormularioContrato extends JDialog {
 
 	private void extraerContrato() {
 		if(validarCampos()) {
-			String fecha = "" + comboBoxDays.getSelectedItem()+ "/" + comboBoxMonths.getSelectedItem()+ "/"+comboBoxYears.getSelectedItem();
+			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
 			
 				contrato = new Contrato(txtDni.getText(), txtMatricula.getText(),
 						Auxiliar.formatearFecha(fecha), Integer.parseInt((String) comboBoxNumDias.getSelectedItem()),

@@ -13,6 +13,7 @@ import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
+import auxiliar.Auxiliar;
 import control.ControladorFactura;
 import interfaces.InterfazFactura;
 import modelos.Contrato;
@@ -41,6 +42,8 @@ public class DialogoFactura extends JDialog {
 	private JTextField textField;
 	private JTextField textDescuento;
 	private JTextField textTotal;
+	private JTextField textMatricula;
+	private JTextField textPrecio;
 
 	/**
 	 * Launch the application.
@@ -65,6 +68,7 @@ public class DialogoFactura extends JDialog {
 		this.controlador = new ControladorFactura(this);
 		this.factura = controlador.obtenerFacturaPorContrato(contrato);
 		setDialog();
+		setTitle("FACTURA");
 	}
 
 	private void setDialog() {
@@ -78,17 +82,17 @@ public class DialogoFactura extends JDialog {
 		JLabel lblDni = new JLabel("DNI:");
 		textDNI = new JTextField();
 		textDNI.setColumns(10);
-		JLabel lblFecha = new JLabel("Fecha:");
+		JLabel lblFecha = new JLabel("FECHA:");
 		textFecha = new JTextField();
 		textFecha.setColumns(10);
-		JLabel lblKmRecorridos = new JLabel("km recorridos:");
+		JLabel lblKmRecorridos = new JLabel("km RECORRIDOS:");
 		textKm = new JTextField();
 		textKm.setColumns(10);
-		JLabel lblRetraso = new JLabel("Retraso:");
+		JLabel lblRetraso = new JLabel("RETRASO:");
 		textRetraso = new JTextField();
 		textRetraso.setColumns(10);
 		JLabel lblCargos = new JLabel("CARGOS:");
-		JLabel lblDeposito = new JLabel("Deposito:");
+		JLabel lblDeposito = new JLabel("DEPOSITO:");
 		textField = new JTextField();
 		textField.setColumns(10);
 		JLabel lblDescuentos = new JLabel("DESCUENTOS:");
@@ -97,46 +101,67 @@ public class DialogoFactura extends JDialog {
 		JLabel lblTotal = new JLabel("TOTAL:");
 		textTotal = new JTextField();
 		textTotal.setColumns(10);
+		
+		JLabel lblMatricula = new JLabel("MATRICULA:");
+		
+		textMatricula = new JTextField();
+		textMatricula.setColumns(10);
+		
+		JLabel lblPrecioDia = new JLabel("PRECIO DIA:");
+		
+		textPrecio = new JTextField();
+		textPrecio.setColumns(10);
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblCargos)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(lblDni, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(lblId, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-								.addComponent(lblKmRecorridos, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblRetraso, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblDeposito))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textRetraso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textKm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPanel.createSequentialGroup()
-									.addComponent(textID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(lblFecha, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblKmRecorridos, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(92))
+									.addComponent(textKm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(lblTotal, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textTotal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_contentPanel.createSequentialGroup()
-									.addComponent(textDNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
 									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPanel.createSequentialGroup()
-											.addComponent(lblTotal, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-											.addComponent(textTotal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_contentPanel.createSequentialGroup()
-											.addComponent(lblDescuentos, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(textDescuento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-							.addContainerGap())
-						.addComponent(lblCargos)))
+										.addComponent(lblId, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblDeposito)
+										.addComponent(lblDni, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+										.addComponent(lblMatricula)
+										.addComponent(lblRetraso, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+											.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+												.addGroup(gl_contentPanel.createSequentialGroup()
+													.addComponent(textID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addGap(18)
+													.addComponent(lblFecha, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+													.addPreferredGap(ComponentPlacement.RELATED))
+												.addGroup(gl_contentPanel.createSequentialGroup()
+													.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+														.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+															.addComponent(textMatricula, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+															.addComponent(textDNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+														.addComponent(textRetraso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+													.addPreferredGap(ComponentPlacement.UNRELATED)
+													.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+														.addComponent(lblPrecioDia)
+														.addComponent(lblDescuentos, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))))
+											.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+												.addComponent(textDescuento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addComponent(textFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addComponent(textPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+											.addGap(7)))))
+							.addGap(86)))
+					.addContainerGap())
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -147,33 +172,44 @@ public class DialogoFactura extends JDialog {
 						.addComponent(textID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblFecha)
 						.addComponent(textFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDni)
 						.addComponent(textDNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblDescuentos)
 						.addComponent(textDescuento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblMatricula)
+								.addComponent(textMatricula, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(13))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblPrecioDia)
+								.addComponent(textPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)))
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGap(28)
+							.addGap(5)
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblKmRecorridos)
-								.addComponent(textKm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(29)
+								.addComponent(textKm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblTotal))
+							.addGap(18)
 							.addComponent(lblCargos)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblRetraso)
-								.addComponent(textRetraso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblDeposito)
 								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGap(64)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textTotal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(44)
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblTotal)
-								.addComponent(textTotal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(textRetraso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblRetraso))
 							.addContainerGap())))
 		);
 		contentPanel.setLayout(gl_contentPanel);
@@ -203,16 +239,34 @@ public class DialogoFactura extends JDialog {
 	}
 	
 	public void actualizarFactura() {
-		
+		if(factura != null) {
+			textDNI.setText(factura.getDni());			
+			textID.setText(""+factura.getFechaInicio());
+			textMatricula.setText(factura.getMatricula());
+			textFecha.setText(factura.getFechaInicio().toString());
+			textKm.setText(""+factura.getKmRecorridos());
+			textRetraso.setText(""+factura.getCargoRetraso());
+			textDescuento.setText(""+factura.getDescuentoPorDia());
+			textField.setText(""+factura.getCargoDeposito());
+			textPrecio.setText(""+factura.getPrecioDia());
+			textTotal.setText(""+factura.getTotal());
+			
+			extraerFactura();
+			cerrarDialogo();
+		}
 	}
 	
 	public void extraerFactura() {
-		
+		factura = new Factura(Integer.parseInt(textID.getText()), Integer.parseInt(textKm.getText()), 
+				Integer.parseInt(textRetraso.getText()), Integer.parseInt(textField.getText()), textDNI.getText(),
+				textMatricula.getText(), Float.parseFloat(textPrecio.getText()), Float.parseFloat(textDescuento.getText()),
+				Float.parseFloat(textTotal.getText()), Auxiliar.formatearFecha(textFecha.getText()));
+		cerrarDialogo();
 	}
 	
 	public void cerrarDialogo() {
 		setVisible(false);
-		dispose();
+		
 	}
 	public Factura getFactura() {
 		return factura;
@@ -248,5 +302,4 @@ public class DialogoFactura extends JDialog {
 	    stamper.close();
 	    reader.close();
 	}
-
 }

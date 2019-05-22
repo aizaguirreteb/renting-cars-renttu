@@ -284,17 +284,18 @@ public class DialogoFormularioReserva extends JDialog {
 	
 	private void extraerReserva() {
 		LocalTime hora;
-		if(reserva == null) {
-			hora = LocalTime.now();
-		} else {
+		if(reserva != null) {
 			hora = reserva.getHoraReserva();
+			
+		} else {
+			hora = LocalTime.now();
 		}
 		if(validarCampos()) {
 			
-			String fecha = "" + comboBoxDays.getSelectedItem()+ "/" + comboBoxMonths.getSelectedItem()+ "/"+comboBoxYears.getSelectedItem();
+			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
 			reserva = new Reserva(txtDni.getText(), txtMatricula.getText(),
 					Auxiliar.formatearFecha(fecha), Integer.parseInt((String) comboBoxNumDias.getSelectedItem()),
-					hora, Auxiliar.comprobarRecogida(comboBoxRecogida.getSelectedItem().toString()),
+					Auxiliar.formatearHora(""+hora.getHour()+":"+hora.getMinute()+":"+hora.getSecond()), Auxiliar.comprobarRecogida(comboBoxRecogida.getSelectedItem().toString()),
 					Auxiliar.comprobarEstado(comboBoxEstado.getSelectedItem().toString()));
 			cerrarDialogo();
 		}

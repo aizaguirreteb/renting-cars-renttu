@@ -26,7 +26,7 @@ public class Auxiliar {
 		public static String[] arrayPlazas = {"2","4","5","7","8"};
 		
 		public static DateTimeFormatter formatterContrato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		public static DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		public static DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		public static DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
 		public static DateTimeFormatter formatterVehiculos = DateTimeFormatter.ofPattern("yyyy");
 		
