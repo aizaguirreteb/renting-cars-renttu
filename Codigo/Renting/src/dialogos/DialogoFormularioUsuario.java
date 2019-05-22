@@ -51,12 +51,14 @@ public class DialogoFormularioUsuario extends JDialog {
 	public DialogoFormularioUsuario(JFrame padre) {
 		setLocationRelativeTo(padre);
 		setDialog();
+		setTitle("GESTIÓN DE USUARIOS");
 	}
 	
 	public DialogoFormularioUsuario(JFrame padre, String usuario) {
 		setLocationRelativeTo(padre);
 		this.administrador.setUsuario(usuario);
 		setDialog();
+		setTitle("GESTIÓN DE USUARIOS");
 	}
 
 	private void setDialog() {

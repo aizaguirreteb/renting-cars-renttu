@@ -303,7 +303,7 @@ public class DialogoFormularioReserva extends JDialog {
 	
 	private void cerrarDialogo() {
 		setVisible(false);
-		dispose();
+		
 	}
 	
 	private boolean validarCampos() {
