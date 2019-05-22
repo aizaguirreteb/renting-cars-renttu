@@ -98,16 +98,16 @@ private void inicializarUI() {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		lblPoblacin = new JLabel("Población");
+		lblPoblacin = new JLabel("Poblacion");
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		lblNombre = new JLabel("Nombre");
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		lblDireccin = new JLabel("Dirección");
+		lblDireccin = new JLabel("Direccion");
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		lblNewLabel = new JLabel("Código Postal");
+		lblNewLabel = new JLabel("Codigo Postal");
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
@@ -116,12 +116,12 @@ private void inicializarUI() {
 		
 		comboBox = new JComboBox(Auxiliar.arrayEstado);
 		
-		lblTelfono = new JLabel("Teléfono");
+		lblTelfono = new JLabel("Telefono");
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
 		
-		lblNewLabel_1 = new JLabel("Número de tarjeta de credito");
+		lblNewLabel_1 = new JLabel("Numero de tarjeta de credito");
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);

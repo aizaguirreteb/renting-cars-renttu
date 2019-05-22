@@ -241,9 +241,7 @@ public class DialogoFormularioContrato extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						extraerContrato();
-						if(contrato.getEstado().toString().equals("baja")) {
-							DialogoFactura dialogo = new DialogoFactura(contrato);						
-						}
+						generarFactura();
 						cerrarDialogo();
 
 					}
@@ -280,6 +278,7 @@ public class DialogoFormularioContrato extends JDialog {
 
 			extraerContrato();
 			cerrarDialogo();
+			
 		}
 	}
 
@@ -324,6 +323,15 @@ public class DialogoFormularioContrato extends JDialog {
 
 	public JButton getBotonDarDeBaja() {
 		return btnDarDeBaja;
+	}
+	
+	public void generarFactura() {
+		if(contrato != null) {
+			if(contrato.getEstado().toString().equals("baja")) {
+				DialogoFactura dialogoFactura = new DialogoFactura(contrato);
+				System.out.println(contrato);
+			}
+		}
 	}
 
 }

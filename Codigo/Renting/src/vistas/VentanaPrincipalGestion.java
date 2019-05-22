@@ -34,18 +34,18 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaPrincipalGestion frame = new VentanaPrincipalGestion("ALEJANDRA");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					VentanaPrincipalGestion frame = new VentanaPrincipalGestion("ALEJANDRA");
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -59,7 +59,7 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 		PanelVehiculos panelVehiculos = new PanelVehiculos();
 		PanelReservas panelReservas = new PanelReservas();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 800, 450);
 		panel1 = new JPanel();
 		panel1.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
@@ -101,7 +101,7 @@ public class VentanaPrincipalGestion extends JFrame implements VentanaPrincipal.
 //		tabbedPane.setMnemonicAt(3, KeyEvent.VK_R);
 //		tabbedPane.setMnemonicAt(4, KeyEvent.VK_F);
 
-
+		setVisible(true);
 
 
 	}

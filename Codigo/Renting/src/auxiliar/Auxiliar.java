@@ -118,5 +118,32 @@ public class Auxiliar {
 				return Categoria.Turismo;
 			
 		}
+		
+		public static String obtenerHora(LocalTime hora) {
+			int horas = hora.getHour();
+			int minutos = hora.getMinute();
+			int segundos = hora.getSecond();
+			String sHoras;
+			String sMinutos;
+			String sSegundos;
+			
+			if(horas < 10){
+				sHoras = "0"+ horas;
+			} else {
+				sHoras = "" + horas;
+			}
+			if(minutos < 10) {
+				sMinutos = "0" + minutos;
+			} else {
+				sMinutos = "" + minutos;
+			}
+			if(segundos < 10) {
+				sSegundos = "0" + segundos;
+			} else {
+				sSegundos = ""+ segundos;
+			}
+			
+			return sHoras + ":" + sMinutos + ":" + sSegundos;
+		}
 	
 }

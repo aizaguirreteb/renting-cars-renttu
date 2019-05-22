@@ -295,7 +295,7 @@ public class DialogoFormularioReserva extends JDialog {
 			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
 			reserva = new Reserva(txtDni.getText(), txtMatricula.getText(),
 					Auxiliar.formatearFecha(fecha), Integer.parseInt((String) comboBoxNumDias.getSelectedItem()),
-					Auxiliar.formatearHora(""+hora.getHour()+":"+hora.getMinute()+":"+hora.getSecond()), Auxiliar.comprobarRecogida(comboBoxRecogida.getSelectedItem().toString()),
+					Auxiliar.formatearHora(Auxiliar.obtenerHora(hora)), Auxiliar.comprobarRecogida(comboBoxRecogida.getSelectedItem().toString()),
 					Auxiliar.comprobarEstado(comboBoxEstado.getSelectedItem().toString()));
 			cerrarDialogo();
 		}

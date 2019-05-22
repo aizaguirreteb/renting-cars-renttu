@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.log.SysoCounter;
 import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
@@ -67,8 +68,11 @@ public class DialogoFactura extends JDialog {
 		this.contrato = contrato;
 		this.controlador = new ControladorFactura(this);
 		this.factura = controlador.obtenerFacturaPorContrato(contrato);
+		System.out.println(factura);
 		setDialog();
 		setTitle("FACTURA");
+		actualizarFactura();
+		setVisible(true);
 	}
 
 	private void setDialog() {
@@ -251,8 +255,7 @@ public class DialogoFactura extends JDialog {
 			textPrecio.setText(""+factura.getPrecioDia());
 			textTotal.setText(""+factura.getTotal());
 			
-			extraerFactura();
-			cerrarDialogo();
+			
 		}
 	}
 	

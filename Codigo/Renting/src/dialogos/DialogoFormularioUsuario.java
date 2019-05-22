@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import control.ControladorVentanaPrincipal;
+import interfaces.VentanaPrincipal;
 import modelos.Administrador;
 
 import javax.swing.GroupLayout;
@@ -27,8 +29,10 @@ public class DialogoFormularioUsuario extends JDialog {
 	private JPanel panel;
 	private JLabel lblUsuario;
 	
-	
+	private String usuario;
 	private Administrador administrador = null;
+	
+	private VentanaPrincipal.Controlador controlador;
 	
 
 	/**
@@ -49,16 +53,21 @@ public class DialogoFormularioUsuario extends JDialog {
 	 * @wbp.parser.constructor
 	 */
 	public DialogoFormularioUsuario(JFrame padre) {
+		
 		setLocationRelativeTo(padre);
 		setDialog();
 		setTitle("GESTIÓN DE USUARIOS");
+		setVisible(true);
 	}
 	
 	public DialogoFormularioUsuario(JFrame padre, String usuario) {
 		setLocationRelativeTo(padre);
-		this.administrador.setUsuario(usuario);
+		//this.administrador.setUsuario(usuario);
+		this.usuario = usuario;
 		setDialog();
+		textUsuario.setText(usuario);
 		setTitle("GESTIÓN DE USUARIOS");
+		setVisible(true);
 	}
 
 	private void setDialog() {
@@ -140,6 +149,7 @@ public class DialogoFormularioUsuario extends JDialog {
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						administrador = null;
+						setVisible(false);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

@@ -67,7 +67,7 @@ public class ControladorReservas implements Controlador {
 	@Override
 	public void buscarReserva(String dato) {
 		// TODO Auto-generated method stub
-		List<Reserva> listaEncontrados = reservaDao.buscarReserva(dato);
+		List<Reserva> listaEncontrados = reservaDao.buscarReservas(dato);
 		panelReserva.mostrarReservas(listaEncontrados);
 	}
 
