@@ -39,9 +39,9 @@ public class ControladorFactura implements InterfazFactura.Controlador {
 	}
 
 	@Override
-	public void editarFactura(String idFactura, Factura facturaARegistrar) {
+	public void editarFactura(int idFactura, Factura facturaARegistrar) {
 		if(facturaARegistrar != null) {
-			//facturaDao.actualizarFactura();
+			facturaDao.actualizarFactura(idFactura, facturaARegistrar) ;			
 			obtenerFacturas();
 		}
 		

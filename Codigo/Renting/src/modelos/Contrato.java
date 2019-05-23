@@ -178,7 +178,7 @@ public class Contrato {
 	public String toString() {
 		return String.format(
 				"Contrato [ renovaciones=%s, diasContratados=%s, fechaInicio=%s, dni=%s, matricula=%s, estado=%s]",
-				id, renovaciones, diasContratados, fechaInicio, dni, matricula, estado);
+				 renovaciones, diasContratados, fechaInicio, dni, matricula, estado);
 	}
 	
 }

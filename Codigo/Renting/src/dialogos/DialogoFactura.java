@@ -225,7 +225,7 @@ public class DialogoFactura extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						extraerFactura();
+						extraerFactura();						
 						generarFactura();
 						cerrarDialogo();
 					}
@@ -245,7 +245,7 @@ public class DialogoFactura extends JDialog {
 	public void actualizarFactura() {
 		if(factura != null) {
 			textDNI.setText(factura.getDni());			
-			textID.setText(""+factura.getFechaInicio());
+			textID.setText(""+factura.getIdContrato());
 			textMatricula.setText(factura.getMatricula());
 			textFecha.setText(factura.getFechaInicio().toString());
 			textKm.setText(""+factura.getKmRecorridos());
@@ -260,10 +260,17 @@ public class DialogoFactura extends JDialog {
 	}
 	
 	public void extraerFactura() {
+		int id = Integer.parseInt(textID.getText());
+		int retraso = Integer.parseInt(textRetraso.getText());
+		int deposito = Integer.parseInt(textField.getText());
+		float precio = Float.parseFloat(textPrecio.getText());
+		float descuento = Float.parseFloat(textDescuento.getText());
+		float total = (precio * contrato.getDiasContratados()) + retraso + deposito - descuento;
 		factura = new Factura(Integer.parseInt(textID.getText()), Integer.parseInt(textKm.getText()), 
 				Integer.parseInt(textRetraso.getText()), Integer.parseInt(textField.getText()), textDNI.getText(),
 				textMatricula.getText(), Float.parseFloat(textPrecio.getText()), Float.parseFloat(textDescuento.getText()),
-				Float.parseFloat(textTotal.getText()), Auxiliar.formatearFecha(textFecha.getText()));
+				total, Auxiliar.formatearFecha(textFecha.getText()));
+		//controlador.editarFactura(id, factura);
 		cerrarDialogo();
 	}
 	
@@ -276,8 +283,8 @@ public class DialogoFactura extends JDialog {
 	}
 	
 	public void generarFactura() {
-		String origen = "doc/formularioFactura.pdf";
-		String destino = "pdf/factura" + factura.getFechaInicio().toString() + ".pdf";
+		String origen = "doc/formulario.pdf";
+		String destino = "pdf/factura" + factura.getFechaInicio().toString() + "_" +factura.getDni() + "_" + factura.getMatricula() + ".pdf";
 		try {
 			manipulatePdf(origen,destino, factura);
 		} catch (DocumentException | IOException e) {

@@ -65,9 +65,11 @@ public class FacturaDAO {
 	public Factura obtenerFacturaPorContrato(Contrato contrato){
 		Factura factura = null;
 
-		String consulta = "SELECT * FROM FACTURA WHERE ID_CONTRATO = ?;";
+		String consulta = "SELECT * FROM FACTURA WHERE DNI = ? AND FECHA_INICIO_CONTRATO = ? AND MATRICULA = ?;";
 		try (PreparedStatement pStatement = conexion.prepareStatement(consulta);){
-			pStatement.setInt(1, contrato.getId());
+			pStatement.setString(1, contrato.getDni());
+			pStatement.setString(2, contrato.getFechaInicio().toString());
+			pStatement.setString(3, contrato.getMatricula());
 			ResultSet rs = pStatement.executeQuery();
 			while(rs.next()) {
 				factura = new Factura(rs.getInt("ID_CONTRATO"),
@@ -93,13 +95,13 @@ public class FacturaDAO {
 		
 		List<Factura> listaFactura = new ArrayList<>();
 
-		String consulta1 = "SELECT * FROM FACTURA WHERE DNI like '%?%';";
-		String consulta2 = "SELECT * FROM FACTURA WHERE MATRICULA like '%?%';";
-		String consulta3 = "SELECT * FROM FACTURA WHERE fechaInicio like '%?%';";
+		String consulta1 = "SELECT * FROM FACTURA WHERE DNI like ?;";
+		String consulta2 = "SELECT * FROM FACTURA WHERE MATRICULA like ?;";
+		String consulta3 = "SELECT * FROM FACTURA WHERE fechaInicio like ?;";
 		try (PreparedStatement pStatement1 = conexion.prepareStatement(consulta1);
 				PreparedStatement pStatement2 = conexion.prepareStatement(consulta2);
 				PreparedStatement pStatement3 = conexion.prepareStatement(consulta3);){
-			pStatement1.setString(1, string);
+			pStatement1.setString(1, "%"+string+"%");
 			ResultSet rs1 = pStatement1.executeQuery();
 			while(rs1.next()) {
 				listaFactura.add(new Factura(rs1.getInt("ID_CONTRATO"),
@@ -114,7 +116,7 @@ public class FacturaDAO {
 						Auxiliar.formatearFecha(rs1.getString("FECHA_INICIO_CONTRATO"))));
 			}
 			
-			pStatement2.setString(1, string);
+			pStatement2.setString(1, "%"+string+"%");
 			ResultSet rs2 = pStatement2.executeQuery();
 			while(rs2.next()) {
 				listaFactura.add(new Factura(rs2.getInt("ID_CONTRATO"),
@@ -129,7 +131,7 @@ public class FacturaDAO {
 						Auxiliar.formatearFecha(rs2.getString("FECHA_INICIO_CONTRATO"))));
 			}
 			
-			pStatement3.setString(1, string);
+			pStatement3.setString(1, "%"+string+"%");
 			ResultSet rs3 = pStatement3.executeQuery();
 			while(rs3.next()) {
 				listaFactura.add(new Factura(rs3.getInt("ID_CONTRATO"),
@@ -151,6 +153,30 @@ public class FacturaDAO {
 	
 		return listaFactura;
 		
+	}
+	
+	public boolean actualizarFactura(int id, Factura facturaNueva) {
+		int rows = 0;
+		String sql = "UPDATE FACTURA SET ID_CONTRATO= ?, DNI = ?, MATRICULA = ?, FECHA_INICIO_CONTRATO=?, KM_RECORRIDOS=?, PRECIO_DIA =?, CARGO_RETRASO=?, CARGO_DEPOSITO=?, DESCUENTO_DIA=?, TOTAL=? WHERE ID_CONTRATO=?;";
+		try (PreparedStatement pStatement = conexion.prepareStatement(sql);){
+			pStatement.setInt(1, facturaNueva.getIdContrato());
+			pStatement.setString(2, facturaNueva.getDni());
+			pStatement.setString(3, facturaNueva.getMatricula());
+			pStatement.setString(4, facturaNueva.getFechaInicio().toString());
+			pStatement.setInt(5, facturaNueva.getKmRecorridos());
+			pStatement.setFloat(6, facturaNueva.getPrecioDia());
+			pStatement.setInt(7, facturaNueva.getCargoRetraso());
+			pStatement.setInt(8, facturaNueva.getCargoDeposito());
+			pStatement.setFloat(9, facturaNueva.getDescuentoPorDia());
+			pStatement.setFloat(10, facturaNueva.getTotal());
+			pStatement.setInt(11, id);
+			rows = pStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rows != 0;
 	}
 	
 }
