@@ -283,7 +283,7 @@ private void inicializarUI() {
 	private void extraerCliente() {
 		if(validarCampos()) {
 //			String fecha = "" + comboBoxYears.getSelectedItem()+ "-" + comboBoxMonths.getSelectedItem()+ "-"+comboBoxDays.getSelectedItem();
-			cliente = new Cliente(textField.getText(), textField_1.getText(), textField_3.getText(), textField_4.getText(),
+			cliente = new Cliente(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(),
 					textField_4.getText(), Auxiliar.comprobarEstado(comboBox.getSelectedItem().toString()), Integer.parseInt(textField_5.getText()),
 					comboBox_1.getSelectedItem().toString(), textField_6.getText());
 			cerrarDialogo();
